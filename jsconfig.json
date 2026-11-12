@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "paths": {
+      "@domain/*": ["./src/domain/*"],
+      "@application/*": ["./src/application/*"],
+      "@infrastructure/*": ["./src/infrastructure/*"],
+      "@state/*": ["./src/state/*"],
+      "@ui/*": ["./src/ui/*"],
+      "@data/*": ["./src/data/*"],
+      "@app/*": ["./src/app/*"]
+    }
+  },
+  "include": ["src"]
+}
