@@ -1,0 +1,10 @@
+import { readdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { createHash } from 'node:crypto';
+const files=[];function walk(dir){for(const e of readdirSync(dir,{withFileTypes:true})){const path=join(dir,e.name);if(e.isDirectory())walk(path);else if(e.name!=='sw.js')files.push('/'+path.replaceAll('\\','/').replace(/^dist\//,''));}}walk('dist');
+const hash=createHash('sha256');for(const file of files)hash.update(readFileSync('dist'+file));const version='astrocare-'+hash.digest('hex').slice(0,12);
+writeFileSync('dist/sw.js',`const CACHE=${JSON.stringify(version)},FILES=${JSON.stringify(['/',...files])};
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('astrocare-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request).catch(()=>e.request.mode==='navigate'?caches.match('/index.html'):Response.error())))});`);
+console.log('Offline app shell generated:',files.length,'bundled assets');

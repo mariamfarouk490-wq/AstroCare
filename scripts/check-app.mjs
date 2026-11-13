@@ -1,0 +1,34 @@
+import {readFileSync,readdirSync} from 'node:fs';
+import assert from 'node:assert/strict';
+import {buildSeed} from '../src/infrastructure/data/buildSeed.js';
+import {getCrewHealth,missionDays} from '../src/application/usecases/getCrewHealth.js';
+import {LocalStorageHealthRepository,emptyState,mergeSeed,validateMeasurement,validateCheckIn} from '../src/infrastructure/storage/LocalStorageHealthRepository.js';
+import {SimulatedWatchAdapter} from '../src/infrastructure/devices/SimulatedWatchAdapter.js';
+const raw=Object.fromEntries(readdirSync('src/data').filter(f=>f.endsWith('.json')).map(f=>[f,JSON.parse(readFileSync('src/data/'+f,'utf8'))]));
+const seed=buildSeed(raw,{now:new Date('2026-11-13T12:00:00Z'),shiftDates:false}),days=missionDays(seed),first={};
+for(let i=0;i<days.length;i++)for(const alert of getCrewHealth(seed,seed.demoScript.subject,days[i]).alerts)first[alert.code]??=i+1;
+const expected=Object.fromEntries(seed.demoScript.steps.flatMap(s=>(s.expectFirstAlerts||[]).map(c=>[c,s.day])));
+assert.deepEqual(first,expected);
+for(const crew of seed.crew.filter(c=>!c.isDemoSubject))assert.deepEqual(getCrewHealth(seed,crew.id,days.at(-1)).alerts.map(a=>a.code),seed.demoScript.otherCrewExpectedAlerts);
+const health=getCrewHealth(seed,seed.demoScript.subject,days[8]);
+assert.equal(health.metrics.find(m=>m.code==='HEART_RATE').status,'Normal');
+assert.equal(health.parts.find(p=>p.id==='heart').status,'Watch');
+assert.equal(health.parts.find(p=>p.id==='brain').status,'Watch');
+assert.ok(health.alerts.find(a=>a.code==='CABIN_CO2_HIGH'));
+assert.ok(!health.alerts.some(a=>/\{\w+\}/.test(a.reason)));
+assert.equal(getCrewHealth(seed,seed.demoScript.subject,days[0]).alerts.length,0);
+assert.equal(getCrewHealth(seed,seed.demoScript.subject,days[4]).alerts.length,0);
+let stored;const repo=new LocalStorageHealthRepository({getItem:()=>stored,setItem:(_,value)=>stored=value});
+const user=emptyState(seed.demoScript.subject);repo.save(user);assert.deepEqual(repo.load(user.selectedCrewId),user);
+stored='broken';assert.throws(()=>repo.load(user.selectedCrewId));
+const m={id:'test',crewId:user.selectedCrewId,takenAt:days[8]+'T23:00:00.000Z',source:'manual',readings:[{metric:'SPO2',value:85}]};
+validateMeasurement(m,seed);user.measurements.push(m);
+assert.ok(getCrewHealth(mergeSeed(seed,user),user.selectedCrewId,days[8]).alerts.some(a=>a.code==='SPO2_EMERGENCY'));
+assert.throws(()=>validateMeasurement({...m,readings:[{metric:'SPO2',value:101}]},seed));
+assert.throws(()=>validateMeasurement({...m,readings:[{metric:'BP_SYSTOLIC',value:120}]},seed));
+assert.throws(()=>validateCheckIn({id:'c',crewId:user.selectedCrewId,date:days[8],sleepHours:25,mood:3,stress:2,symptoms:[],source:'manual'},seed));
+const watch=await new SimulatedWatchAdapter().sample({seed,crewId:user.selectedCrewId,date:days[8]});assert.equal(watch.length,2);
+for(const p of seed.protocols)for(const s of p.steps)for(const dest of [s.next,...(s.options||[]).map(o=>o.next)].filter(Boolean)){
+ const [code,step]=dest.includes(':')?dest.split(':'):[p.code,dest];assert.ok(seed.protocols.find(p=>p.code===code).steps.some(s=>s.code===step));
+}
+console.log('Application checks passed: exact 10-day replay, all crew, body statuses, no future alerts, storage validation, input ranges, emergency escalation, watch port and protocol graph.');
