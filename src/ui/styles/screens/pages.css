@@ -1,0 +1,63 @@
+.page {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.page--narrow {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.page__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.page__head p {
+  max-width: 640px;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin: 0 calc(-1 * var(--s-5));
+  padding: 2px var(--s-5);
+}
+
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+
+.row-gap {
+  display: flex;
+  gap: var(--s-3);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/* Grid cards: let long source pills and text shrink instead of widening the track. */
+.reminder,
+.hazard,
+.mission,
+.mini-card,
+.about-hero,
+.trend-main,
+.step-card,
+.alert-card {
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+
+.reminder-grid > *,
+.card-grid > *,
+.reminder__foot > *,
+.refs > li {
+  min-width: 0;
+}

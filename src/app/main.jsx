@@ -3,7 +3,16 @@ import { createRoot } from 'react-dom/client';
 import '../ui/styles/tokens.css';
 import '../ui/styles/base.css';
 import '../ui/styles/components.css';
-import '../ui/styles/screens.css';
+import '../ui/styles/shell.css';
+import '../ui/styles/screens/pages.css';
+import '../ui/styles/screens/body.css';
+import '../ui/styles/screens/alerts.css';
+import '../ui/styles/screens/measure.css';
+import '../ui/styles/screens/trends.css';
+import '../ui/styles/screens/reminders.css';
+import '../ui/styles/screens/about.css';
+import '../ui/styles/screens/emergency.css';
+import '../ui/styles/screens/responsive.css';
 import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(

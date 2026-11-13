@@ -30,6 +30,9 @@
   --bg: #000;
   --bg-raised: #050507;
   --bg-inset: rgba(0, 0, 0, 0.45);
+  --fill-1: rgba(255, 255, 255, 0.03);
+  --fill-2: rgba(255, 255, 255, 0.06);
+  --fill-3: rgba(255, 255, 255, 0.1);
   --glass-fill: rgba(255, 255, 255, 0.035);
   --glass-fill-strong: rgba(255, 255, 255, 0.055);
   --glass-fill-hover: rgba(255, 255, 255, 0.075);
@@ -56,6 +59,10 @@
   --blue-soft: rgba(10, 132, 255, 0.14);
   --red-soft: rgba(255, 69, 58, 0.12);
   --red-line: rgba(255, 69, 58, 0.5);
+  --red-line-soft: rgba(255, 69, 58, 0.3);
+  --red-fill: rgba(255, 69, 58, 0.45);
+  --blue-line: rgba(10, 132, 255, 0.45);
+  --green-line: rgba(48, 209, 88, 0.3);
   --green-glow: 0 0 12px rgba(48, 209, 88, 0.25);
   --red-glow: 0 0 14px rgba(255, 69, 58, 0.3);
   --blue-glow: 0 6px 20px rgba(10, 132, 255, 0.22);

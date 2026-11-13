@@ -2,18 +2,20 @@ import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { useApp, useHealth } from '../../state/store.js';
 import { GlassPanel } from '../components/index.jsx';
 import TopBar from './TopBar.jsx';
-import TabBar from './TabBar.jsx';
+import NavRail from './NavRail.jsx';
 import DemoBar from './DemoBar.jsx';
 import { useRoute } from './useRoute.js';
-import MeasureScreen from '../screens/MeasureScreen.jsx';
-import TrendsScreen from '../screens/TrendsScreen.jsx';
-import AlertsScreen from '../screens/AlertsScreen.jsx';
-import RemindersScreen from '../screens/RemindersScreen.jsx';
-import AboutScreen from '../screens/AboutScreen.jsx';
-import EmergencyScreen from '../screens/EmergencyScreen.jsx';
 
-// The 3D body map is the heaviest chunk (three.js); load it on its own.
-const BodyMapScreen = lazy(() => import('../screens/BodyMapScreen.jsx'));
+// Screens load on demand; the body map carries three.js and is the heaviest chunk.
+const SCREENS = {
+  body: lazy(() => import('../screens/BodyMapScreen.jsx')),
+  measure: lazy(() => import('../screens/MeasureScreen.jsx')),
+  trends: lazy(() => import('../screens/TrendsScreen.jsx')),
+  alerts: lazy(() => import('../screens/AlertsScreen.jsx')),
+  reminders: lazy(() => import('../screens/RemindersScreen.jsx')),
+  about: lazy(() => import('../screens/AboutScreen.jsx')),
+};
+const EmergencyScreen = lazy(() => import('../screens/EmergencyScreen.jsx'));
 
 function Backdrop() {
   return (
@@ -30,10 +32,19 @@ function Toast() {
   const toast = useApp((s) => s.toast);
   if (!toast) return null;
   return (
-    <GlassPanel strong key={toast.id} className={`toast toast--${toast.tone}`} role="status">
+    <GlassPanel strong solid key={toast.id} className={`toast toast--${toast.tone}`} role="status">
       <span className="toast__dot" />
       {toast.message}
     </GlassPanel>
+  );
+}
+
+function Loading() {
+  return (
+    <div className="loading" role="status">
+      <span className="loading__bar" />
+      <span className="eyebrow">Loading</span>
+    </div>
   );
 }
 
@@ -43,7 +54,7 @@ export default function AppShell() {
   const demoOpen = useApp((s) => s.demo.open);
   const openDemo = useApp((s) => s.openDemo);
   const emergencyRunning = useApp((s) => Boolean(s.emergency));
-  const [emergency, setEmergency] = useState(null); // { protocol } when the emergency overlay is open
+  const [emergency, setEmergency] = useState(null); // { protocol } while the emergency overlay is open
 
   const onEmergency = useCallback((protocol) => setEmergency({ protocol: typeof protocol === 'string' ? protocol : undefined }), []);
   const closeEmergency = useCallback(() => setEmergency(null), []);
@@ -57,27 +68,26 @@ export default function AppShell() {
     window.scrollTo({ top: 0 });
   }, [route.screen]);
 
-  const openAlerts =health.alerts.filter((a) => !a.acknowledgedAt).length;
-  const screens = {
-    body: <BodyMapScreen param={route.param} onEmergency={onEmergency} />,
-    measure: <MeasureScreen param={route.param} onEmergency={onEmergency} />,
-    trends: <TrendsScreen param={route.param} />,
-    alerts: <AlertsScreen onEmergency={onEmergency} />,
-    reminders: <RemindersScreen />,
-    about: <AboutScreen />,
-  };
+  const Screen = SCREENS[route.screen];
+  const openAlerts = health.alerts.filter((a) => !a.acknowledgedAt).length;
 
   return (
     <div className={`shell${demoOpen ? ' shell--demo' : ''}`}>
       <Backdrop />
       <TopBar onEmergency={() => onEmergency()} />
+      <NavRail screen={route.screen} openAlerts={openAlerts} />
       <main className="shell__main" key={route.screen}>
-        <Suspense fallback={<div className="loading">Loading body map…</div>}>{screens[route.screen]}</Suspense>
+        <Suspense fallback={<Loading />}>
+          <Screen param={route.param} onEmergency={onEmergency} />
+        </Suspense>
       </main>
       {demoOpen && <DemoBar onEmergency={() => onEmergency('CHEST_PAIN')} />}
-      <TabBar screen={route.screen} openAlerts={openAlerts} />
       <Toast />
-      {(emergency || emergencyRunning) && <EmergencyScreen initialProtocol={emergency?.protocol} onClose={closeEmergency} />}
+      {(emergency || emergencyRunning) && (
+        <Suspense fallback={null}>
+          <EmergencyScreen initialProtocol={emergency?.protocol} onClose={closeEmergency} />
+        </Suspense>
+      )}
     </div>
   );
 }

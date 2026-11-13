@@ -1,0 +1,49 @@
+.reminder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--s-4);
+}
+
+.reminder {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+}
+
+.reminder--next {
+  border-color: var(--blue-line);
+}
+
+.reminder__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reminder__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-sm);
+  background: var(--fill-2);
+  border: 1px solid var(--glass-border-soft);
+}
+
+.reminder__when {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  font-size: var(--fs-footnote);
+  font-weight: 600;
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.reminder__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-2);
+}

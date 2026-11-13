@@ -1,0 +1,101 @@
+/* Breakpoints: 1360 (laptop), 1100 (tablet), 760 (phone). */
+
+@media (max-width: 1360px) {
+  .body-screen {
+    grid-template-columns: 300px minmax(0, 1fr) 320px;
+  }
+  .crew-chip__name {
+    display: none;
+  }
+  .crew-chip {
+    padding: 0 3px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .topbar__meta,
+  .topbar__name {
+    display: none;
+  }
+  .body-screen {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 560px auto;
+    height: auto;
+  }
+  .body-screen__stage {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+  .body-screen__left,
+  .body-screen__right {
+    overflow: visible;
+  }
+  .measure-grid,
+  .trend-layout,
+  .emergency__grid {
+    grid-template-columns: 1fr;
+  }
+  .guide {
+    position: static;
+  }
+  .timeline {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    height: auto;
+    padding: var(--s-3) var(--s-4);
+    row-gap: var(--s-2);
+  }
+  .timeline__caption {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .card-grid--wide {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --rail-w: 0px;
+  }
+  .shell__main {
+    padding: calc(var(--topbar-h) + var(--s-4)) var(--s-4) calc(64px + var(--s-5));
+  }
+  .topbar__telemetry .telemetry:last-child,
+  .crew-picker,
+  .topbar__actions .btn:not(.btn--danger) {
+    display: none;
+  }
+  .rail {
+    top: auto;
+    left: 0;
+    right: 0;
+    width: auto;
+    height: 64px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 var(--s-2);
+    border-right: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .rail__item[aria-current="page"]::before {
+    display: none;
+  }
+  .body-screen {
+    grid-template-columns: 1fr;
+  }
+  .checkin__grid,
+  .entry__fields--2,
+  .hazard__cols,
+  .emergency__protocols {
+    grid-template-columns: 1fr;
+  }
+  .emergency__patients {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cpr {
+    flex-direction: column;
+  }
+  .timeline {
+    bottom: 64px;
+  }
+}
