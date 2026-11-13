@@ -178,5 +178,11 @@
     "label": "CSA – Why do we conduct science experiments in space?",
     "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp",
     "publisher": "CSA"
+  },
+  {
+    "key": "BODYPARTS3D",
+    "label": "BodyParts3D, © The Database Center for Life Science (DBCLS), CC BY-SA 2.1 Japan – 3D anatomy models",
+    "url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "publisher": "Peer-reviewed"
   }
 ]

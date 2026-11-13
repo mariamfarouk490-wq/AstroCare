@@ -4,7 +4,7 @@
 import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { STATUS_COLOR, fresnelMaterial } from './materials.js';
+import { STATUS_COLOR, fresnelMaterial, organMaterial } from './materials.js';
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const v = (a) => new THREE.Vector3(...a);
@@ -170,19 +170,6 @@ const ILIACS = SIDES.map((s) => [[0, 0.99, -0.02], [s * 0.04, 0.95, 0.0], [s * 0
 const RENAL = SIDES.map((s) => [[0, 1.08, -0.032], [s * 0.035, 1.082, -0.035], [s * 0.052, 1.08, -0.04]]);
 const URETERS = SIDES.map((s) => [[s * 0.055, 1.06, -0.035], [s * 0.04, 1.0, -0.01], [s * 0.02, 0.96, 0.03], [s * 0.01, 0.95, 0.045]]);
 
-function organMaterial(color, critical) {
-  return new THREE.MeshPhysicalMaterial({
-    color,
-    emissive: color,
-    emissiveIntensity: critical ? 1.1 : 0.55,
-    roughness: 0.35,
-    clearcoat: 1,
-    clearcoatRoughness: 0.2,
-    transparent: true,
-    opacity: 0.95,
-    toneMapped: false,
-  });
-}
 
 function Heart({ status, heartRate, onSelect }) {
   const group = useRef();
@@ -291,7 +278,7 @@ function buildDust() {
   return [g1, g2];
 }
 
-function Dust() {
+export function Dust() {
   const inner = useRef();
   const outer = useRef();
   const [innerGeo, outerGeo] = useMemo(() => buildDust(), []);

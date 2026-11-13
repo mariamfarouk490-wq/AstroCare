@@ -8,6 +8,7 @@ import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import ProceduralBody from './ProceduralBody.jsx';
 import XRayAnatomy, { Platform } from './XRayAnatomy.jsx';
+import RealAnatomy from './RealAnatomy.jsx';
 import { STATUS_COLOR, fresnelMaterial } from './materials.js';
 import { BODY_FRAME } from './bodyFrame.js';
 
@@ -124,10 +125,21 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
   };
   const selected = parts.find((p) => p.part.id === selectedId);
   const statusOf = (id) => parts.find((p) => p.part.id === id)?.status ?? 'Normal';
+  // Procedural X-ray body: shown while the anatomy models load, and if they fail.
+  const procedural = (
+    <>
+      <ProceduralBody material={shell} />
+      <XRayAnatomy statusOf={statusOf} heartRate={heartRate} onSelect={onSelect} />
+      <Aura status={statusOf('aura')} dosePct={dosePct} />
+    </>
+  );
 
   useFrame(({ clock }) => {
     if (!body.current || reducedMotion()) return;
     body.current.position.y = 0.012 + Math.sin(clock.elapsedTime * 0.6) * 0.008;
+    // slow sway that stays mostly front-facing; stops once the user takes the camera or opens a part
+    const sway = selectedId || interacting ? 0 : Math.sin(clock.elapsedTime * 0.22) * 0.45;
+    body.current.rotation.y += (sway - body.current.rotation.y) * 0.03;
   });
   useEffect(() => {
     const c = controls.current;
@@ -146,9 +158,11 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
       <pointLight position={[0.2, 1.35, 0.6]} intensity={0.6} distance={1.2} color="#ffffff" />
       <group onPointerMissed={() => onSelect(null)}>
         <group ref={body}>
-          <ProceduralBody material={shell} />
-          <XRayAnatomy statusOf={statusOf} heartRate={heartRate} onSelect={onSelect} />
-          <Aura status={statusOf('aura')} dosePct={dosePct} />
+          <SceneBoundary fallback={procedural}>
+            <Suspense fallback={procedural}>
+              <RealAnatomy statusOf={statusOf} heartRate={heartRate} dosePct={dosePct} onSelect={onSelect} />
+            </Suspense>
+          </SceneBoundary>
           {parts
             .filter((p) => p.part.id !== 'aura')
             .map((p) => (
@@ -165,13 +179,11 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
         maxDistance={4.6}
         minPolarAngle={0.35}
         maxPolarAngle={1.75}
-        autoRotate={!selectedId && !interacting && !reducedMotion()}
-        autoRotateSpeed={0.45}
         target={BODY_FRAME.DEFAULT_CAMERA.lookAt}
       />
       <CameraRig target={selected?.part.cameraTarget} controls={controls} />
       <EffectComposer multisampling={0}>
-        <Bloom mipmapBlur intensity={0.6} luminanceThreshold={0.7} luminanceSmoothing={0.2} radius={0.7} />
+        <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0.82} luminanceSmoothing={0.2} radius={0.7} />
         <Vignette offset={0.3} darkness={0.65} />
       </EffectComposer>
     </>

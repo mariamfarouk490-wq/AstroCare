@@ -38,3 +38,19 @@ export function fresnelMaterial({ color = '#dfe6ee', power = 2.4, rim = 0.85, ba
     side: THREE.DoubleSide,
   });
 }
+
+/** Glossy organ tinted by status (heart, kidneys). */
+export function organMaterial(color, critical, { onTop = false } = {}) {
+  return new THREE.MeshPhysicalMaterial({
+    depthTest: !onTop,
+    color,
+    emissive: color,
+    emissiveIntensity: critical ? 1.1 : 0.55,
+    roughness: 0.35,
+    clearcoat: 1,
+    clearcoatRoughness: 0.2,
+    transparent: true,
+    opacity: 0.95,
+    toneMapped: false,
+  });
+}

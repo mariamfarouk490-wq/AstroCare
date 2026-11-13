@@ -8,7 +8,7 @@ const src = (p) => fileURLToPath(new URL(`./src/${p}`, import.meta.url))
 export default defineConfig({
   plugins: [react()],
   // three.js (~1 MB minified) lives in its own lazy chunk, the body map
-  build: { chunkSizeWarningLimit: 1100 },
+  build: { chunkSizeWarningLimit: 1200 },
   resolve: {
     alias: {
       '@domain': src('domain'),

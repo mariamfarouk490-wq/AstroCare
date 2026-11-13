@@ -23,7 +23,7 @@ Open `http://localhost:5173/?play` to autoplay the 10-day demo.
 
 ## Screens
 
-- **Body**: chrome 3D figure (three.js), status hotspots from `body-parts.json`; tap one to fly the camera there and open its sheet (function, space effect, readings vs band and baseline, open alerts, RIDGE hazards, NASA risks, sources).
+- **Body**: X-ray hologram built from real anatomy (BodyParts3D: skeleton, heart, lungs, aorta, carotid and iliac arteries, kidneys, skin; see CREDITS.md). Organs take their status colour, the heart beats at the crew member's heart rate. Tap a part to fly the camera there and open its sheet (function, space effect, readings vs band and baseline, open alerts, RIDGE hazards, NASA risks, sources). The procedural body is the fallback if the models fail to load.
 - **Measure**: guided cards from `guides.json`, manual entry validated against `metrics.json`, simulated smart watch, on-device photo OCR (sample display is clearly marked simulated), daily check-in with red-flag symptoms.
 - **Trends**: per metric, the generic normal band against the personal baseline (7-day mean ± SD); sleep and exercise against their rules and NASA targets.
 - **Alerts**: rule code, reason, threshold, action, severity and sources; acknowledge.
@@ -46,6 +46,10 @@ src/
 Dependencies point inward: `domain ← application ← infrastructure/state ← ui ← app`.
 The rules engine (`src/domain/analysis/engine.js`) is the same code `scripts/check-data.mjs` uses to verify the demo story.
 Every medical number on screen comes from `src/data`, each with its source.
+
+## 3D models
+
+`public/models/anatomy/*.glb` (about 860 KB in total) are generated from BodyParts3D STL files by `node scripts/build-anatomy.mjs <stl dir> <parts_list_e.txt>`. Licence: CC BY-SA 2.1 Japan, see CREDITS.md.
 
 ## Limits
 
