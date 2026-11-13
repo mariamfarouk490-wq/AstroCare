@@ -1,1 +1,151 @@
-[]
+[
+  {
+    "code": "UNRESPONSIVE",
+    "title": "Crewmate unresponsive",
+    "startStep": "CALL_CREW",
+    "steps": [
+      {
+        "code": "CALL_CREW",
+        "type": "instruction",
+        "text": "Call the crew. Bring the AED and medical kit.",
+        "next": "CHECK_BREATHING"
+      },
+      {
+        "code": "CHECK_BREATHING",
+        "type": "question",
+        "text": "Watch the chest for under 10 seconds. Breathing normally?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "RECOVERY_MONITOR"
+          },
+          {
+            "label": "No",
+            "next": "CPR_START"
+          }
+        ]
+      },
+      {
+        "code": "CPR_START",
+        "type": "cpr-timer",
+        "text": "Start CPR (Evetts-Russomano method in microgravity). Push hard and fast.",
+        "cprRate": 110,
+        "next": "AED_ATTACH"
+      },
+      {
+        "code": "AED_ATTACH",
+        "type": "instruction",
+        "text": "When the AED arrives, follow its voice prompts. Restrain the patient to a surface if available.",
+        "next": "CPR_CONTINUE"
+      },
+      {
+        "code": "CPR_CONTINUE",
+        "type": "cpr-timer",
+        "text": "Continue CPR until breathing returns or the flight surgeon responds. Swap rescuers every 2 minutes.",
+        "cprRate": 110,
+        "next": "RECOVERY_MONITOR"
+      },
+      {
+        "code": "RECOVERY_MONITOR",
+        "type": "measure",
+        "text": "Breathing: measure HR, SpO2 and BP every 5 minutes.",
+        "next": "END"
+      },
+      {
+        "code": "END",
+        "type": "end",
+        "text": "Choose outcome: Stabilized, Handed to Earth, or Ongoing."
+      }
+    ],
+    "sources": [
+      {
+        "label": "AHA – CPR (100–120/min)",
+        "url": "https://cpr.heart.org/en/resources/what-is-cpr"
+      },
+      {
+        "label": "Russomano et al. 2013 – Evetts-Russomano CPR in microgravity",
+        "url": "https://doi.org/10.3357/ASEM.3466.2013"
+      }
+    ]
+  },
+  {
+    "code": "CHEST_PAIN",
+    "title": "Crewmate with chest pain",
+    "startStep": "STOP_ACTIVITY",
+    "steps": [
+      {
+        "code": "STOP_ACTIVITY",
+        "type": "instruction",
+        "text": "Stop all activity, anchor them comfortably, never leave them alone.",
+        "next": "RED_FLAGS"
+      },
+      {
+        "code": "RED_FLAGS",
+        "type": "question",
+        "text": "Pain spreading to arm or jaw, sweating, shortness of breath or nausea?",
+        "options": [
+          {
+            "label": "Yes",
+            "next": "MEASURE_VITALS"
+          },
+          {
+            "label": "No",
+            "next": "MEASURE_VITALS"
+          }
+        ]
+      },
+      {
+        "code": "MEASURE_VITALS",
+        "type": "measure",
+        "text": "Measure HR, BP and SpO2.",
+        "next": "MED_CHECKLIST"
+      },
+      {
+        "code": "MED_CHECKLIST",
+        "type": "instruction",
+        "text": "Follow your mission medical checklist for chest pain (medication and oxygen per checklist).",
+        "next": "NOTIFY_EARTH"
+      },
+      {
+        "code": "NOTIFY_EARTH",
+        "type": "instruction",
+        "text": "Send the log to Earth. Expected reply time is shown.",
+        "next": "REASSESS"
+      },
+      {
+        "code": "REASSESS",
+        "type": "question",
+        "text": "Every 5 minutes: is the crewmate responsive?",
+        "options": [
+          {
+            "label": "Yes, stable",
+            "next": "END"
+          },
+          {
+            "label": "Pain worse",
+            "next": "MEASURE_VITALS"
+          },
+          {
+            "label": "Unresponsive",
+            "next": "UNRESPONSIVE:CALL_CREW"
+          }
+        ]
+      },
+      {
+        "code": "END",
+        "type": "end",
+        "text": "Choose outcome: Stabilized, Handed to Earth, or Ongoing."
+      }
+    ],
+    "sources": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  }
+]

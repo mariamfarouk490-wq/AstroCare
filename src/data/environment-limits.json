@@ -1,0 +1,203 @@
+{
+  "radiation": {
+    "careerLimitMSv": {
+      "value": 600,
+      "source": "NASA-STD-3001 V1 4030"
+    },
+    "solarParticleEventLimitMSv": {
+      "value": 250,
+      "source": "NASA-STD-3001 V1 4031"
+    },
+    "csaLimitsSv": {
+      "source": "CSA (ISS MMOP RHWG)",
+      "bloodFormingOrgans": {
+        "d30": 0.25,
+        "annual": 0.5,
+        "career": 1.0
+      },
+      "eye": {
+        "d30": 1.0,
+        "annual": 2.0,
+        "career": 4.0
+      },
+      "skin": {
+        "d30": 1.5,
+        "annual": 3.0,
+        "career": 6.0
+      }
+    },
+    "neutronShareOnISSPct": {
+      "value": 30,
+      "source": "CSA 2026"
+    },
+    "evaShelterWithinHours": {
+      "value": 2,
+      "source": "NASA OCHMO radiation brief"
+    },
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      },
+      {
+        "label": "CSA – Monitoring radiation for astronaut health (CANS, 2026)",
+        "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp"
+      },
+      {
+        "label": "NASA JSC Space Radiation Analysis Group – How we monitor",
+        "url": "https://srag.jsc.nasa.gov/SpaceRadiation/How/How.cfm"
+      }
+    ]
+  },
+  "cabinAir": {
+    "ppCO2MaxMmHg1h": {
+      "value": 3,
+      "source": "NASA-STD-3001 V2 6004"
+    },
+    "ppCO2Target7dMmHg": {
+      "value": 2.5,
+      "source": "OCHMO CO2 brief (headache risk < 1%)"
+    },
+    "co2SymptomBandsMmHg": [
+      {
+        "min": 2.8,
+        "max": 4.5,
+        "symptoms": [
+          "headache",
+          "fatigue",
+          "malaise",
+          "flushing"
+        ]
+      },
+      {
+        "min": 3.5,
+        "symptoms": [
+          "cough",
+          "poor_sleep",
+          "blurred_vision",
+          "headache"
+        ]
+      },
+      {
+        "min": 4.5,
+        "symptoms": [
+          "fatigue",
+          "nausea",
+          "poor_sleep"
+        ]
+      }
+    ],
+    "issCo2RangeMmHg": {
+      "min": 1,
+      "max": 9
+    },
+    "ppO2NormoxiaMmHg": {
+      "min": 145,
+      "max": 155,
+      "source": "NASA-STD-3001 V2 6003"
+    },
+    "temperatureC": {
+      "min": 18,
+      "max": 27,
+      "comfortMin": 20,
+      "comfortMax": 25,
+      "source": "V2 6012/6013"
+    },
+    "relativeHumidityPct": {
+      "min": 25,
+      "max": 75,
+      "comfortMin": 30,
+      "comfortMax": 60,
+      "source": "V2 6012/6013"
+    },
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      }
+    ]
+  },
+  "dailyNeeds": {
+    "waterMinLPerDay": {
+      "value": 2.5,
+      "source": "NASA-STD-3001 V2 6109"
+    },
+    "foodKcalPerDay": {
+      "value": 3035,
+      "source": "NASA-STD-3001 V2 7003"
+    },
+    "exerciseHoursPerDay": {
+      "value": 1.5,
+      "daysPerWeek": "6–7",
+      "source": "NASA HRP fitness risk"
+    },
+    "refs": [
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ]
+  },
+  "physiologyRates": {
+    "boneLossPctPerMonth": {
+      "min": 1.0,
+      "max": 1.5,
+      "source": "NASA HRP"
+    },
+    "fitnessLossPct": {
+      "min": 10,
+      "max": 12,
+      "source": "NASA HRP"
+    },
+    "sansPrevalencePct": {
+      "value": 70,
+      "source": "NASA HRP (some optic swelling, ISS)"
+    },
+    "heightIncreasePctMax": {
+      "value": 3,
+      "source": "NASA HRP bone risk"
+    },
+    "restingCoreTempRiseC": {
+      "value": 1,
+      "source": "Stahn 2017"
+    },
+    "sunrisesPerDayISS": {
+      "value": 16,
+      "source": "NASA sleep risk"
+    },
+    "refs": [
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      },
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      },
+      {
+        "label": "Stahn et al. 2017, Scientific Reports – Increased core body temperature in astronauts",
+        "url": "https://doi.org/10.1038/s41598-017-15560-w"
+      },
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      }
+    ]
+  }
+}

@@ -1,1 +1,452 @@
-[]
+[
+  {
+    "id": "ed5a5239-0af3-5ae3-8387-b09d260b6f34",
+    "crewId": "cm-01",
+    "date": "2026-11-04",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "5efc2eee-21ff-5f40-ba1a-c5a87043b0f2",
+    "crewId": "cm-02",
+    "date": "2026-11-04",
+    "sleepHours": 7.5,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "acff13ef-29f4-51b8-98b9-56eec0adbdd6",
+    "crewId": "cm-03",
+    "date": "2026-11-04",
+    "sleepHours": 6.5,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "e87c9415-3ff2-5260-ad15-931069512db8",
+    "crewId": "cm-04",
+    "date": "2026-11-04",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "63a4f839-346c-5c27-953a-1858644e6ce5",
+    "crewId": "cm-01",
+    "date": "2026-11-05",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "2b6ffbff-1ecb-53bb-8a57-1f5c60ff2a01",
+    "crewId": "cm-02",
+    "date": "2026-11-05",
+    "sleepHours": 7.5,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "a3bd2eec-a869-541c-8e18-b8913fbf57de",
+    "crewId": "cm-03",
+    "date": "2026-11-05",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "6804d1b9-0d80-51d3-be03-41552323e3f7",
+    "crewId": "cm-04",
+    "date": "2026-11-05",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "71b41b9c-7b09-58fc-81e4-a062039463d5",
+    "crewId": "cm-01",
+    "date": "2026-11-06",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "dce6d511-3578-5772-9d28-fb14f0470e57",
+    "crewId": "cm-02",
+    "date": "2026-11-06",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "25373ff3-570e-5303-a2fe-f4dae7a4a3a5",
+    "crewId": "cm-03",
+    "date": "2026-11-06",
+    "sleepHours": 7.0,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "28a1f61d-a043-5be6-bce2-835054cc09f2",
+    "crewId": "cm-04",
+    "date": "2026-11-06",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "d33e0bed-a9ed-5167-8df7-9fdcc345b03d",
+    "crewId": "cm-01",
+    "date": "2026-11-07",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "82b4e52a-5f81-518c-af24-5f31f7b1819d",
+    "crewId": "cm-02",
+    "date": "2026-11-07",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 85,
+    "source": "seed"
+  },
+  {
+    "id": "5c938095-4a23-5a6b-a29a-63ab5f387db7",
+    "crewId": "cm-03",
+    "date": "2026-11-07",
+    "sleepHours": 6.5,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "efe1f08d-e613-5e52-8be7-43ad21004321",
+    "crewId": "cm-04",
+    "date": "2026-11-07",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "371e4e4d-9ddb-517a-af57-043240c2af3e",
+    "crewId": "cm-01",
+    "date": "2026-11-08",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "429e64eb-3aa1-5eef-8429-fedf145d5079",
+    "crewId": "cm-02",
+    "date": "2026-11-08",
+    "sleepHours": 6.5,
+    "mood": 4,
+    "stress": 3,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "33acb448-aef9-5094-a490-9136ced9a511",
+    "crewId": "cm-03",
+    "date": "2026-11-08",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 85,
+    "source": "seed"
+  },
+  {
+    "id": "f098ff28-b4c0-5852-a745-61bb85fb3020",
+    "crewId": "cm-04",
+    "date": "2026-11-08",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "bcda0d19-93e1-5ea2-baaf-94521e232242",
+    "crewId": "cm-01",
+    "date": "2026-11-09",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "a40db982-3983-56d5-aaa7-5adc44e2865a",
+    "crewId": "cm-02",
+    "date": "2026-11-09",
+    "sleepHours": 6.0,
+    "mood": 3,
+    "stress": 3,
+    "symptoms": [],
+    "exerciseMin": 80,
+    "source": "seed"
+  },
+  {
+    "id": "f4123dff-e513-58a0-9328-d62d64660344",
+    "crewId": "cm-03",
+    "date": "2026-11-09",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "a56ee49f-0946-5971-96a6-b0e9d6cd1d8b",
+    "crewId": "cm-04",
+    "date": "2026-11-09",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "cf2c9198-eaab-5050-b5a8-fd2a04e6d1a8",
+    "crewId": "cm-01",
+    "date": "2026-11-10",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "a4b3a3a4-709b-534e-8f21-ae4698abf949",
+    "crewId": "cm-02",
+    "date": "2026-11-10",
+    "sleepHours": 5.5,
+    "mood": 3,
+    "stress": 3,
+    "symptoms": [
+      "fatigue"
+    ],
+    "exerciseMin": 75,
+    "source": "seed"
+  },
+  {
+    "id": "e8969846-3f49-5f16-921c-2e74be309135",
+    "crewId": "cm-03",
+    "date": "2026-11-10",
+    "sleepHours": 6.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "a37d75f7-64e8-5502-957b-6e8ef5b1e5d8",
+    "crewId": "cm-04",
+    "date": "2026-11-10",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "ac459b19-778a-5122-91c2-51a3792ef74f",
+    "crewId": "cm-01",
+    "date": "2026-11-11",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "33e9eccd-906a-5271-a4eb-1c5b919966bd",
+    "crewId": "cm-02",
+    "date": "2026-11-11",
+    "sleepHours": 5.5,
+    "mood": 3,
+    "stress": 3,
+    "symptoms": [
+      "fatigue"
+    ],
+    "exerciseMin": 70,
+    "source": "seed"
+  },
+  {
+    "id": "d6d95eed-5884-5fea-b693-bd1a92f0290a",
+    "crewId": "cm-03",
+    "date": "2026-11-11",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "92fae571-d707-5451-b98a-17c83523ee1a",
+    "crewId": "cm-04",
+    "date": "2026-11-11",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "e8da47db-0f94-5c4d-adb0-df5c7406028e",
+    "crewId": "cm-01",
+    "date": "2026-11-12",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "0ba15d25-d576-51da-b1ca-f07a69df6283",
+    "crewId": "cm-02",
+    "date": "2026-11-12",
+    "sleepHours": 5.5,
+    "mood": 3,
+    "stress": 4,
+    "symptoms": [
+      "headache",
+      "fatigue"
+    ],
+    "exerciseMin": 60,
+    "source": "seed"
+  },
+  {
+    "id": "7a243a74-b6fc-51b0-9363-c445a735e719",
+    "crewId": "cm-03",
+    "date": "2026-11-12",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "e2ec5460-8f37-54c9-9c46-f0357d246977",
+    "crewId": "cm-04",
+    "date": "2026-11-12",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "525f4658-7056-5170-bfd4-68b9e1ac9a9a",
+    "crewId": "cm-01",
+    "date": "2026-11-13",
+    "sleepHours": 7.0,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 95,
+    "source": "seed"
+  },
+  {
+    "id": "644d261d-2cf5-5d10-8552-3caf9364f8e2",
+    "crewId": "cm-02",
+    "date": "2026-11-13",
+    "sleepHours": 5.0,
+    "mood": 3,
+    "stress": 4,
+    "symptoms": [
+      "headache",
+      "poor_sleep"
+    ],
+    "exerciseMin": 60,
+    "source": "seed"
+  },
+  {
+    "id": "1973c8fd-9b5e-59b9-913a-1270861abe6d",
+    "crewId": "cm-03",
+    "date": "2026-11-13",
+    "sleepHours": 6.5,
+    "mood": 4,
+    "stress": 2,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  },
+  {
+    "id": "d83838ed-f87a-5a64-8222-ae759b5f72e4",
+    "crewId": "cm-04",
+    "date": "2026-11-13",
+    "sleepHours": 7.5,
+    "mood": 5,
+    "stress": 1,
+    "symptoms": [],
+    "exerciseMin": 90,
+    "source": "seed"
+  }
+]

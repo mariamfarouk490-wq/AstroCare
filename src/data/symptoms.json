@@ -1,1 +1,236 @@
-[]
+[
+  {
+    "code": "chest_pain",
+    "label": "Chest pain",
+    "redFlag": true,
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "code": "shortness_of_breath",
+    "label": "Shortness of breath",
+    "redFlag": true,
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      },
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "fainting",
+    "label": "Fainting / near-fainting",
+    "redFlag": true,
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      },
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "code": "confusion",
+    "label": "Confusion",
+    "redFlag": true,
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "blue_lips",
+    "label": "Blue lips or nails",
+    "redFlag": true,
+    "refs": [
+      {
+        "label": "Cleveland Clinic – Pulse oximetry",
+        "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry"
+      }
+    ]
+  },
+  {
+    "code": "headache",
+    "label": "Headache",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      }
+    ]
+  },
+  {
+    "code": "blurred_vision",
+    "label": "Blurred vision",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      },
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "dizziness",
+    "label": "Dizziness / balance problems",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "nausea",
+    "label": "Nausea / motion sickness",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      }
+    ]
+  },
+  {
+    "code": "fatigue",
+    "label": "Fatigue",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      }
+    ]
+  },
+  {
+    "code": "poor_sleep",
+    "label": "Poor sleep",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      },
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "cough",
+    "label": "Cough",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "rash",
+    "label": "Skin rash",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  },
+  {
+    "code": "cold_sore",
+    "label": "Cold sore",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  },
+  {
+    "code": "back_pain",
+    "label": "Back pain",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "code": "flank_pain",
+    "label": "Flank pain (possible kidney stone)",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "code": "fever_chills",
+    "label": "Fever / chills",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      },
+      {
+        "label": "MedlinePlus – Fever",
+        "url": "https://medlineplus.gov/ency/article/003090.htm"
+      }
+    ]
+  },
+  {
+    "code": "diarrhea",
+    "label": "Diarrhea",
+    "redFlag": false,
+    "refs": [
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      },
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  }
+]

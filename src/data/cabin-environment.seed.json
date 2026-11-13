@@ -1,0 +1,102 @@
+[
+  {
+    "id": "b2f7f7ac-6eab-5fc9-b0e9-151d2333cb32",
+    "module": "HAB-1",
+    "takenAt": "2026-11-04T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.2,
+    "ppO2mmHg": 150,
+    "temperatureC": 22.0,
+    "relativeHumidityPct": 45
+  },
+  {
+    "id": "9e2786ea-d3d5-55d6-8d12-ae6ec8b69e69",
+    "module": "HAB-1",
+    "takenAt": "2026-11-05T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.3,
+    "ppO2mmHg": 151,
+    "temperatureC": 22.5,
+    "relativeHumidityPct": 46
+  },
+  {
+    "id": "95a9e471-982d-52ed-8a2a-6b1073b3e062",
+    "module": "HAB-1",
+    "takenAt": "2026-11-06T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.1,
+    "ppO2mmHg": 149,
+    "temperatureC": 22.0,
+    "relativeHumidityPct": 44
+  },
+  {
+    "id": "72aa27cc-6602-51c0-b897-d6bb68cc960d",
+    "module": "HAB-1",
+    "takenAt": "2026-11-07T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.4,
+    "ppO2mmHg": 150,
+    "temperatureC": 22.5,
+    "relativeHumidityPct": 47
+  },
+  {
+    "id": "0593ab5d-9c8e-5c7f-be64-854389f1443c",
+    "module": "HAB-1",
+    "takenAt": "2026-11-08T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.5,
+    "ppO2mmHg": 150,
+    "temperatureC": 23.0,
+    "relativeHumidityPct": 48
+  },
+  {
+    "id": "ee615009-cbbe-5229-ab63-9c8389e7cd7d",
+    "module": "HAB-1",
+    "takenAt": "2026-11-09T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.6,
+    "ppO2mmHg": 149,
+    "temperatureC": 23.0,
+    "relativeHumidityPct": 50
+  },
+  {
+    "id": "ac67b1ea-1a95-546a-8ca0-4e9323ecb71b",
+    "module": "HAB-1",
+    "takenAt": "2026-11-10T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.8,
+    "ppO2mmHg": 148,
+    "temperatureC": 23.5,
+    "relativeHumidityPct": 52
+  },
+  {
+    "id": "f6789bb6-e119-5c28-bc27-8faf47a9b107",
+    "module": "HAB-1",
+    "takenAt": "2026-11-11T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 2.9,
+    "ppO2mmHg": 149,
+    "temperatureC": 23.5,
+    "relativeHumidityPct": 53
+  },
+  {
+    "id": "665ee16c-5f62-5ce1-9f64-d4051cdf5358",
+    "module": "HAB-1",
+    "takenAt": "2026-11-12T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 3.2,
+    "ppO2mmHg": 148,
+    "temperatureC": 24.0,
+    "relativeHumidityPct": 55
+  },
+  {
+    "id": "b1e03936-edd9-543d-b557-7c544c021044",
+    "module": "HAB-1",
+    "takenAt": "2026-11-13T07:00:00Z",
+    "source": "seed",
+    "ppCO2mmHg": 3.3,
+    "ppO2mmHg": 148,
+    "temperatureC": 24.0,
+    "relativeHumidityPct": 56
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "key": "RIDGE",
+    "label": "NASA HRP – 5 Hazards of Human Spaceflight",
+    "url": "https://www.nasa.gov/hrp/hazards",
+    "publisher": "NASA"
+  },
+  {
+    "key": "BODY",
+    "label": "NASA – The Human Body in Space",
+    "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "RISKS",
+    "label": "NASA HRP – Human System Risks",
+    "url": "https://www.nasa.gov/hrp/risks",
+    "publisher": "NASA"
+  },
+  {
+    "key": "HSR",
+    "label": "NASA – Human System Risk Board list",
+    "url": "https://www.nasa.gov/human-system-risks",
+    "publisher": "NASA"
+  },
+  {
+    "key": "BONE",
+    "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+    "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "FIT",
+    "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+    "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "CV",
+    "label": "NASA – Risk of Cardiovascular Adaptations",
+    "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "SLEEP",
+    "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+    "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "SANS",
+    "label": "NASA – Risk of SANS",
+    "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "IMM",
+    "label": "NASA – Risk of Altered Immune System Responses",
+    "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "RADTB",
+    "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+    "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf",
+    "publisher": "NASA"
+  },
+  {
+    "key": "CO2TB",
+    "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+    "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf",
+    "publisher": "NASA"
+  },
+  {
+    "key": "ECLSS",
+    "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+    "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf",
+    "publisher": "NASA"
+  },
+  {
+    "key": "SRAG",
+    "label": "NASA JSC Space Radiation Analysis Group – How we monitor",
+    "url": "https://srag.jsc.nasa.gov/SpaceRadiation/How/How.cfm",
+    "publisher": "NASA"
+  },
+  {
+    "key": "CSARAD",
+    "label": "CSA – How does radiation affect the human body in space?",
+    "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp",
+    "publisher": "CSA"
+  },
+  {
+    "key": "CSACANS",
+    "label": "CSA – Monitoring radiation for astronaut health (CANS, 2026)",
+    "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp",
+    "publisher": "CSA"
+  },
+  {
+    "key": "CSABODY",
+    "label": "CSA – Effects of space on the body",
+    "url": "https://www.asc-csa.gc.ca/eng/astronauts/living-in-space/effects-of-space-on-the-body.asp",
+    "publisher": "CSA"
+  },
+  {
+    "key": "AHA_HR",
+    "label": "American Heart Association – Target heart rates",
+    "url": "https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "AHA_BP",
+    "label": "American Heart Association – Understanding blood pressure readings",
+    "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "CC_SPO2",
+    "label": "Cleveland Clinic – Pulse oximetry",
+    "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "CDC_GLU",
+    "label": "CDC – Diabetes testing",
+    "url": "https://www.cdc.gov/diabetes/diabetes-testing/index.html",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "ADA_HYPO",
+    "label": "ADA – Hypoglycemia (15-15 rule)",
+    "url": "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "MP_FEVER",
+    "label": "MedlinePlus – Fever",
+    "url": "https://medlineplus.gov/ency/article/003090.htm",
+    "publisher": "Medical guideline"
+  },
+  {
+    "key": "STAHN",
+    "label": "Stahn et al. 2017, Scientific Reports – Increased core body temperature in astronauts",
+    "url": "https://doi.org/10.1038/s41598-017-15560-w",
+    "publisher": "Peer-reviewed"
+  },
+  {
+    "key": "BARGER",
+    "label": "Barger et al. 2014, Lancet Neurology – Sleep deficiency in astronauts",
+    "url": "https://doi.org/10.1016/S1474-4422(14)70122-X",
+    "publisher": "Peer-reviewed"
+  },
+  {
+    "key": "ZEITLIN",
+    "label": "Zeitlin et al. 2013, Science – MSL cruise radiation",
+    "url": "https://doi.org/10.1126/science.1235989",
+    "publisher": "Peer-reviewed"
+  },
+  {
+    "key": "HASSLER",
+    "label": "Hassler et al. 2014, Science – Mars surface radiation (verify)",
+    "url": "https://doi.org/10.1126/science.1244797",
+    "publisher": "Peer-reviewed"
+  },
+  {
+    "key": "SRS",
+    "label": "AstroCare SRS (team doc, section 7–9)",
+    "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr",
+    "publisher": "Team"
+  },
+  {
+    "key": "HRP_RESEARCH",
+    "label": "NASA HRP – Ongoing HRP Research",
+    "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "CSASCI",
+    "label": "CSA – Why do we conduct science experiments in space?",
+    "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp",
+    "publisher": "CSA"
+  }
+]

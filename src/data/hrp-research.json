@@ -1,0 +1,212 @@
+[
+  {
+    "name": "ARCHeR",
+    "group": "Artemis II",
+    "measures": "Crew well-being, activity and sleep patterns",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Check-in sleep/mood + simulated watch activity",
+    "url": "https://www.nasa.gov/reference/archer/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Immune Biomarkers",
+    "group": "Artemis II",
+    "measures": "Immune changes from blood and saliva",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "appLink": "Temperature + immune symptoms (no lab assays)",
+    "url": "https://www.nasa.gov/reference/immune-biomarkers/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Artemis II Standard Measures",
+    "group": "Artemis II",
+    "measures": "Consistent health data stored in a data bank",
+    "domain": "All",
+    "bodyPart": "",
+    "appLink": "Same 6 metrics + check-in every day, exportable log",
+    "url": "https://www.nasa.gov/reference/artemis-ii-standard-measures/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "B-Complex",
+    "group": "LEO",
+    "measures": "B-vitamin supplement vs brain/eye changes",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Not covered (SANS symptom only)",
+    "url": "https://www.nasa.gov/reference/b-complex/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Brain Fluid Pressure",
+    "group": "LEO",
+    "measures": "Intracranial pressure vs eye/brain changes",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Not covered (SANS symptom only)",
+    "url": "https://www.nasa.gov/reference/brain-fluid-pressure/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "CIPHER",
+    "group": "LEO",
+    "measures": "Changes across multiple body systems",
+    "domain": "All",
+    "bodyPart": "",
+    "appLink": "5-domain body map is the same multi-system idea",
+    "url": "https://www.nasa.gov/reference/cipher/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Simulating Manual Piloting for Moon Landings",
+    "group": "LEO",
+    "measures": "Gravity transitions vs piloting",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Not covered (could add a reaction-time test)",
+    "url": "https://www.nasa.gov/reference/simulating-manual-piloting-for-moon-landings/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Spacecraft Occupant Protection",
+    "group": "LEO",
+    "measures": "Crew discomfort at re-entry + sensor data",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "appLink": "Not covered",
+    "url": "https://www.nasa.gov/reference/spacecraft-occupant-protection/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Spinal Fluid Biomarkers",
+    "group": "LEO",
+    "measures": "Spinal fluid markers of brain/eye changes",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Not covered",
+    "url": "https://www.nasa.gov/reference/spinal-fluid-biomarkers/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Standard Measures",
+    "group": "LEO",
+    "measures": "Consistent physiological and psychological measures",
+    "domain": "All",
+    "bodyPart": "",
+    "appLink": "Core of AstroCare: daily vitals + check-in + baseline",
+    "url": "https://www.nasa.gov/reference/standard-measures/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Thigh Cuff",
+    "group": "LEO",
+    "measures": "Thigh cuffs keep fluid in legs to protect eyes",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "appLink": "Countermeasure text in heart panel",
+    "url": "https://www.nasa.gov/reference/thigh-cuff/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Venous Haemostasis",
+    "group": "LEO",
+    "measures": "Blood flow and clotting changes",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "appLink": "Not covered (VTE risk)",
+    "url": "https://www.nasa.gov/reference/venous-haemostasis/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Zero T2",
+    "group": "LEO",
+    "measures": "Exercise without a treadmill",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "appLink": "Exercise minutes could feed bone-loss estimate (not yet)",
+    "url": "https://www.nasa.gov/reference/zero-t2/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Altered Immunity",
+    "group": "Past",
+    "measures": "Blood/saliva/urine immune changes",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "appLink": "Temperature + symptoms",
+    "url": "https://www.nasa.gov/missions/station/scientists-probe-how-long-term-spaceflight-alters-immunity/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Food Acceptability",
+    "group": "Past",
+    "measures": "Food appeal over long missions",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "appLink": "Not covered (appetite question could go in check-in)",
+    "url": "https://www.nasa.gov/humans-in-space/how-does-spaceflight-change-food-appeal/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Food Physiology",
+    "group": "Past",
+    "measures": "Enhanced diet helps adaptation",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "appLink": "Glucose only",
+    "url": "https://www.nasa.gov/missions/station/enhanced-diet-may-help-astronauts-adapt-to-spaceflight/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Omics Archive",
+    "group": "Past",
+    "measures": "Molecular changes from samples",
+    "domain": "All",
+    "bodyPart": "",
+    "appLink": "Not covered",
+    "url": "https://www.nasa.gov/reference/omics-archive/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Space Gardening",
+    "group": "Past",
+    "measures": "Gardening eases isolation",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "appLink": "Recommendation text for low mood",
+    "url": "https://www.nasa.gov/humans-in-space/can-space-gardening-help-astronauts-cope-with-isolation/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Spinal Health",
+    "group": "Past",
+    "measures": "Spine scans vs bone/muscle loss",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "appLink": "Skeleton panel (back pain symptom)",
+    "url": "https://www.nasa.gov/missions/station/astronauts-spines-under-scrutiny/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Tempus Pro",
+    "group": "Past",
+    "measures": "Commercial telemedicine device for health data and remote diagnosis",
+    "domain": "All",
+    "bodyPart": "",
+    "appLink": "Closest analog to AstroCare (measure + send to Earth)",
+    "url": "https://www.nasa.gov/reference/tempus-pro/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  },
+  {
+    "name": "Veggie Monitoring",
+    "group": "Past",
+    "measures": "Microbes on crop hardware",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "appLink": "Not covered",
+    "url": "https://www.nasa.gov/missions/station/researchers-put-space-garden-microbes-under-the-microscope/",
+    "listedOn": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+  }
+]

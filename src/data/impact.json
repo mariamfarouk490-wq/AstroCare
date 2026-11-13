@@ -1,0 +1,82 @@
+{
+  "problem": "On Moon and Mars missions crews are far from doctors: Mars replies can take up to 20 minutes each way and there is no resupply. Astronauts are not physicians, yet they must notice slow health changes (bone loss, heart adaptation, poor sleep, CO2 exposure) and act on them alone.",
+  "beneficiaries": [
+    {
+      "group": "Astronauts on long missions",
+      "how": "See early, explained warnings from their own baseline and know exactly what to do.",
+      "refs": [
+        {
+          "label": "NASA HRP – 5 Hazards of Human Spaceflight",
+          "url": "https://www.nasa.gov/hrp/hazards"
+        },
+        {
+          "label": "NASA HRP – Human System Risks",
+          "url": "https://www.nasa.gov/hrp/risks"
+        }
+      ]
+    },
+    {
+      "group": "Flight surgeons and mission control",
+      "how": "Receive a ready log with numbers and reasons, sent with the known delay.",
+      "refs": [
+        {
+          "label": "NASA – The Human Body in Space",
+          "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+        }
+      ]
+    },
+    {
+      "group": "Mission planners",
+      "how": "Compare dose, bone loss and delay across ISS, Moon and Mars profiles.",
+      "refs": [
+        {
+          "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+          "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+        },
+        {
+          "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+          "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+        }
+      ]
+    },
+    {
+      "group": "People on Earth in remote or isolated places (Antarctic stations, ships, rural clinics)",
+      "how": "Same self-monitoring with a personal baseline, without a doctor on site.",
+      "refs": [
+        {
+          "label": "CSA – Why do we conduct science experiments in space?",
+          "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp"
+        }
+      ]
+    },
+    {
+      "group": "Older adults and people at risk of osteoporosis, heart disease or type-2 diabetes",
+      "how": "CSA notes space effects resemble accelerated ageing; the same early-warning approach applies.",
+      "refs": [
+        {
+          "label": "CSA – Why do we conduct science experiments in space?",
+          "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp"
+        }
+      ]
+    }
+  ],
+  "spaceExploration": "Supports NASA's Earth-independent medical operations: crew self-care when help is minutes away.",
+  "refs": [
+    {
+      "label": "NASA HRP – 5 Hazards of Human Spaceflight",
+      "url": "https://www.nasa.gov/hrp/hazards"
+    },
+    {
+      "label": "NASA HRP – Human System Risks",
+      "url": "https://www.nasa.gov/hrp/risks"
+    },
+    {
+      "label": "CSA – Why do we conduct science experiments in space?",
+      "url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp"
+    },
+    {
+      "label": "NASA – Human System Risk Board list",
+      "url": "https://www.nasa.gov/human-system-risks"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+[
+  {
+    "code": "R",
+    "name": "Space Radiation",
+    "domains": [
+      "Radiation",
+      "MetabolicImmune"
+    ],
+    "bodyParts": [
+      "aura"
+    ],
+    "effects": [
+      "Long-term cancer risk",
+      "Degenerative disease (heart disease, cataracts)",
+      "Acute: nausea, vomiting, diarrhea, blood changes (large solar event)",
+      "Sterility, DNA damage"
+    ],
+    "countermeasures": [
+      "Shielding & stowage as shelter",
+      "Radiation monitoring / dosimeters",
+      "Space-weather forecasts, delay EVA",
+      "ALARA"
+    ],
+    "appCoverage": "aura hotspot + cumulative dose from profile",
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      },
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "I",
+    "name": "Isolation and Confinement",
+    "domains": [
+      "MindSleep"
+    ],
+    "bodyParts": [
+      "brain"
+    ],
+    "effects": [
+      "Circadian disruption (Mars day +37 min)",
+      "Fatigue, sleep loss",
+      "Team friction, low morale",
+      "Behavioral and psychiatric conditions"
+    ],
+    "countermeasures": [
+      "Actigraphy sleep tracking",
+      "LED lighting",
+      "10-minute vigilance self-test",
+      "Journaling",
+      "VR relaxation, meaningful activities, space garden"
+    ],
+    "appCoverage": "daily check-in (sleep, mood, stress), SLEEP_DEBT / STRESS_HIGH rules",
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      },
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      }
+    ]
+  },
+  {
+    "code": "D",
+    "name": "Distance from Earth",
+    "domains": [
+      "Cardiovascular",
+      "MindSleep",
+      "BoneMuscle",
+      "Radiation",
+      "MetabolicImmune"
+    ],
+    "bodyParts": [
+      "heart",
+      "brain",
+      "abdomen"
+    ],
+    "effects": [
+      "No real-time help from mission control (Mars delay up to 20 min)",
+      "No resupply of food, equipment, medicine"
+    ],
+    "countermeasures": [
+      "Onboard medical training",
+      "Crew ultrasound",
+      "Onboard lab tests",
+      "Medical data system with AI decision support",
+      "Space-resilient medications"
+    ],
+    "appCoverage": "Emergency mode, Earth-delay counter, on-device analysis (Earth-independent)",
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "code": "G",
+    "name": "Gravity Fields",
+    "domains": [
+      "Cardiovascular",
+      "MindSleep",
+      "BoneMuscle",
+      "MetabolicImmune"
+    ],
+    "bodyParts": [
+      "heart",
+      "brain",
+      "skeleton",
+      "abdomen"
+    ],
+    "effects": [
+      "Bone density loss 1–1.5%/month",
+      "Muscle and aerobic fitness loss 10–12%",
+      "Fluid shift → vision changes (SANS)",
+      "Orthostatic intolerance / fainting",
+      "Space motion sickness, balance",
+      "Kidney stones, back pain"
+    ],
+    "countermeasures": [
+      "Aerobic + resistive exercise 1.5 h/day",
+      "Thigh cuffs, lower-body negative pressure",
+      "Bisphosphonates, potassium citrate",
+      "Fluid monitoring, urine analysis",
+      "Fitness self-evaluation"
+    ],
+    "appCoverage": "skeleton hotspot (estimated bone loss), heart metrics, BP_LOW rule",
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      },
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      },
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      }
+    ]
+  },
+  {
+    "code": "E",
+    "name": "Hostile/Closed Environments",
+    "domains": [
+      "Cardiovascular",
+      "MindSleep",
+      "BoneMuscle",
+      "MetabolicImmune"
+    ],
+    "bodyParts": [
+      "heart",
+      "brain",
+      "skeleton",
+      "abdomen"
+    ],
+    "effects": [
+      "Altered immunity, viral reactivation (cold sores, shingles)",
+      "Microbes spread easily",
+      "Allergies",
+      "CO2 headaches"
+    ],
+    "countermeasures": [
+      "Air quality and thermal control",
+      "Blood/saliva/urine analysis",
+      "Surface swabbing, filter changes, water treatment",
+      "Flu shots, pre-launch quarantine"
+    ],
+    "appCoverage": "temperature + symptoms (rash, cold sore, fever); cabin environment NOT covered yet",
+    "refs": [
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      },
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      },
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      }
+    ]
+  }
+]

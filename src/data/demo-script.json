@@ -1,0 +1,39 @@
+{
+  "subject": "cm-02",
+  "steps": [
+    {
+      "day": 1,
+      "say": "Omar's first readings set his personal baseline. Everything is green."
+    },
+    {
+      "day": 4,
+      "say": "Resting HR 66 bpm: still 'Normal' by Earth limits, but already above his own baseline."
+    },
+    {
+      "day": 6,
+      "say": "Third day in a row above baseline: the heart turns yellow with the reason in numbers.",
+      "expectFirstAlerts": [
+        "HR_ABOVE_BASELINE"
+      ]
+    },
+    {
+      "day": 9,
+      "say": "Sleep under 6 h for 3 nights, and a headache while cabin CO2 is 3.2 mmHg (NASA limit 3).",
+      "expectFirstAlerts": [
+        "SLEEP_DEBT",
+        "HR_SLEEP_COMBINED",
+        "CABIN_CO2_HIGH",
+        "HEADACHE_REPORTED",
+        "CO2_HEADACHE"
+      ]
+    },
+    {
+      "day": 10,
+      "say": "Crewmate collapses with chest pain → Emergency mode: protocol, CPR timer, Earth reply in 24 min (Mars delay × 2)."
+    }
+  ],
+  "otherCrewExpectedAlerts": [
+    "CABIN_CO2_HIGH"
+  ],
+  "note": "Day numbers are seed days (day 1 = first seed day). Alerts stay open once fired, so combos fire when all parts are open."
+}

@@ -1,1 +1,1322 @@
-[]
+[
+  {
+    "id": "bda70eb3-f103-559e-b1e0-32415f664a62",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-04T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 62
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.8
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 85
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "e727c575-684d-566c-bbed-f1ec0d34e9d2",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-04T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 64
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 110
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 70
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 92
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "30b5affa-abb5-5367-afe6-047d06650004",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-04T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 60
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 112
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 72
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 88
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "f8788c55-2c3d-515b-9de3-1edbfc7d03e0",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-04T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 70
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 105
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 68
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 89
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "b6f65a6f-a6a3-5ca2-836b-4021ed73a5ab",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-05T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 61
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 117
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 75
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 86
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "d5b2be87-291a-511c-a490-7482ed2ff05e",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-05T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 65
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 111
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 71
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "631a25a3-b663-5979-937b-b12ca3f10533",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-05T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 61
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 114
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 73
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "513a3cdc-fc47-5fe9-8855-822b1a987f41",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-05T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 71
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 104
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 67
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 88
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "c930b790-95c6-5796-8eba-5157accdf489",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-06T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 63
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 119
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.8
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 84
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "d19a24ce-2e01-5106-9a29-a6ca14e99f67",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-06T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 63
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 109
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 69
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 93
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "27f23877-5efd-5187-83f0-a2abe03b51f7",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-06T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 60
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 113
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 72
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 87
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "87881de4-4a8c-507f-913e-be170b995e32",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-06T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 69
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 106
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 69
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "cd838959-efd3-533f-996d-e23d3fb2680a",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-07T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 62
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 77
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 87
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "426f1f38-a0a5-5944-9ee2-d5e4d75acccf",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-07T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 64
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 112
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 70
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 91
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "0b44ef24-eccb-5818-9bed-035b08263e4a",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-07T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 66
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 115
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 74
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 91
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "c6762ebd-4b6c-562c-addf-56099a6d9528",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-07T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 70
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 105
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 68
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 89
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "cbcf2612-9063-5da3-bdcf-bdd54794ba44",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-08T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 62
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 117
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 75
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.8
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 85
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "359f767c-d0ed-51e5-8df1-bc782df9022b",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-08T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 66
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 110
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 71
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 92
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "35c5f5f6-5abd-5637-8461-5b030ac8835a",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-08T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 70
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 116
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 74
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 92
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "73bf5278-1e33-5739-b4e0-ffb6e3d86567",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-08T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 72
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 104
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 67
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 91
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "de5b52d1-f00e-59aa-89da-8cb550b73713",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-09T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 61
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 86
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "12f92d4f-9e86-5610-90a3-d6b9b9df38e7",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-09T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 64
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 111
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 70
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 94
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "f280ee2f-8ef8-54f0-a63c-362db87b9d7e",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-09T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 74
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 117
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 75
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "5ef82e4d-bdf2-5061-adab-4d79c3bbb5d4",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-09T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 70
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 105
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 68
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 88
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "dab93b5d-feae-5c69-8a25-27e25b845efb",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-10T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 63
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 119
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 77
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.8
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 85
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "895442b7-ca5c-59b5-9917-9aa7d992407e",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-10T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 65
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 110
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 69
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 91
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "75bf0d0a-4b39-5712-9c4e-9664ab2505e7",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-10T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 76
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 94
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "c82ae9e8-491f-5bcc-9d1d-888c7caf367d",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-10T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 71
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 106
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 69
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 89
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "fe9f1123-f2d5-5889-a127-2997b45addf7",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-11T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 62
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 84
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "1518a63d-c36a-55eb-9b73-7e75eb290f9c",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-11T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 64
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 109
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 70
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 92
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "9e515798-4b16-5f27-b452-04b547a127b2",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-11T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 78
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 96
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 93
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "a1fc6c59-60c5-5215-b6cf-042e1ee077ed",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-11T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 70
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 105
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 68
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "a2d6f210-b94a-5a34-8889-77e1336a078a",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-12T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 61
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 117
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 75
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 86
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "6c4cc061-b6ff-5d6d-9631-3f108379d1e9",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-12T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 63
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 111
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 71
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 90
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "d5adebf3-2675-5e69-b77d-e7b29c12a149",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-12T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 80
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 119
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 77
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.2
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 95
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "236e9a74-6edf-52fc-a5be-f80d085cdff3",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-12T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 69
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 104
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 67
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.9
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 89
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "d89e3d83-a1ce-502a-848f-43f66efabcb6",
+    "crewId": "cm-01",
+    "takenAt": "2026-11-13T07:10:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 62
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 118
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 76
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 36.8
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 85
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "610cefc1-771c-530a-a41b-e2a2cfb55f7b",
+    "crewId": "cm-03",
+    "takenAt": "2026-11-13T07:20:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 65
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 110
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 70
+      },
+      {
+        "metric": "SPO2",
+        "value": 97
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 93
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "ec7179ba-e8db-5c53-92a9-865be1875456",
+    "crewId": "cm-02",
+    "takenAt": "2026-11-13T07:30:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 82
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 119
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 78
+      },
+      {
+        "metric": "SPO2",
+        "value": 96
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.1
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 96
+      }
+    ],
+    "glucoseContext": "Fasting"
+  },
+  {
+    "id": "c38a5dfe-87e6-532c-a61a-597da9fa8bc3",
+    "crewId": "cm-04",
+    "takenAt": "2026-11-13T07:40:00Z",
+    "source": "seed",
+    "readings": [
+      {
+        "metric": "HEART_RATE",
+        "value": 71
+      },
+      {
+        "metric": "BP_SYSTOLIC",
+        "value": 105
+      },
+      {
+        "metric": "BP_DIASTOLIC",
+        "value": 68
+      },
+      {
+        "metric": "SPO2",
+        "value": 98
+      },
+      {
+        "metric": "TEMPERATURE",
+        "value": 37.0
+      },
+      {
+        "metric": "GLUCOSE",
+        "value": 88
+      }
+    ],
+    "glucoseContext": "Fasting"
+  }
+]

@@ -1,1 +1,596 @@
-[]
+[
+  {
+    "code": "HR_ABOVE_BASELINE",
+    "domain": "Cardiovascular",
+    "kind": "baseline",
+    "severity": "Watch",
+    "params": {
+      "metric": "HEART_RATE",
+      "zMin": 2,
+      "consecutiveDays": 3
+    },
+    "reasonTemplate": "Resting HR {value} bpm vs your {mean} ± {sd}, {days} days in a row",
+    "action": "Rest, hydrate, review sleep, re-measure tomorrow morning. Chest pain → Emergency.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "code": "SLEEP_DEBT",
+    "domain": "MindSleep",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "sleepHours",
+      "op": "lt",
+      "value": 6,
+      "days": 3
+    },
+    "reasonTemplate": "Slept under 6 h for {days} nights",
+    "action": "Sleep hygiene (dark, fixed schedule, no screens); talk to the crew medical officer about the schedule.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      },
+      {
+        "label": "Barger et al. 2014, Lancet Neurology – Sleep deficiency in astronauts",
+        "url": "https://doi.org/10.1016/S1474-4422(14)70122-X"
+      }
+    ]
+  },
+  {
+    "code": "HR_SLEEP_COMBINED",
+    "domain": "Cardiovascular",
+    "kind": "combo",
+    "severity": "Watch",
+    "params": {
+      "allOf": [
+        "HR_ABOVE_BASELINE",
+        "SLEEP_DEBT"
+      ]
+    },
+    "reasonTemplate": "Heart rate is rising while sleep is falling",
+    "action": "Same as above: heart rate and sleep are linked.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      },
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      }
+    ]
+  },
+  {
+    "code": "HR_CRITICAL_HIGH",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "HEART_RATE",
+      "op": "gt",
+      "value": 130
+    },
+    "reasonTemplate": "Resting HR {value} bpm (> 130)",
+    "action": "Stay still, re-measure; with symptoms open Emergency.",
+    "notifyEarth": true,
+    "suggestEmergency": "CHEST_PAIN",
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "HR_CRITICAL_LOW",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "HEART_RATE",
+      "op": "lt",
+      "value": 40
+    },
+    "reasonTemplate": "Resting HR {value} bpm (< 40)",
+    "action": "Stay still, re-measure; if fainting or unresponsive open Emergency.",
+    "notifyEarth": true,
+    "suggestEmergency": "UNRESPONSIVE",
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "BP_CRISIS_SYS",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "BP_SYSTOLIC",
+      "op": "gt",
+      "value": 180
+    },
+    "reasonTemplate": "Systolic {value} mmHg (> 180, hypertensive crisis)",
+    "action": "Wait 5 min and re-measure; if still high notify flight surgeon now.",
+    "notifyEarth": true,
+    "suggestEmergency": "CHEST_PAIN",
+    "refs": [
+      {
+        "label": "American Heart Association – Understanding blood pressure readings",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      }
+    ]
+  },
+  {
+    "code": "BP_CRISIS_DIA",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "BP_DIASTOLIC",
+      "op": "gt",
+      "value": 120
+    },
+    "reasonTemplate": "Diastolic {value} mmHg (> 120, hypertensive crisis)",
+    "action": "Wait 5 min and re-measure; if still high notify flight surgeon now.",
+    "notifyEarth": true,
+    "suggestEmergency": "CHEST_PAIN",
+    "refs": [
+      {
+        "label": "American Heart Association – Understanding blood pressure readings",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      }
+    ]
+  },
+  {
+    "code": "BP_LOW",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Watch",
+    "params": {
+      "metric": "BP_SYSTOLIC",
+      "op": "lt",
+      "value": 90
+    },
+    "reasonTemplate": "Systolic {value} mmHg (< 90)",
+    "action": "Fluids and rest; watch for dizziness. Low BP and fainting are a known spaceflight risk.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      },
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "SPO2_LOW",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "SPO2",
+      "op": "lte",
+      "value": 92
+    },
+    "reasonTemplate": "SpO2 {value}% (≤ 92)",
+    "action": "Re-measure on a warm finger and check cabin air (ppO2 / ppCO2).",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "Cleveland Clinic – Pulse oximetry",
+        "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      }
+    ]
+  },
+  {
+    "code": "SPO2_EMERGENCY",
+    "domain": "Cardiovascular",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "SPO2",
+      "op": "lte",
+      "value": 88
+    },
+    "reasonTemplate": "SpO2 {value}% (≤ 88)",
+    "action": "Open Emergency mode.",
+    "notifyEarth": true,
+    "suggestEmergency": "UNRESPONSIVE",
+    "refs": [
+      {
+        "label": "Cleveland Clinic – Pulse oximetry",
+        "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry"
+      },
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "GLUCOSE_LOW",
+    "domain": "MetabolicImmune",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "GLUCOSE",
+      "op": "lt",
+      "value": 70
+    },
+    "reasonTemplate": "Glucose {value} mg/dL (< 70)",
+    "action": "15/15 rule: 15 g fast carbs, re-measure after 15 min.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "ADA – Hypoglycemia (15-15 rule)",
+        "url": "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose"
+      }
+    ]
+  },
+  {
+    "code": "GLUCOSE_HIGH",
+    "domain": "MetabolicImmune",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "GLUCOSE",
+      "op": "gte",
+      "value": 200
+    },
+    "reasonTemplate": "Glucose {value} mg/dL (≥ 200)",
+    "action": "Re-measure, drink water, notify flight surgeon.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "CDC – Diabetes testing",
+        "url": "https://www.cdc.gov/diabetes/diabetes-testing/index.html"
+      }
+    ]
+  },
+  {
+    "code": "TEMP_ABOVE_BASELINE",
+    "domain": "MetabolicImmune",
+    "kind": "baseline",
+    "severity": "Watch",
+    "params": {
+      "metric": "TEMPERATURE",
+      "deltaMin": 1.0,
+      "consecutiveDays": 1
+    },
+    "reasonTemplate": "Temperature {value} °C, {delta} °C above your {mean} baseline",
+    "action": "Rest, fluids, re-measure in 4 h, limit crew contact.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "Stahn et al. 2017, Scientific Reports – Increased core body temperature in astronauts",
+        "url": "https://doi.org/10.1038/s41598-017-15560-w"
+      },
+      {
+        "label": "MedlinePlus – Fever",
+        "url": "https://medlineplus.gov/ency/article/003090.htm"
+      }
+    ]
+  },
+  {
+    "code": "TEMP_CRITICAL_HIGH",
+    "domain": "MetabolicImmune",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "TEMPERATURE",
+      "op": "gte",
+      "value": 39.4
+    },
+    "reasonTemplate": "Temperature {value} °C (≥ 39.4)",
+    "action": "Notify flight surgeon now; confusion or breathing trouble → Emergency.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "MedlinePlus – Fever",
+        "url": "https://medlineplus.gov/ency/article/003090.htm"
+      }
+    ]
+  },
+  {
+    "code": "TEMP_CRITICAL_LOW",
+    "domain": "MetabolicImmune",
+    "kind": "threshold",
+    "severity": "Critical",
+    "params": {
+      "metric": "TEMPERATURE",
+      "op": "lt",
+      "value": 35
+    },
+    "reasonTemplate": "Temperature {value} °C (< 35)",
+    "action": "Notify flight surgeon now.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "MOOD_LOW",
+    "domain": "MindSleep",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "mood",
+      "op": "lte",
+      "value": 2,
+      "days": 1
+    },
+    "reasonTemplate": "Mood {value}/5",
+    "action": "Talk to a crewmate or the crew medical officer; take a break, contact family.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      },
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "MOOD_CRITICAL",
+    "domain": "MindSleep",
+    "kind": "streak",
+    "severity": "Critical",
+    "params": {
+      "field": "mood",
+      "op": "lte",
+      "value": 1,
+      "days": 1
+    },
+    "reasonTemplate": "Mood 1/5",
+    "action": "Notify flight surgeon now.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "STRESS_HIGH",
+    "domain": "MindSleep",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "stress",
+      "op": "gte",
+      "value": 4,
+      "days": 3
+    },
+    "reasonTemplate": "Stress ≥ 4/5 for {days} days",
+    "action": "Rest time, talk to crew medical officer, contact family.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      },
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "RAD_DOSE_HALF_CAREER",
+    "domain": "Radiation",
+    "kind": "derived",
+    "severity": "Watch",
+    "params": {
+      "field": "cumulativeDoseMSv",
+      "op": "gte",
+      "value": 300
+    },
+    "reasonTemplate": "Cumulative dose {value} mSv = {pct}% of the 600 mSv NASA career limit",
+    "action": "Follow ALARA: prefer shielded areas, review EVA plans with the flight surgeon.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      }
+    ],
+    "thresholdSource": "app"
+  },
+  {
+    "code": "RAD_DOSE_NEAR_CAREER",
+    "domain": "Radiation",
+    "kind": "derived",
+    "severity": "Critical",
+    "params": {
+      "field": "cumulativeDoseMSv",
+      "op": "gte",
+      "value": 480
+    },
+    "reasonTemplate": "Cumulative dose {value} mSv = {pct}% of the 600 mSv NASA career limit",
+    "action": "Notify flight surgeon; minimise further exposure.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      }
+    ],
+    "thresholdSource": "app"
+  },
+  {
+    "code": "RAD_SOLAR_EVENT",
+    "domain": "Radiation",
+    "kind": "derived",
+    "severity": "Critical",
+    "params": {
+      "field": "solarEventActive",
+      "op": "eq",
+      "value": true
+    },
+    "reasonTemplate": "Solar particle event in progress (NASA limit 250 mSv per event)",
+    "action": "Go to the storm shelter / most shielded area now; end or delay EVA.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA JSC Space Radiation Analysis Group – How we monitor",
+        "url": "https://srag.jsc.nasa.gov/SpaceRadiation/How/How.cfm"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      }
+    ],
+    "thresholdSource": "NASA-STD-3001"
+  },
+  {
+    "code": "BONE_LOSS_ESTIMATE",
+    "domain": "BoneMuscle",
+    "kind": "derived",
+    "severity": "Watch",
+    "params": {
+      "field": "estimatedBoneLossPct",
+      "op": "gte",
+      "value": 5
+    },
+    "reasonTemplate": "Estimated bone density loss {value}% after {days} mission days (1–1.5%/month)",
+    "action": "Keep 1.5 h/day resistive + aerobic exercise; log exercise in the check-in.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ],
+    "thresholdSource": "app"
+  },
+  {
+    "code": "EXERCISE_LOW",
+    "domain": "BoneMuscle",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "exerciseMin",
+      "op": "lt",
+      "value": 60,
+      "days": 3
+    },
+    "reasonTemplate": "Exercise under 60 min for {days} days (NASA target ~90 min/day)",
+    "action": "Schedule resistive + aerobic exercise today.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ]
+  },
+  {
+    "code": "CABIN_CO2_HIGH",
+    "domain": "MindSleep",
+    "kind": "derived",
+    "severity": "Watch",
+    "params": {
+      "field": "cabinPpCO2mmHg",
+      "op": "gt",
+      "value": 3
+    },
+    "reasonTemplate": "Cabin ppCO2 {value} mmHg (NASA limit 3 mmHg, 1-hour average)",
+    "action": "Check CO2 scrubber status and ventilation; report to mission control.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      }
+    ],
+    "thresholdSource": "NASA-STD-3001"
+  },
+  {
+    "code": "HEADACHE_REPORTED",
+    "domain": "MindSleep",
+    "kind": "derived",
+    "severity": "Watch",
+    "params": {
+      "field": "headacheToday",
+      "op": "eq",
+      "value": true
+    },
+    "reasonTemplate": "Headache reported in today's check-in",
+    "action": "Hydrate and rest; re-check tomorrow. Severe headache with stiff neck → Emergency.",
+    "notifyEarth": false,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      }
+    ],
+    "thresholdSource": "check-in"
+  },
+  {
+    "code": "CO2_HEADACHE",
+    "domain": "MindSleep",
+    "kind": "combo",
+    "severity": "Watch",
+    "params": {
+      "allOf": [
+        "CABIN_CO2_HIGH",
+        "HEADACHE_REPORTED"
+      ]
+    },
+    "reasonTemplate": "Headache while cabin CO2 is above the NASA limit: likely CO2-related",
+    "action": "Lower CO2 first (scrubber, airflow), then reassess the headache. NASA links 2.8–4.5 mmHg to headaches.",
+    "notifyEarth": true,
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  }
+]

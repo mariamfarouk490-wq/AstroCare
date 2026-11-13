@@ -1,0 +1,436 @@
+[
+  {
+    "code": "CV_RISK",
+    "name": "Risk of Cardiovascular Adaptations",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "G",
+    "appCoverage": "covered",
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "code": "AEROBIC_RISK",
+    "name": "Risk of Reduced Aerobic Capacity",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "G",
+    "appCoverage": "partial",
+    "refs": [
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ]
+  },
+  {
+    "code": "VTE",
+    "name": "Risk of Venous Thromboembolism",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "G",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "HYPOXIA",
+    "name": "Risk of Hypoxia",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "E",
+    "appCoverage": "covered (SpO2)",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "DCS",
+    "name": "Risk of Decompression Sickness",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "BEHAVIORAL_HEALTH",
+    "name": "Risk of Behavioral Conditions and Psychiatric Disorders",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "I",
+    "appCoverage": "covered (mood/stress)",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "SLEEP",
+    "name": "Risk from Sleep Loss, Circadian Desynchronization and Work Overload",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "I",
+    "appCoverage": "covered (sleep)",
+    "refs": [
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      }
+    ]
+  },
+  {
+    "code": "TEAM",
+    "name": "Risk of Inadequate Team Cooperation and Communication",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "I",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "SANS",
+    "name": "Risk of Spaceflight Associated Neuro-ocular Syndrome",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "G",
+    "appCoverage": "partial (symptom: blurred vision/headache)",
+    "refs": [
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      }
+    ]
+  },
+  {
+    "code": "SENSORIMOTOR",
+    "name": "Risk of Altered Sensorimotor and Vestibular Function",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "G",
+    "appCoverage": "partial (symptom: dizziness)",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "CO2",
+    "name": "Risk of Ambient CO2 Exposure",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "E",
+    "appCoverage": "not-covered (needs cabin env)",
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "HEARING",
+    "name": "Risk of Hearing Loss from Acoustics",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "BONE_FRACTURE",
+    "name": "Risk of Bone Fracture from Spaceflight-Induced Bone Changes",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "hazard": "G",
+    "appCoverage": "covered (estimated)",
+    "refs": [
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      }
+    ]
+  },
+  {
+    "code": "MUSCLE_RISK",
+    "name": "Risk of Reduced Muscle Size, Strength and Endurance",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "hazard": "G",
+    "appCoverage": "partial (estimated)",
+    "refs": [
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ]
+  },
+  {
+    "code": "DYNAMIC_LOADS",
+    "name": "Risk of Injury from Dynamic Loads",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "hazard": "G",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "EVA",
+    "name": "Risk of Injury and Compromised Performance from EVA",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "RENAL_STONE",
+    "name": "Risk of Renal Stone Formation",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "G",
+    "appCoverage": "partial (symptom: flank pain)",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "URINARY_RETENTION",
+    "name": "Risk of Urinary Retention",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "G",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "IMMUNE_RISK",
+    "name": "Risk of Altered Immune Response",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "E",
+    "appCoverage": "covered (temp + symptoms)",
+    "refs": [
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  },
+  {
+    "code": "HOST_MICROBE",
+    "name": "Risk of Adverse Host-Microorganism Interactions",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "E",
+    "appCoverage": "partial",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "FOOD_NUTRITION",
+    "name": "Risk of Inadequate Food and Nutrition",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "D",
+    "appCoverage": "partial (glucose)",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "MEDICATIONS",
+    "name": "Risk of Ineffective or Toxic Medications",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "D",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "TOXIC",
+    "name": "Risk of Toxic Substance Exposure",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "DUST",
+    "name": "Risk of Celestial Dust Exposure",
+    "domain": "MetabolicImmune",
+    "bodyPart": "abdomen",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "RAD_CANCER",
+    "name": "Risk of Radiation Carcinogenesis",
+    "domain": "Radiation",
+    "bodyPart": "aura",
+    "hazard": "R",
+    "appCoverage": "covered (cumulative dose)",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "NIR",
+    "name": "Risk of Non-Ionizing Radiation",
+    "domain": "Radiation",
+    "bodyPart": "aura",
+    "hazard": "R",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "INFLIGHT_MEDICAL",
+    "name": "Risk of Adverse Outcomes from Inflight Medical Conditions",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "D",
+    "appCoverage": "covered (Emergency mode)",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "EIHSO",
+    "name": "Risk of Earth-Independent Human-Systems Operations",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "D",
+    "appCoverage": "covered (on-device decision support)",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "SYSTEMS_SUPPORT",
+    "name": "Risk of Inadequate Systems Operations Support",
+    "domain": "MindSleep",
+    "bodyPart": "brain",
+    "hazard": "D",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "ELECTRICAL_SHOCK",
+    "name": "Risk of Electrical Shock",
+    "domain": "Cardiovascular",
+    "bodyPart": "heart",
+    "hazard": "E",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "EGRESS",
+    "name": "Risk of Impaired Crew Egress at Landing",
+    "domain": "BoneMuscle",
+    "bodyPart": "skeleton",
+    "hazard": "G",
+    "appCoverage": "not-covered",
+    "refs": [
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  }
+]

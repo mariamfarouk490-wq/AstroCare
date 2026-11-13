@@ -1,0 +1,135 @@
+[
+  {
+    "id": "rem-morning-vitals",
+    "title": "Morning vitals",
+    "what": "Resting HR, BP, SpO2, temperature (and fasting glucose)",
+    "schedule": {
+      "type": "daily",
+      "localTime": "07:30"
+    },
+    "opens": "measure",
+    "why": "Same time every day keeps the personal baseline accurate.",
+    "refs": [
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      },
+      {
+        "label": "NASA HRP – Ongoing HRP Research",
+        "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/"
+      }
+    ]
+  },
+  {
+    "id": "rem-evening-checkin",
+    "title": "Evening check-in",
+    "what": "Sleep, mood, stress, symptoms, exercise minutes",
+    "schedule": {
+      "type": "daily",
+      "localTime": "21:00"
+    },
+    "opens": "checkin",
+    "why": "Sleep loss and stress are NASA-tracked risks of isolation (Hazard I).",
+    "refs": [
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      },
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "id": "rem-exercise",
+    "title": "Exercise block",
+    "what": "~90 min aerobic + resistive exercise",
+    "schedule": {
+      "type": "daily",
+      "localTime": "15:00"
+    },
+    "opens": "checkin",
+    "target": {
+      "field": "exerciseMin",
+      "value": 90
+    },
+    "why": "Countermeasure for 1–1.5%/month bone loss and 10–12% fitness loss.",
+    "refs": [
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      },
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      }
+    ]
+  },
+  {
+    "id": "rem-water",
+    "title": "Drink water",
+    "what": "At least 2.5 L per day",
+    "schedule": {
+      "type": "interval",
+      "everyHours": 3,
+      "from": "08:00",
+      "to": "20:00"
+    },
+    "opens": null,
+    "target": {
+      "field": "waterL",
+      "value": 2.5
+    },
+    "why": "NASA-STD-3001 minimum; dehydration raises kidney-stone and fainting risk.",
+    "refs": [
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      },
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "id": "rem-cabin-air",
+    "title": "Cabin air check",
+    "what": "Look at ppCO2 / ppO2 on the cabin card",
+    "schedule": {
+      "type": "daily",
+      "localTime": "12:00"
+    },
+    "opens": "cabin",
+    "why": "ppCO2 above 3 mmHg causes headaches (NASA-STD-3001).",
+    "refs": [
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "id": "rem-radiation",
+    "title": "Radiation dose review",
+    "what": "Check cumulative dose vs the 600 mSv career limit",
+    "schedule": {
+      "type": "weekly",
+      "weekday": "Mon",
+      "localTime": "09:00"
+    },
+    "opens": "body:aura",
+    "why": "ALARA: keep exposure as low as reasonably achievable.",
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      }
+    ]
+  }
+]

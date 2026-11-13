@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": "cm-01",
+    "name": "Laila Hassan",
+    "role": "Commander",
+    "avatarColor": "#F08A24",
+    "isDemoSubject": false
+  },
+  {
+    "id": "cm-02",
+    "name": "Omar Farid",
+    "role": "FlightEngineer",
+    "avatarColor": "#4FC3F7",
+    "isDemoSubject": true
+  },
+  {
+    "id": "cm-03",
+    "name": "Mina Adel",
+    "role": "MissionSpecialist",
+    "avatarColor": "#9CCC65",
+    "isDemoSubject": false
+  },
+  {
+    "id": "cm-04",
+    "name": "Sara Nabil",
+    "role": "MissionSpecialist",
+    "avatarColor": "#BA68C8",
+    "isDemoSubject": false
+  }
+]

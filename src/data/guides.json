@@ -1,1 +1,121 @@
-[]
+[
+  {
+    "metric": "HEART_RATE",
+    "title": "Resting heart rate",
+    "why": "The heart adapts to weightlessness. A resting HR that slowly climbs above your normal is an early sign of fatigue, poor sleep or illness.",
+    "steps": [
+      "Anchor yourself and rest 5 minutes without effort.",
+      "Place index and middle fingers on the inner wrist artery.",
+      "Count beats for 60 seconds, or read the number from the oximeter or BP monitor."
+    ],
+    "ifWatch": "Rest and re-measure in 10 minutes.",
+    "ifCritical": "With chest pain, shortness of breath, dizziness or fainting, open Emergency mode now.",
+    "sources": [
+      {
+        "label": "American Heart Association – Target heart rates",
+        "url": "https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "metric": "BP_SYSTOLIC",
+    "title": "Blood pressure",
+    "why": "Fluids redistribute in weightlessness; very high or very low pressure can signal a heart problem, bleeding or dehydration. Low BP and fainting on landing are a NASA cardiovascular risk.",
+    "steps": [
+      "Sit anchored with feet in the foot restraints and rest 5 minutes.",
+      "Put the cuff on a bare arm, supported at heart level.",
+      "Do not talk while measuring.",
+      "If high, wait 5 minutes and measure again."
+    ],
+    "ifWatch": "Re-measure tomorrow at the same time.",
+    "ifCritical": "Above 180/120 after re-measuring: notify the flight surgeon now; with chest pain, weakness or severe headache open Emergency mode.",
+    "sources": [
+      {
+        "label": "American Heart Association – Understanding blood pressure readings",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "metric": "SPO2",
+    "title": "Blood oxygen (SpO2)",
+    "why": "The cabin is a closed, controlled atmosphere. Low oxygen can come from the lungs, the heart or the environment itself (ppO2, CO2).",
+    "steps": [
+      "Use a warm finger without nail polish.",
+      "Keep the hand still at heart level.",
+      "Wait for the number to stabilise, then record it. Devices can be off by 2–4%."
+    ],
+    "ifWatch": "Re-measure and check cabin air readings.",
+    "ifCritical": "≤ 92: notify flight surgeon and check cabin ppO2/ppCO2. ≤ 88, blue lips/nails or confusion: Emergency mode.",
+    "sources": [
+      {
+        "label": "Cleveland Clinic – Pulse oximetry",
+        "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      },
+      {
+        "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
+        "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "metric": "GLUCOSE",
+    "title": "Blood glucose",
+    "why": "Different food, activity and sleep during the mission affect blood sugar; a low can cause dizziness or fainting during hazardous work.",
+    "steps": [
+      "Choose the context: fasting (8 h+), 2 h after a meal, or random.",
+      "Clean the finger with an alcohol wipe and let it dry.",
+      "Prick the side of the fingertip. In microgravity the drop will not fall; bring the strip to it.",
+      "Wipe with gauze and put the lancet in the sharps container."
+    ],
+    "ifWatch": "Re-measure in the same context tomorrow.",
+    "ifCritical": "< 70: 15/15 rule (15 g fast carbs, re-check in 15 min); if unable to self-treat it is an emergency. ≥ 200: re-measure and notify the flight surgeon.",
+    "sources": [
+      {
+        "label": "ADA – Hypoglycemia (15-15 rule)",
+        "url": "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose"
+      },
+      {
+        "label": "CDC – Diabetes testing",
+        "url": "https://www.cdc.gov/diabetes/diabetes-testing/index.html"
+      }
+    ]
+  },
+  {
+    "metric": "TEMPERATURE",
+    "title": "Body temperature",
+    "why": "Immunity changes in space and infections spread fast in a closed cabin. Your normal in space is about 1 °C higher than on Earth, so your personal baseline matters.",
+    "steps": [
+      "No food, drink or exercise for the last 15 minutes.",
+      "Digital thermometer under the tongue, mouth closed until it beeps."
+    ],
+    "ifWatch": "Rest, fluids, re-measure in 4 hours and limit crew contact.",
+    "ifCritical": "≥ 39.4 °C or fever over 48–72 h: notify flight surgeon. Confusion, breathing trouble, seizure or severe headache with stiff neck: Emergency mode.",
+    "sources": [
+      {
+        "label": "MedlinePlus – Fever",
+        "url": "https://medlineplus.gov/ency/article/003090.htm"
+      },
+      {
+        "label": "Stahn et al. 2017, Scientific Reports – Increased core body temperature in astronauts",
+        "url": "https://doi.org/10.1038/s41598-017-15560-w"
+      },
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  }
+]

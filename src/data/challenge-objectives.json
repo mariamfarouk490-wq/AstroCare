@@ -1,0 +1,120 @@
+[
+  {
+    "code": "OBJ_MEASURE",
+    "objective": "Show astronauts (not doctors) how to take each measurement",
+    "feature": "Guided measurement cards",
+    "dataFiles": [
+      "guides.json",
+      "metrics.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_WHY",
+    "objective": "Explain why each measurement matters in space",
+    "feature": "'Why' text on every guide + body-part panels",
+    "dataFiles": [
+      "guides.json",
+      "body-parts.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_ABNORMAL",
+    "objective": "Say what to do when a value is abnormal",
+    "feature": "Status bands + rule actions (Watch / Critical)",
+    "dataFiles": [
+      "metrics.json",
+      "rules.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_EMERGENCY",
+    "objective": "Guide the crew in a medical emergency (crewmate with chest pain who collapses)",
+    "feature": "Emergency mode: CHEST_PAIN → UNRESPONSIVE protocols, CPR timer, Earth-delay counter",
+    "dataFiles": [
+      "protocols.json",
+      "mission-profiles.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_REMINDERS",
+    "objective": "Remind astronauts to measure and follow countermeasures",
+    "feature": "Daily / weekly reminders",
+    "dataFiles": [
+      "reminders.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_ENVIRONMENTS",
+    "objective": "Work in different space environments",
+    "feature": "Mission profiles ISS / Moon / Mars transit / Mars surface change delay, dose and gravity",
+    "dataFiles": [
+      "mission-profiles.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_BODY",
+    "objective": "Clickable human figure that shows where problems are",
+    "feature": "3D body map with 5 hotspots, one per domain",
+    "dataFiles": [
+      "body-parts.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_RISKS",
+    "objective": "Cover the health problems the challenge names: immune changes, bone loss, cardiac events, nutrition, psychological problems",
+    "feature": "5 domains mapped to NASA RIDGE hazards and 31 NASA Human System Risks",
+    "dataFiles": [
+      "hazards.json",
+      "nasa-risks.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_EARTH_INDEPENDENT",
+    "objective": "Work without real-time help from Earth",
+    "feature": "All analysis on-device; Earth reply = delay × 2",
+    "dataFiles": [
+      "mission-profiles.json",
+      "rules.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  },
+  {
+    "code": "OBJ_ENVIRONMENT_HEALTH",
+    "objective": "Link the closed cabin environment to crew health",
+    "feature": "Cabin air card + CO2_HEADACHE rule",
+    "dataFiles": [
+      "cabin-environment.seed.json",
+      "environment-limits.json",
+      "rules.json"
+    ],
+    "dataStatus": "ready",
+    "uiStatus": "to-build",
+    "note": "Objectives summarised from the challenge page and video (the page could not be fetched automatically)."
+  }
+]

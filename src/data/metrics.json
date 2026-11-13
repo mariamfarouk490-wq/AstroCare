@@ -1,1 +1,332 @@
-[]
+[
+  {
+    "code": "HEART_RATE",
+    "domain": "Cardiovascular",
+    "label": "Resting heart rate",
+    "unit": "bpm",
+    "validMin": 20,
+    "validMax": 250,
+    "step": 1,
+    "sdFloor": 2,
+    "bands": [
+      {
+        "status": "Critical",
+        "max": 39,
+        "source": "app"
+      },
+      {
+        "status": "Watch",
+        "min": 40,
+        "max": 59,
+        "source": "app"
+      },
+      {
+        "status": "Normal",
+        "min": 60,
+        "max": 100,
+        "source": "AHA"
+      },
+      {
+        "status": "Watch",
+        "min": 101,
+        "max": 130,
+        "source": "app"
+      },
+      {
+        "status": "Critical",
+        "min": 131,
+        "source": "app"
+      }
+    ],
+    "refs": [
+      {
+        "label": "American Heart Association – Target heart rates",
+        "url": "https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      },
+      {
+        "label": "AstroCare SRS (team doc, section 7–9)",
+        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+      }
+    ]
+  },
+  {
+    "code": "BP_SYSTOLIC",
+    "domain": "Cardiovascular",
+    "label": "Systolic blood pressure",
+    "unit": "mmHg",
+    "validMin": 50,
+    "validMax": 260,
+    "step": 1,
+    "sdFloor": 3,
+    "bands": [
+      {
+        "status": "Watch",
+        "max": 89,
+        "source": "app (low BP / orthostatic risk, NASA CV risk)"
+      },
+      {
+        "status": "Normal",
+        "min": 90,
+        "max": 119,
+        "source": "AHA"
+      },
+      {
+        "status": "Watch",
+        "min": 120,
+        "max": 179,
+        "source": "AHA"
+      },
+      {
+        "status": "Critical",
+        "min": 180,
+        "source": "AHA (hypertensive crisis)"
+      }
+    ],
+    "refs": [
+      {
+        "label": "American Heart Association – Understanding blood pressure readings",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      },
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      }
+    ]
+  },
+  {
+    "code": "BP_DIASTOLIC",
+    "domain": "Cardiovascular",
+    "label": "Diastolic blood pressure",
+    "unit": "mmHg",
+    "validMin": 30,
+    "validMax": 160,
+    "step": 1,
+    "sdFloor": 2,
+    "bands": [
+      {
+        "status": "Normal",
+        "max": 79,
+        "source": "AHA"
+      },
+      {
+        "status": "Watch",
+        "min": 80,
+        "max": 120,
+        "source": "AHA"
+      },
+      {
+        "status": "Critical",
+        "min": 121,
+        "source": "AHA (hypertensive crisis)"
+      }
+    ],
+    "refs": [
+      {
+        "label": "American Heart Association – Understanding blood pressure readings",
+        "url": "https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings"
+      }
+    ]
+  },
+  {
+    "code": "SPO2",
+    "domain": "Cardiovascular",
+    "label": "Blood oxygen",
+    "unit": "%",
+    "validMin": 50,
+    "validMax": 100,
+    "step": 1,
+    "sdFloor": 1,
+    "bands": [
+      {
+        "status": "Critical",
+        "max": 92,
+        "source": "Cleveland Clinic"
+      },
+      {
+        "status": "Watch",
+        "min": 93,
+        "max": 94,
+        "source": "app"
+      },
+      {
+        "status": "Normal",
+        "min": 95,
+        "max": 100,
+        "source": "Cleveland Clinic"
+      }
+    ],
+    "refs": [
+      {
+        "label": "Cleveland Clinic – Pulse oximetry",
+        "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry"
+      },
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      }
+    ]
+  },
+  {
+    "code": "GLUCOSE",
+    "domain": "MetabolicImmune",
+    "label": "Blood glucose",
+    "unit": "mg/dL",
+    "validMin": 20,
+    "validMax": 600,
+    "step": 1,
+    "sdFloor": 5,
+    "bands": [
+      {
+        "status": "Critical",
+        "max": 69,
+        "context": "Fasting",
+        "source": "ADA"
+      },
+      {
+        "status": "Normal",
+        "min": 70,
+        "max": 99,
+        "context": "Fasting",
+        "source": "CDC"
+      },
+      {
+        "status": "Watch",
+        "min": 100,
+        "max": 199,
+        "context": "Fasting",
+        "source": "CDC"
+      },
+      {
+        "status": "Critical",
+        "min": 200,
+        "context": "Fasting",
+        "source": "CDC"
+      },
+      {
+        "status": "Critical",
+        "max": 69,
+        "context": "PostMeal2h",
+        "source": "ADA"
+      },
+      {
+        "status": "Normal",
+        "min": 70,
+        "max": 139,
+        "context": "PostMeal2h",
+        "source": "CDC"
+      },
+      {
+        "status": "Watch",
+        "min": 140,
+        "max": 199,
+        "context": "PostMeal2h",
+        "source": "CDC"
+      },
+      {
+        "status": "Critical",
+        "min": 200,
+        "context": "PostMeal2h",
+        "source": "CDC"
+      },
+      {
+        "status": "Critical",
+        "max": 69,
+        "context": "Random",
+        "source": "ADA"
+      },
+      {
+        "status": "Normal",
+        "min": 70,
+        "max": 139,
+        "context": "Random",
+        "source": "app (same as 2-hour, CDC)"
+      },
+      {
+        "status": "Watch",
+        "min": 140,
+        "max": 199,
+        "context": "Random",
+        "source": "app (same as 2-hour, CDC)"
+      },
+      {
+        "status": "Critical",
+        "min": 200,
+        "context": "Random",
+        "source": "CDC"
+      }
+    ],
+    "refs": [
+      {
+        "label": "CDC – Diabetes testing",
+        "url": "https://www.cdc.gov/diabetes/diabetes-testing/index.html"
+      },
+      {
+        "label": "ADA – Hypoglycemia (15-15 rule)",
+        "url": "https://diabetes.org/living-with-diabetes/hypoglycemia-low-blood-glucose"
+      },
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "code": "TEMPERATURE",
+    "domain": "MetabolicImmune",
+    "label": "Body temperature (oral)",
+    "unit": "°C",
+    "validMin": 30,
+    "validMax": 45,
+    "step": 0.1,
+    "sdFloor": 0.2,
+    "bands": [
+      {
+        "status": "Critical",
+        "max": 34.9,
+        "source": "app (hypothermia)"
+      },
+      {
+        "status": "Watch",
+        "min": 35.0,
+        "max": 36.0,
+        "source": "app"
+      },
+      {
+        "status": "Normal",
+        "min": 36.1,
+        "max": 37.4,
+        "source": "app"
+      },
+      {
+        "status": "Watch",
+        "min": 37.5,
+        "max": 39.3,
+        "source": "MedlinePlus"
+      },
+      {
+        "status": "Critical",
+        "min": 39.4,
+        "source": "MedlinePlus"
+      }
+    ],
+    "spaceNote": "Resting core temperature rises ~1 °C in space over ~2.5 months; personal baseline matters more than Earth thresholds.",
+    "refs": [
+      {
+        "label": "MedlinePlus – Fever",
+        "url": "https://medlineplus.gov/ency/article/003090.htm"
+      },
+      {
+        "label": "Stahn et al. 2017, Scientific Reports – Increased core body temperature in astronauts",
+        "url": "https://doi.org/10.1038/s41598-017-15560-w"
+      },
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      }
+    ]
+  }
+]

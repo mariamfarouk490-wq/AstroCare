@@ -1,1 +1,278 @@
-[]
+[
+  {
+    "id": "heart",
+    "domain": "Cardiovascular",
+    "label": "Heart & circulation",
+    "functionText": "Pumps blood and oxygen to the whole body.",
+    "spaceEffectText": "Without gravity, fluids shift toward the head and the heart works less and becomes more spherical. Risks: arrhythmias, low blood pressure and fainting on landing, reduced fitness (10–12% average loss).",
+    "position": [
+      0.06,
+      1.34,
+      0.15
+    ],
+    "radius": 0.07,
+    "cameraTarget": {
+      "position": [
+        0.45,
+        1.38,
+        1.05
+      ],
+      "lookAt": [
+        0.06,
+        1.34,
+        0.1
+      ]
+    },
+    "metrics": [
+      "HEART_RATE",
+      "BP_SYSTOLIC",
+      "BP_DIASTOLIC",
+      "SPO2"
+    ],
+    "hazards": [
+      "D",
+      "G",
+      "E"
+    ],
+    "nasaRisks": [
+      "CV_RISK",
+      "AEROBIC_RISK",
+      "VTE",
+      "HYPOXIA",
+      "DCS",
+      "INFLIGHT_MEDICAL",
+      "ELECTRICAL_SHOCK"
+    ],
+    "refs": [
+      {
+        "label": "NASA – Risk of Cardiovascular Adaptations",
+        "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      },
+      {
+        "label": "NASA – The Human Body in Space",
+        "url": "https://www.nasa.gov/humans-in-space/the-human-body-in-space/"
+      }
+    ]
+  },
+  {
+    "id": "brain",
+    "domain": "MindSleep",
+    "label": "Brain, mind & sleep",
+    "functionText": "Controls sleep, mood, attention and balance.",
+    "spaceEffectText": "Isolation, noise and 16 sunrises a day disturb sleep and raise stress. Fluid shift can swell the optic nerve (SANS, ~70% of ISS astronauts show some swelling). Balance and coordination change with gravity.",
+    "position": [
+      0,
+      1.7,
+      0.07
+    ],
+    "radius": 0.08,
+    "cameraTarget": {
+      "position": [
+        0.4,
+        1.74,
+        0.95
+      ],
+      "lookAt": [
+        0,
+        1.68,
+        0.02
+      ]
+    },
+    "metrics": [],
+    "checkinFields": [
+      "sleepHours",
+      "mood",
+      "stress"
+    ],
+    "hazards": [
+      "I",
+      "D",
+      "G",
+      "E"
+    ],
+    "nasaRisks": [
+      "BEHAVIORAL_HEALTH",
+      "SLEEP",
+      "TEAM",
+      "SANS",
+      "SENSORIMOTOR",
+      "CO2",
+      "HEARING",
+      "EIHSO",
+      "SYSTEMS_SUPPORT"
+    ],
+    "refs": [
+      {
+        "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
+        "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+      },
+      {
+        "label": "NASA – Risk of SANS",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+      },
+      {
+        "label": "NASA HRP – 5 Hazards of Human Spaceflight",
+        "url": "https://www.nasa.gov/hrp/hazards"
+      }
+    ]
+  },
+  {
+    "id": "skeleton",
+    "domain": "BoneMuscle",
+    "label": "Bones & muscles",
+    "functionText": "Supports the body and allows movement.",
+    "spaceEffectText": "Weight-bearing bones (spine, hips) lose 1–1.5% of density per month; muscle strength drops. 1.5 h/day of resistive and aerobic exercise reduces the loss.",
+    "position": [
+      -0.1,
+      0.72,
+      0.09
+    ],
+    "radius": 0.08,
+    "cameraTarget": {
+      "position": [
+        -0.6,
+        0.85,
+        1.5
+      ],
+      "lookAt": [
+        -0.05,
+        0.8,
+        0
+      ]
+    },
+    "metrics": [],
+    "derived": [
+      "estimatedBoneLossPct"
+    ],
+    "hazards": [
+      "G",
+      "E"
+    ],
+    "nasaRisks": [
+      "BONE_FRACTURE",
+      "MUSCLE_RISK",
+      "DYNAMIC_LOADS",
+      "EVA",
+      "EGRESS"
+    ],
+    "refs": [
+      {
+        "label": "NASA – Risk of Spaceflight-Induced Bone Changes",
+        "url": "https://www.nasa.gov/reference/risk-of-spaceflight-induced-bone-changes/"
+      },
+      {
+        "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness",
+        "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/"
+      }
+    ]
+  },
+  {
+    "id": "abdomen",
+    "domain": "MetabolicImmune",
+    "label": "Metabolism & immunity",
+    "functionText": "Digestion, energy (blood sugar) and defence against infection.",
+    "spaceEffectText": "Stress, poor sleep and radiation alter immunity; dormant viruses (cold sores, shingles) can reactivate and microbes spread easily in a closed cabin. Food and activity changes affect blood sugar.",
+    "position": [
+      0,
+      1.06,
+      0.16
+    ],
+    "radius": 0.08,
+    "cameraTarget": {
+      "position": [
+        0.45,
+        1.1,
+        1.1
+      ],
+      "lookAt": [
+        0,
+        1.06,
+        0.08
+      ]
+    },
+    "metrics": [
+      "GLUCOSE",
+      "TEMPERATURE"
+    ],
+    "hazards": [
+      "D",
+      "G",
+      "E"
+    ],
+    "nasaRisks": [
+      "RENAL_STONE",
+      "URINARY_RETENTION",
+      "IMMUNE_RISK",
+      "HOST_MICROBE",
+      "FOOD_NUTRITION",
+      "MEDICATIONS",
+      "TOXIC",
+      "DUST"
+    ],
+    "refs": [
+      {
+        "label": "NASA – Risk of Altered Immune System Responses",
+        "url": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+      },
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
+      }
+    ]
+  },
+  {
+    "id": "aura",
+    "domain": "Radiation",
+    "label": "Radiation exposure",
+    "functionText": "Total dose of space radiation the body has absorbed.",
+    "spaceEffectText": "Outside Earth's atmosphere and magnetic field, galactic cosmic rays and solar storms damage DNA. NASA career limit: 600 mSv; ~30% of ISS radiation is neutrons.",
+    "position": [
+      0,
+      0.9,
+      0
+    ],
+    "radius": 1.0,
+    "cameraTarget": {
+      "position": [
+        0,
+        1.0,
+        3.4
+      ],
+      "lookAt": [
+        0,
+        0.9,
+        0
+      ]
+    },
+    "metrics": [],
+    "derived": [
+      "cumulativeDoseMSv",
+      "careerLimitPct"
+    ],
+    "hazards": [
+      "R"
+    ],
+    "nasaRisks": [
+      "RAD_CANCER",
+      "NIR"
+    ],
+    "refs": [
+      {
+        "label": "NASA OCHMO Radiation Protection Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/03/radiation-protection-technical-brief-ochmo.pdf"
+      },
+      {
+        "label": "CSA – How does radiation affect the human body in space?",
+        "url": "https://www.asc-csa.gc.ca/eng/astronauts/space-medicine/radiation.asp"
+      },
+      {
+        "label": "CSA – Monitoring radiation for astronaut health (CANS, 2026)",
+        "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp"
+      }
+    ]
+  }
+]
