@@ -259,7 +259,7 @@ function buildDust() {
   let seed = 7;
   const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647) * 2 - 1;
   const a = [];
-  for (let i = 0; i < 900; i++) {
+  for (let i = 0; i < 360; i++) {
     const [c, h] = VOLUMES[i % VOLUMES.length];
     let x, y, z;
     do {
@@ -270,7 +270,7 @@ function buildDust() {
     a.push(c[0] + x * h[0], c[1] + y * h[1], c[2] + z * h[2]);
   }
   const b = [];
-  for (let i = 0; i < 450; i++) b.push(rand() * 0.8, 0.95 + rand() * 0.95, rand() * 0.6);
+  for (let i = 0; i < 180; i++) b.push(rand() * 0.8, 0.95 + rand() * 0.95, rand() * 0.6);
   const g1 = new THREE.BufferGeometry();
   g1.setAttribute('position', new THREE.Float32BufferAttribute(a, 3));
   const g2 = new THREE.BufferGeometry();
@@ -285,7 +285,7 @@ export function Dust() {
   useFrame(({ clock }) => {
     if (reduced()) return;
     const t = clock.elapsedTime;
-    if (inner.current) inner.current.material.opacity = 0.55 + Math.sin(t * 1.3) * 0.15;
+    if (inner.current) inner.current.material.opacity = 0.32 + Math.sin(t * 1.3) * 0.08;
     if (outer.current) {
       outer.current.rotation.y = t * 0.03;
       outer.current.position.y = Math.sin(t * 0.4) * 0.02;
@@ -294,10 +294,10 @@ export function Dust() {
   return (
     <group>
       <points ref={inner} geometry={innerGeo}>
-        <pointsMaterial color="#ffffff" size={0.0055} sizeAttenuation transparent opacity={0.6} depthWrite={false} blending={THREE.AdditiveBlending} />
+        <pointsMaterial color="#ffffff" size={0.0038} sizeAttenuation transparent opacity={0.35} depthWrite={false} blending={THREE.AdditiveBlending} />
       </points>
       <points ref={outer} geometry={outerGeo}>
-        <pointsMaterial color="#d8dee6" size={0.004} sizeAttenuation transparent opacity={0.35} depthWrite={false} blending={THREE.AdditiveBlending} />
+        <pointsMaterial color="#d8dee6" size={0.003} sizeAttenuation transparent opacity={0.2} depthWrite={false} blending={THREE.AdditiveBlending} />
       </points>
     </group>
   );
@@ -312,8 +312,8 @@ export function Platform({ auraStatus, selected, onSelect }) {
     c.width = c.height = 256;
     const g = c.getContext('2d');
     const grd = g.createRadialGradient(128, 128, 0, 128, 128, 128);
-    grd.addColorStop(0, 'rgba(255,255,255,0.35)');
-    grd.addColorStop(0.5, 'rgba(255,255,255,0.08)');
+    grd.addColorStop(0, 'rgba(255,255,255,0.16)');
+    grd.addColorStop(0.5, 'rgba(255,255,255,0.04)');
     grd.addColorStop(1, 'rgba(255,255,255,0)');
     g.fillStyle = grd;
     g.fillRect(0, 0, 256, 256);
@@ -339,13 +339,13 @@ export function Platform({ auraStatus, selected, onSelect }) {
         <planeGeometry args={[1.6, 1.6]} />
         <meshBasicMaterial map={glow} transparent depthWrite={false} blending={THREE.AdditiveBlending} />
       </mesh>
-      {ring(0.24, 0.004, 0.7)}
-      {ring(0.36, 0.0025, 0.45)}
+      {ring(0.24, 0.003, 0.35)}
+      {ring(0.36, 0.002, 0.22)}
       <mesh ref={dashed} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.003, 0]}>
         <ringGeometry args={[0.44, 0.447, 128, 1, 0, Math.PI * 1.35]} />
-        <meshBasicMaterial color="#f5f5f7" transparent opacity={0.5} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+        <meshBasicMaterial color="#f5f5f7" transparent opacity={0.28} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
-      {ring(0.52, 0.003, 0.3)}
+      {ring(0.52, 0.002, 0.16)}
       <mesh
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0.004, 0]}
@@ -355,7 +355,7 @@ export function Platform({ auraStatus, selected, onSelect }) {
         }}
       >
         <ringGeometry args={[0.6, selected ? 0.63 : 0.612, 128]} />
-        <meshBasicMaterial color={aura} transparent opacity={selected ? 0.95 : 0.6} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
+        <meshBasicMaterial color={aura} transparent opacity={selected ? 0.9 : 0.4} blending={THREE.AdditiveBlending} depthWrite={false} toneMapped={false} />
       </mesh>
     </group>
   );

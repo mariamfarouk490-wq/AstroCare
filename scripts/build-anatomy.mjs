@@ -42,13 +42,20 @@ const exists = (id) => {
   }
 };
 
-// group → [FMA ids], simplify ratio (share of triangles kept)
+// group → [FMA ids], simplify ratio (share of triangles kept).
+// Only organs backed by the challenge data (nasa-risks.json, metrics.json, hazards.json):
+// heart + vessels (CV_RISK, VTE), lungs (HYPOXIA, CO2), brain (BEHAVIORAL_HEALTH, SLEEP, CO2),
+// eyes + optic nerves (SANS), skeleton (BONE_FRACTURE), kidneys + ureters + bladder (RENAL_STONE,
+// URINARY_RETENTION), liver + pancreas + spleen (MEDICATIONS / TOXIC, GLUCOSE, IMMUNE_RISK).
 const GROUPS = {
   skeleton: { ids: Object.keys(names).filter((id) => BONE.test(names[id]) && !NOT_BONE.test(names[id]) && exists(id)), ratio: 0.09 },
-  heart: { ids: ['FMA7274'], ratio: 0.05 },
-  lungs: { ids: ['FMA7333', 'FMA7337', 'FMA7370', 'FMA7371', 'FMA7383'], ratio: 0.06 },
+  heart: { ids: ['FMA7274'], ratio: 0.08 },
+  lungs: { ids: ['FMA7333', 'FMA7337', 'FMA7370', 'FMA7371', 'FMA7383'], ratio: 0.08 },
   vessels: { ids: ['FMA3736', 'FMA3768', 'FMA3784', 'FMA3941', 'FMA4058', 'FMA14765', 'FMA14766', 'FMA18806', 'FMA18807', 'FMA18809', 'FMA18810'], ratio: 0.35 },
-  kidneys: { ids: ['FMA7204', 'FMA7205'], ratio: 0.25 },
+  kidneys: { ids: ['FMA7204', 'FMA7205', 'FMA15571', 'FMA15572', 'FMA15900'], ratio: 0.35 },
+  brain: { ids: Object.keys(names).filter((id) => /gyrus|gyri|occipital lobe|insula|white matter structure of cerebral|cerebellum|midbrain, nsn|^pons$|medulla oblongata/i.test(names[id]) && exists(id)), ratio: 0.12 },
+  eyes: { ids: ['FMA12513', 'FMA50875', 'FMA50878', 'FMA62045'], ratio: 0.3 },
+  metabolic: { ids: ['FMA7197', 'FMA7198nsn', 'FMA7196'], ratio: 0.4 },
   skin: { ids: ['FMA7163'], ratio: 0.025 },
 };
 

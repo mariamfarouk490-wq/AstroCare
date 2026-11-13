@@ -10,8 +10,9 @@ import ProceduralBody from './ProceduralBody.jsx';
 import XRayAnatomy, { Platform } from './XRayAnatomy.jsx';
 import RealAnatomy from './RealAnatomy.jsx';
 import { STATUS_COLOR, fresnelMaterial } from './materials.js';
-import { BODY_FRAME } from './bodyFrame.js';
 
+/** Front-facing full body, slightly from below (like the reference render). */
+const HOME = { position: [0, 0.78, 3.7], lookAt: [0, 0.93, 0] };
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** Click target + status marker. Normal: soft green dot. Watch: pulsing red ring. Critical: strong red. */
@@ -52,17 +53,17 @@ function Hotspot({ entry, selected, hovered, onSelect, onHover }) {
       >
         <sphereGeometry args={[part.radius * 0.9, 12, 12]} />
       </mesh>
-      <mesh ref={ring}>
+      <mesh ref={ring} visible={selected || hovered}>
         <ringGeometry args={[r * 0.82, r, 48]} />
         <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} side={THREE.DoubleSide} />
       </mesh>
-      {status !== 'Watch' && (
+      {(selected || hovered) && status !== 'Watch' && (
         <mesh>
           <sphereGeometry args={[r * 0.32, 16, 16]} />
           <meshBasicMaterial color={color} toneMapped={false} />
         </mesh>
       )}
-      <mesh ref={halo}>
+      <mesh ref={halo} visible={selected || hovered}>
         <sphereGeometry args={[r * 1.6, 24, 24]} />
         <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} blending={THREE.AdditiveBlending} />
       </mesh>
@@ -89,9 +90,18 @@ function CameraRig({ target, controls }) {
   const flying = useRef(false);
   const goal = useRef({ position: new THREE.Vector3(), lookAt: new THREE.Vector3() });
   useEffect(() => {
-    const t = target ?? BODY_FRAME.DEFAULT_CAMERA;
+    const t = target ?? HOME;
     goal.current.position.set(...t.position);
     goal.current.lookAt.set(...t.lookAt);
+    if (target) {
+      // Pull back a little and shift the organ left of centre, clear of the side sheet.
+      const look = goal.current.lookAt;
+      const offset = goal.current.position.clone().sub(look).multiplyScalar(1.45);
+      const right = new THREE.Vector3().crossVectors(offset.clone().negate(), new THREE.Vector3(0, 1, 0)).normalize();
+      const shift = right.multiplyScalar(offset.length() * 0.07);
+      look.add(shift);
+      goal.current.position.copy(look).add(offset);
+    }
     flying.current = true;
   }, [target]);
   useFrame((_, dt) => {
@@ -160,7 +170,7 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
         <group ref={body}>
           <SceneBoundary fallback={procedural}>
             <Suspense fallback={procedural}>
-              <RealAnatomy statusOf={statusOf} heartRate={heartRate} dosePct={dosePct} onSelect={onSelect} />
+              <RealAnatomy statusOf={statusOf} heartRate={heartRate} dosePct={dosePct} selectedId={selectedId} hoveredId={hovered} onSelect={onSelect} onHover={setHovered} />
             </Suspense>
           </SceneBoundary>
           {parts
@@ -179,12 +189,12 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
         maxDistance={4.6}
         minPolarAngle={0.35}
         maxPolarAngle={1.75}
-        target={BODY_FRAME.DEFAULT_CAMERA.lookAt}
+        target={HOME.lookAt}
       />
       <CameraRig target={selected?.part.cameraTarget} controls={controls} />
       <EffectComposer multisampling={0}>
-        <Bloom mipmapBlur intensity={0.5} luminanceThreshold={0.82} luminanceSmoothing={0.2} radius={0.7} />
-        <Vignette offset={0.3} darkness={0.65} />
+        <Bloom mipmapBlur intensity={0.35} luminanceThreshold={0.9} luminanceSmoothing={0.2} radius={0.7} />
+        <Vignette offset={0.35} darkness={0.55} />
       </EffectComposer>
     </>
   );
@@ -207,7 +217,7 @@ export default function BodyScene({ parts, selectedId, onSelect, onHover, heartR
         <Canvas
           className="body-canvas"
           dpr={[1, 1.5]}
-          camera={{ position: BODY_FRAME.DEFAULT_CAMERA.position, fov: 36, near: 0.05, far: 50 }}
+          camera={{ position: HOME.position, fov: 34, near: 0.05, far: 50 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}
         >
           <Scene parts={parts} selectedId={selectedId} onSelect={onSelect} onHover={onHover} heartRate={heartRate} dosePct={dosePct} />

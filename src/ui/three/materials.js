@@ -18,11 +18,12 @@ const FRESNEL_FRAG = /* glsl */ `
   uniform float uPower;
   uniform float uRim;
   uniform float uBase;
+  uniform float uFade;
   varying vec3 vNormal;
   varying vec3 vView;
   void main() {
     float f = pow(1.0 - abs(dot(normalize(vNormal), normalize(vView))), uPower);
-    gl_FragColor = vec4(uColor * (uBase + f * uRim), 1.0);
+    gl_FragColor = vec4(uColor * (uBase + f * uRim) * uFade, 1.0);
   }
 `;
 
@@ -31,7 +32,7 @@ export function fresnelMaterial({ color = '#dfe6ee', power = 2.4, rim = 0.85, ba
   return new THREE.ShaderMaterial({
     vertexShader: FRESNEL_VERT,
     fragmentShader: FRESNEL_FRAG,
-    uniforms: { uColor: { value: new THREE.Color(color) }, uPower: { value: power }, uRim: { value: rim }, uBase: { value: base } },
+    uniforms: { uColor: { value: new THREE.Color(color) }, uPower: { value: power }, uRim: { value: rim }, uBase: { value: base }, uFade: { value: 1 } },
     transparent: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,

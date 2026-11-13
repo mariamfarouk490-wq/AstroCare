@@ -49,7 +49,7 @@ Every medical number on screen comes from `src/data`, each with its source.
 
 ## 3D models
 
-`public/models/anatomy/*.glb` (about 860 KB in total) are generated from BodyParts3D STL files by `node scripts/build-anatomy.mjs <stl dir> <parts_list_e.txt>`. Licence: CC BY-SA 2.1 Japan, see CREDITS.md.
+`public/models/anatomy/*.glb` (about 1.5 MB in total) are generated from BodyParts3D STL files by `node scripts/build-anatomy.mjs <stl dir> <parts_list_e.txt>`. Licence: CC BY-SA 2.1 Japan, see CREDITS.md.
 
 ## Limits
 
