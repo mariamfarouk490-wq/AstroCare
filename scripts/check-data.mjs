@@ -1,13 +1,14 @@
 // Seed data check: zod schema for every file + cross-file relations + the demo story.
 // Run from the project root:  node scripts/check-data.mjs
 // The demo story is checked by replaying every rule in rules.json over the seed, day by day,
+// with the same pure engine the app uses (src/domain/analysis/engine.js),
 // and comparing the first day each alert fires with demo-script.json (evidence for "Validity").
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildSeed, SeedError } from '../src/infrastructure/data/buildSeed.js';
 import { SEED_FILE_SCHEMAS } from '../src/domain/schemas/index.js';
-import { daysBetween } from '../src/domain/utils/dates.js';
+import { evaluateCrew } from '../src/domain/analysis/engine.js';
 
 const DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'data');
 const raw = Object.fromEntries(
@@ -24,63 +25,8 @@ try {
   errors.push(...e.problems);
 }
 
-const OPS = { lt: (a, b) => a < b, lte: (a, b) => a <= b, gt: (a, b) => a > b, gte: (a, b) => a >= b, eq: (a, b) => a === b };
-const mean = (a) => a.reduce((s, v) => s + v, 0) / a.length;
-const sd = (a) => Math.sqrt(a.reduce((s, v) => s + (v - mean(a)) ** 2, 0) / (a.length - 1));
-
-/** Replays rules.json for one crew member. Returns { ruleCode: first seed day it fired }. Alerts stay open once fired. */
-function replay(seed, crewId) {
-  const days = [...new Set(seed.measurements.filter((m) => m.crewId === crewId).map((m) => m.takenAt.slice(0, 10)))].sort();
-  const profile = seed.missionProfiles.find((p) => p.code === seed.mission.profileCode);
-  const reading = (day, metric) =>
-    seed.measurements.filter((m) => m.crewId === crewId && m.takenAt.startsWith(day)).sort((a, b) => a.takenAt.localeCompare(b.takenAt))
-      .flatMap((m) => m.readings).find((r) => r.metric === metric)?.value;
-  const checkIn = (day) => seed.checkIns.find((c) => c.crewId === crewId && c.date === day);
-  const cabin = (day) => seed.cabinEnvironment.find((c) => c.takenAt.startsWith(day));
-  const derived = (day, field) => {
-    const missionDay = daysBetween(seed.mission.startDate, day) + 1;
-    const dose = missionDay * profile.dailyDoseMSv;
-    return {
-      cumulativeDoseMSv: dose,
-      careerLimitPct: (dose / 600) * 100,
-      estimatedBoneLossPct: profile.boneLossPctPerMonth ? (missionDay / 30) * profile.boneLossPctPerMonth.max : 0,
-      solarEventActive: false,
-      cabinPpCO2mmHg: cabin(day)?.ppCO2mmHg,
-      headacheToday: Boolean(checkIn(day)?.symptoms.includes('headache')),
-    }[field];
-  };
-  const fired = {};
-  const streaks = {};
-  days.forEach((day, i) => {
-    const order = [...seed.rules.filter((r) => r.kind !== 'combo'), ...seed.rules.filter((r) => r.kind === 'combo')];
-    for (const r of order) {
-      const p = r.params;
-      let hit = false;
-      if (r.kind === 'threshold') { const v = reading(day, p.metric); hit = v !== undefined && OPS[p.op](v, p.value); }
-      if (r.kind === 'baseline') {
-        const series = days.slice(Math.max(0, i - 7), i).map((d) => reading(d, p.metric)).filter((v) => v !== undefined);
-        const v = reading(day, p.metric);
-        let ok = false;
-        if (series.length >= 3 && v !== undefined) {
-          const floor = seed.metrics.find((m) => m.code === p.metric).sdFloor;
-          ok = p.zMin !== undefined ? (v - mean(series)) / Math.max(sd(series), floor) >= p.zMin : v - mean(series) >= p.deltaMin;
-        }
-        streaks[r.code] = ok ? (streaks[r.code] ?? 0) + 1 : 0;
-        hit = streaks[r.code] >= p.consecutiveDays;
-      }
-      if (r.kind === 'streak') {
-        const c = checkIn(day);
-        const ok = c && c[p.field] !== undefined && OPS[p.op](c[p.field], p.value);
-        streaks[r.code] = ok ? (streaks[r.code] ?? 0) + 1 : 0;
-        hit = streaks[r.code] >= p.days;
-      }
-      if (r.kind === 'derived') { const v = derived(day, p.field); hit = v !== undefined && OPS[p.op](v, p.value); }
-      if (r.kind === 'combo') hit = p.allOf.every((a) => fired[a] !== undefined);
-      if (hit && fired[r.code] === undefined) fired[r.code] = i + 1;
-    }
-  });
-  return fired;
-}
+/** Replays rules.json for one crew member with the app's engine. Returns { ruleCode: first seed day it fired }. */
+const replay = (seed, crewId) => Object.fromEntries(evaluateCrew(seed, crewId).alerts.map((a) => [a.code, a.seedDay]));
 
 if (seed) {
   const script = seed.demoScript;

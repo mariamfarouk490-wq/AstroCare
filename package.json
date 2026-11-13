@@ -8,15 +8,13 @@
     "build": "vite build && node scripts/build-offline.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:app": "node scripts/check-app.mjs"
+    "check:data": "node scripts/check-data.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "react-router-dom": "^7.18.5",
-    "tesseract.js": "^7.0.0",
     "three": "^0.187.0",
     "zod": "^4.6.7",
     "zustand": "^5.1.0"
