@@ -452,7 +452,7 @@ code {
   min-height: 0;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background: radial-gradient(60% 55% at 50% 45%, rgba(255, 255, 255, 0.06), transparent 70%);
+  background: #000;
 }
 
 .body-canvas {

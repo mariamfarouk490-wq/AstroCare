@@ -336,6 +336,8 @@ export default function BodyMapScreen({ param, onEmergency }) {
           selectedId={param}
           onSelect={(id) => navigate('body', id ?? undefined)}
           onHover={setHovered}
+          heartRate={health.metrics.find((m) => m.metric.code === 'HEART_RATE')?.value}
+          dosePct={health.derived.careerLimitPct}
           fallback={<EmptyState icon="body" title="3D view unavailable">Use the body-system buttons below.</EmptyState>}
         />
         {hoveredPart && (
