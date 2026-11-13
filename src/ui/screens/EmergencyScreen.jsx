@@ -7,6 +7,8 @@ import { activeProfile } from '../../domain/analysis/engine.js';
 import { Button, GlassPanel, Icon, Panel, RefList, Stat, StatusBadge } from '../components/index.jsx';
 import { formatClock, formatDuration, formatTime, formatValue, initials, ROLE_LABEL } from '../format.js';
 
+const STEP_LABEL = { question: 'Question', instruction: 'Instruction', 'cpr-timer': 'CPR timer', measure: 'Measure', end: 'Outcome' };
+
 const OUTCOMES = [
   { value: 'Stabilized', label: 'Stabilized' },
   { value: 'HandedToEarth', label: 'Handed to Earth' },
@@ -200,7 +202,7 @@ function Running({ onClose }) {
       <div className="emergency__grid">
         <GlassPanel strong className="panel step-card" key={`${emergency.machine.protocol}:${step.code}`}>
           <div className="eyebrow">
-            Step {protocol.steps.findIndex((s) => s.code === step.code) + 1} of {protocol.steps.length} · {step.type.replace('-', ' ')}
+            Step {protocol.steps.findIndex((s) => s.code === step.code) + 1} of {protocol.steps.length} · {STEP_LABEL[step.type] ?? step.type}
           </div>
           <p className="step-card__text">{step.text}</p>
 
@@ -247,7 +249,7 @@ function Running({ onClose }) {
                 <div className="meter">
                   <span className="meter__fill" style={{ width: `${Math.min(100, (elapsed / roundTrip) * 100)}%`, background: 'var(--text-1)' }} />
                 </div>
-                <p className="footnote secondary num">
+                <p className="footnote secondary">
                   {replyIn > 0 ? `Earliest reply from the flight surgeon in ${formatClock(replyIn)}` : 'A reply from Earth can arrive now'}
                   {' · '}sent {formatTime(session.startedAt)}
                 </p>

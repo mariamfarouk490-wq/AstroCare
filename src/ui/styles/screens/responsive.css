@@ -4,7 +4,8 @@
   .body-screen {
     grid-template-columns: 300px minmax(0, 1fr) 320px;
   }
-  .crew-chip__name {
+  .crew-chip__name,
+  .part-chip .icon {
     display: none;
   }
   .crew-chip {
@@ -67,18 +68,12 @@
   }
   .rail {
     top: auto;
-    left: 0;
-    right: 0;
+    bottom: var(--s-3);
+    left: 50%;
+    transform: translateX(-50%);
     width: auto;
-    height: 64px;
     flex-direction: row;
-    justify-content: space-around;
     padding: 0 var(--s-2);
-    border-right: 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .rail__item[aria-current="page"]::before {
-    display: none;
   }
   .body-screen {
     grid-template-columns: 1fr;

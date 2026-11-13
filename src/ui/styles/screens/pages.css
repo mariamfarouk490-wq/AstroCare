@@ -1,5 +1,6 @@
 .page {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s-5);
 }
 
@@ -43,10 +44,8 @@
 }
 
 /* Grid cards: let long source pills and text shrink instead of widening the track. */
-.reminder,
 .hazard,
 .mission,
-.mini-card,
 .about-hero,
 .trend-main,
 .step-card,
@@ -55,9 +54,7 @@
   min-width: 0;
 }
 
-.reminder-grid > *,
 .card-grid > *,
-.reminder__foot > *,
 .refs > li {
   min-width: 0;
 }

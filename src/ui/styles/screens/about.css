@@ -31,14 +31,6 @@
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
 }
 
-.mini-card {
-  display: grid;
-  gap: var(--s-2);
-  align-content: start;
-  padding: var(--s-4);
-  border-radius: var(--r-md);
-}
-
 .hazard {
   display: grid;
   gap: var(--s-4);
@@ -117,4 +109,18 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+}
+
+.beneficiary {
+  align-items: flex-start;
+}
+
+.beneficiary__group {
+  font-weight: 500;
+}
+
+.beneficiary .refs {
+  flex: none;
+  max-width: 40%;
+  justify-content: flex-end;
 }

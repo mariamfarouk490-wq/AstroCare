@@ -423,8 +423,8 @@ export default function MeasureScreen({ param, onEmergency }) {
     <div className="page">
       <header className="page__head">
         <div>
-          <div className="eyebrow">Measure</div>
-          <h1 className="title-large">Take a reading</h1>
+          <div className="eyebrow">Log a reading for</div>
+          <h1 className="title-large">{health.crew.name}</h1>
         </div>
         {replaying && <Pill tone="info">Replay mode · saving is off until you exit the demo</Pill>}
       </header>

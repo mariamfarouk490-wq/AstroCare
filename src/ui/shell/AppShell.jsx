@@ -28,6 +28,34 @@ function Backdrop() {
   );
 }
 
+/** SVG filter used by backdrop-filter: url(#liquid) for a slight lens refraction at glass edges. */
+function LiquidFilter() {
+  return (
+    <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute' }}>
+      <filter id="liquid" x="0" y="0" width="100%" height="100%" colorInterpolationFilters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.008 0.012" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="2" result="soft" />
+        <feDisplacementMap in="SourceGraphic" in2="soft" scale="22" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+  );
+}
+
+/** Pointer-follow highlight: sets --mx / --my on the glass control under the pointer. */
+function usePointerHighlight() {
+  useEffect(() => {
+    const onMove = (e) => {
+      const el = e.target.closest?.('.btn, .liquid, .glass--interactive');
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    return () => window.removeEventListener('pointermove', onMove);
+  }, []);
+}
+
 function Toast() {
   const toast = useApp((s) => s.toast);
   if (!toast) return null;
@@ -55,6 +83,7 @@ export default function AppShell() {
   const openDemo = useApp((s) => s.openDemo);
   const emergencyRunning = useApp((s) => Boolean(s.emergency));
   const [emergency, setEmergency] = useState(null); // { protocol } while the emergency overlay is open
+  usePointerHighlight();
 
   const onEmergency = useCallback((protocol) => setEmergency({ protocol: typeof protocol === 'string' ? protocol : undefined }), []);
   const closeEmergency = useCallback(() => setEmergency(null), []);
@@ -73,6 +102,7 @@ export default function AppShell() {
 
   return (
     <div className={`shell${demoOpen ? ' shell--demo' : ''}`}>
+      <LiquidFilter />
       <Backdrop />
       <TopBar onEmergency={() => onEmergency()} />
       <NavRail screen={route.screen} openAlerts={openAlerts} />

@@ -24,7 +24,7 @@ function MissionClock() {
     return (
       <div className="telemetry">
         <span className="telemetry__label">Replay</span>
-        <span className="telemetry__value num">DAY {pad(daysBetween(mission.startDate, replayDay) + 1)}</span>
+        <span className="telemetry__value num">Day {daysBetween(mission.startDate, replayDay) + 1}</span>
       </div>
     );
   }
@@ -48,7 +48,7 @@ function EarthLink() {
       <span className="telemetry__label">
         <Icon name="signal" size={12} strokeWidth={2} /> Earth link
       </span>
-      <span className="telemetry__value num">{roundTrip ? formatDuration(roundTrip).toUpperCase() : 'LIVE'}</span>
+      <span className="telemetry__value num">{roundTrip ? formatDuration(roundTrip) : 'live'}</span>
     </div>
   );
 }
@@ -90,13 +90,13 @@ export default function TopBar({ onEmergency }) {
   const health = useHealth();
   const open = health.alerts.filter((a) => !a.acknowledgedAt).length;
   return (
-    <header className="topbar">
+    <header className="topbar liquid">
       <div className="topbar__brand">
         <MissionPatch />
         <div className="topbar__mission">
           <span className="topbar__name">AstroCare</span>
-          <span className="topbar__meta num">
-            {mission.name} · {formatDay(day).toUpperCase()}
+          <span className="topbar__meta">
+            {mission.name} · {formatDay(day)}
           </span>
         </div>
       </div>

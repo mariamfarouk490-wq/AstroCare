@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useApp } from '../../state/store.js';
-import { Button, GlassPanel, Icon, Pill, RefList } from '../components/index.jsx';
+import { Button, GlassPanel, Icon, RefList } from '../components/index.jsx';
 import { navigate } from '../shell/useRoute.js';
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -61,6 +61,8 @@ const OPEN_TARGET = {
   'body:aura': { label: 'Open radiation', go: () => navigate('body', 'aura') },
 };
 
+const HHMM = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit' });
+
 export default function RemindersScreen() {
   const reminders = useApp((s) => s.seed.reminders);
   const [now, setNow] = useState(() => new Date());
@@ -71,47 +73,65 @@ export default function RemindersScreen() {
   const items = reminders
     .map((r) => ({ r, due: nextDue(r.schedule, now) }))
     .sort((a, b) => (a.due?.getTime() ?? Infinity) - (b.due?.getTime() ?? Infinity));
+  const [next, ...rest] = items;
+  const nextTarget = next?.r.opens && OPEN_TARGET[next.r.opens];
   return (
-    <div className="page">
-      <header className="page__head">
-        <div>
-          <div className="eyebrow">Reminders</div>
-          <h1 className="title-large">Today’s rhythm</h1>
-          <p className="secondary footnote lede">
-            Same time every day keeps the personal baseline accurate. Times are local to the habitat clock.
-          </p>
-        </div>
-      </header>
-      <div className="reminder-grid">
-        {items.map(({ r, due }, i) => {
-          const target = r.opens && OPEN_TARGET[r.opens];
-          return (
-            <GlassPanel as="article" key={r.id} className={`panel reminder${i === 0 ? ' reminder--next' : ''}`} interactive>
-              <header className="reminder__head">
-                <span className="reminder__icon">
-                  <Icon name={ICON[r.id] ?? 'reminders'} size={20} />
+    <div className="page reminders">
+      {next && (
+        <GlassPanel className="panel reminder-next">
+          <div className="reminder-next__when">
+            <span className="eyebrow">Next · {relative(next.due, now)}</span>
+            <span className="reminder-next__time num">{next.due ? HHMM.format(next.due) : '–'}</span>
+          </div>
+          <div className="reminder-next__body">
+            <h1 className="title-large">
+              <Icon name={ICON[next.r.id] ?? 'reminders'} size={26} /> {next.r.title}
+            </h1>
+            <p className="secondary">{next.r.what}</p>
+            <p className="footnote tertiary">{next.r.why}</p>
+            <div className="reminder-next__actions">
+              {nextTarget && (
+                <Button variant="primary" onClick={nextTarget.go}>
+                  {nextTarget.label}
+                </Button>
+              )}
+              <RefList refs={next.r.refs} />
+            </div>
+          </div>
+        </GlassPanel>
+      )}
+      <GlassPanel className="panel">
+        <header className="panel__head">
+          <h2 className="panel__title">Later today and this week</h2>
+        </header>
+        <ol className="agenda">
+          {rest.map(({ r, due }) => {
+            const target = r.opens && OPEN_TARGET[r.opens];
+            return (
+              <li key={r.id} className="agenda__row">
+                <span className="agenda__time num">{due ? HHMM.format(due) : '–'}</span>
+                <span className="agenda__icon">
+                  <Icon name={ICON[r.id] ?? 'reminders'} size={18} />
                 </span>
-                {i === 0 && <Pill tone="info">Next</Pill>}
-              </header>
-              <h2 className="title-3">{r.title}</h2>
-              <p className="secondary footnote">{r.what}</p>
-              <div className="reminder__when">
-                <span className="num">{scheduleText(r.schedule)}</span>
-                {due && <span className="tertiary num">{relative(due, now)}</span>}
-              </div>
-              <p className="footnote tertiary">{r.why}</p>
-              <div className="reminder__foot">
-                <RefList refs={r.refs.slice(0, 1)} />
-                {target && (
-                  <Button size="sm" variant="plain" onClick={target.go}>
+                <div className="agenda__text">
+                  <span className="agenda__title">{r.title}</span>
+                  <span className="footnote tertiary">
+                    {r.what} · {scheduleText(r.schedule).toLowerCase()}
+                  </span>
+                </div>
+                <span className="footnote tertiary num agenda__in">{due && relative(due, now)}</span>
+                {target ? (
+                  <Button size="sm" onClick={target.go}>
                     {target.label}
                   </Button>
+                ) : (
+                  <span />
                 )}
-              </div>
-            </GlassPanel>
-          );
-        })}
-      </div>
+              </li>
+            );
+          })}
+        </ol>
+      </GlassPanel>
     </div>
   );
 }

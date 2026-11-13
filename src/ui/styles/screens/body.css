@@ -276,31 +276,6 @@
   backdrop-filter: var(--glass-blur);
 }
 
-/* Radar grid around the 3D stage (masked away from the body; the canvas is untouched). */
-.stage__grid {
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.55;
-  background:
-    repeating-radial-gradient(circle at 50% 92%, transparent 0 59px, var(--tick) 59px 60px),
-    linear-gradient(var(--tick), var(--tick)) 50% 0 / 1px 100% no-repeat,
-    linear-gradient(var(--tick), var(--tick)) 0 50% / 100% 1px no-repeat;
-  -webkit-mask-image: radial-gradient(ellipse 24% 48% at 50% 52%, transparent 70%, #000 100%);
-  mask-image: radial-gradient(ellipse 24% 48% at 50% 52%, transparent 70%, #000 100%);
-}
-
-.stage__scale {
-  position: absolute;
-  z-index: 1;
-  top: var(--s-7);
-  bottom: var(--s-8);
-  left: var(--s-3);
-  width: 8px;
-  pointer-events: none;
-  background: repeating-linear-gradient(180deg, var(--tick) 0 1px, transparent 1px 12px);
-}
 
 .stage__hint,
 .stage__hover,

@@ -6,14 +6,14 @@ const ITEMS = [
   { screen: 'measure', label: 'Measure', icon: 'measure' },
   { screen: 'trends', label: 'Trends', icon: 'trends' },
   { screen: 'alerts', label: 'Alerts', icon: 'alerts' },
-  { screen: 'reminders', label: 'Remind', icon: 'reminders', title: 'Reminders' },
-  { screen: 'about', label: 'About', icon: 'about', title: 'About & sources' },
+  { screen: 'reminders', label: 'Reminders', icon: 'reminders' },
+  { screen: 'about', label: 'Sources', icon: 'about', title: 'About & sources' },
 ];
 
 /** Slim left navigation rail (bottom bar on small screens). */
 export default function NavRail({ screen, openAlerts }) {
   return (
-    <nav className="rail" aria-label="Screens">
+    <nav className="rail liquid" aria-label="Screens">
       {ITEMS.map((t) => (
         <button
           key={t.screen}

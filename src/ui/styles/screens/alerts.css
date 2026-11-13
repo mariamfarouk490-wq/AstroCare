@@ -97,6 +97,5 @@
   flex-basis: 100%;
   font-family: var(--font-mono);
   font-size: var(--fs-micro);
-  letter-spacing: var(--tracking-label);
   color: var(--text-3);
 }

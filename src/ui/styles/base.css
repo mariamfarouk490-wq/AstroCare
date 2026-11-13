@@ -1,11 +1,11 @@
-/* Reset, type, backdrop. Fonts are self-hosted (@fontsource) so the app works offline. */
-@import "@fontsource/space-grotesk/400.css";
-@import "@fontsource/space-grotesk/500.css";
-@import "@fontsource/space-grotesk/600.css";
-@import "@fontsource/space-grotesk/700.css";
-@import "@fontsource/jetbrains-mono/400.css";
-@import "@fontsource/jetbrains-mono/500.css";
-@import "@fontsource/jetbrains-mono/600.css";
+/* Reset, type, backdrop. Public Sans + DM Mono (the fonts nasa.gov uses), self-hosted for offline use. */
+@import "@fontsource/public-sans/300.css";
+@import "@fontsource/public-sans/400.css";
+@import "@fontsource/public-sans/500.css";
+@import "@fontsource/public-sans/600.css";
+@import "@fontsource/dm-mono/300.css";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
 
 *,
 *::before,
@@ -43,7 +43,7 @@ p {
 h1,
 h2,
 h3 {
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--tracking-tight);
   line-height: 1.15;
 }
@@ -89,7 +89,7 @@ code {
 .num {
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .visually-hidden {
@@ -104,9 +104,15 @@ code {
 /* ---------- Type helpers ---------- */
 .eyebrow,
 .label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-caption);
+  font-size: var(--fs-footnote);
   font-weight: 500;
+  color: var(--text-2);
+}
+
+/* Tiny metadata only (MET, EARTH LINK) */
+.meta-caps {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-3);
@@ -114,19 +120,19 @@ code {
 
 .title-large {
   font-size: var(--fs-title1);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--tracking-tight);
 }
 
 .title-2 {
   font-size: var(--fs-title2);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--tracking-tight);
 }
 
 .title-3 {
   font-size: var(--fs-title3);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.015em;
 }
 

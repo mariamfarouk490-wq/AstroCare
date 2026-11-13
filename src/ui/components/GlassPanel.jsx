@@ -1,17 +1,16 @@
 import { cx } from './cx.js';
 
 /**
- * Dark glass surface with HUD corner brackets.
+ * Dark liquid-glass surface.
  * strong: denser blur and fill · solid: near-opaque (sheets, modals) · flat: softer shadow
- * plain: no corner brackets · interactive: hover lift · scan: run the scan line once on mount
+ * liquid: refraction filter on the backdrop (use on small surfaces) · interactive: hover lift + pointer highlight
  */
-export default function GlassPanel({ as: Tag = 'section', strong, solid, flat, plain, interactive, scan, className, children, ...rest }) {
+export default function GlassPanel({ as: Tag = 'section', strong, solid, flat, liquid, interactive, className, children, ...rest }) {
   return (
     <Tag
-      className={cx('glass', strong && 'glass--strong', solid && 'glass--solid', flat && 'glass--flat', plain && 'glass--plain', interactive && 'glass--interactive', className)}
+      className={cx('glass', strong && 'glass--strong', solid && 'glass--solid', flat && 'glass--flat', liquid && 'glass--liquid', interactive && 'glass--interactive', className)}
       {...rest}
     >
-      {scan && <span className="scan" aria-hidden="true" />}
       {children}
     </Tag>
   );

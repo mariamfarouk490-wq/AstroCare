@@ -23,7 +23,7 @@ Open `http://localhost:5173/?play` to autoplay the 10-day demo.
 
 ## Design
 
-A dark mission console: black and silver glass panels with HUD corner brackets, Space Grotesk text and JetBrains Mono telemetry (both self-hosted), a left navigation rail, a top bar with the mission patch, live MET clock and Earth-link delay, and a mission timeline for the demo replay. Colour is used only for status (green Normal, red Watch / Critical) and interaction (blue). All tokens live in `src/ui/styles/tokens.css`.
+Dark liquid glass: rounded panels and pill controls with a refraction filter, Public Sans text and DM Mono numbers (the fonts nasa.gov uses, self-hosted), a floating left navigation capsule, a top bar with the mission patch, live MET clock and Earth-link delay, and a mission timeline for the demo replay. Colour is used only for status (green Normal, red Watch / Critical) and interaction (blue). All tokens live in `src/ui/styles/tokens.css`.
 
 ## Screens
 

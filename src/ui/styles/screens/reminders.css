@@ -1,49 +1,104 @@
-.reminder-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--s-4);
+/* Reminders: one dominant "next" item, the rest as an agenda. */
+.reminders {
+  max-width: 1040px;
 }
 
-.reminder {
+.reminder-next {
   display: grid;
-  gap: var(--s-3);
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--s-6);
+  padding: var(--s-6);
+  border-radius: var(--r-xl);
+}
+
+.reminder-next__when {
+  display: grid;
   align-content: start;
+  gap: var(--s-1);
 }
 
-.reminder--next {
-  border-color: var(--blue-line);
+.reminder-next__time {
+  font-size: var(--fs-hero);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
-.reminder__head {
+.reminder-next__body {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.reminder-next__body h1 {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: var(--s-3);
 }
 
-.reminder__icon {
-  width: 40px;
-  height: 40px;
+.reminder-next__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-3);
+}
+
+.agenda {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agenda__row {
+  display: grid;
+  grid-template-columns: 64px 36px minmax(0, 1fr) 120px 160px;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+}
+
+.agenda__row + .agenda__row {
+  border-top: 1px solid var(--hairline);
+}
+
+.agenda__time {
+  font-size: var(--fs-title3);
+  font-weight: 300;
+}
+
+.agenda__icon {
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  border-radius: var(--r-sm);
+  border-radius: 50%;
   background: var(--fill-2);
-  border: 1px solid var(--glass-border-soft);
+  color: var(--text-2);
 }
 
-.reminder__when {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--s-3);
-  font-size: var(--fs-footnote);
-  font-weight: 600;
-  padding: var(--s-2) 0;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
+.agenda__text {
+  display: grid;
+  min-width: 0;
 }
 
-.reminder__foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--s-2);
+.agenda__title {
+  font-weight: 500;
+}
+
+.agenda__row .btn {
+  justify-self: end;
+}
+
+@media (max-width: 1100px) {
+  .reminder-next {
+    grid-template-columns: 1fr;
+    gap: var(--s-3);
+  }
+  .agenda__row {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+  .agenda__icon,
+  .agenda__in {
+    display: none;
+  }
 }

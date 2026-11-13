@@ -330,9 +330,7 @@ export default function BodyMapScreen({ param, onEmergency }) {
         <CrewCard health={health} />
         <VitalsPanel health={health} />
       </div>
-      <div className="body-screen__stage glass">
-        <div className="stage__grid" aria-hidden="true" />
-        <div className="stage__scale" aria-hidden="true" />
+      <div className="body-screen__stage">
         <BodyScene
           parts={health.parts}
           selectedId={param}

@@ -40,13 +40,15 @@ function Challenge() {
         </div>
       </Panel>
       <Panel title="Who it helps">
-        <div className="card-grid">
+        <div className="list">
           {impact.beneficiaries.map((b) => (
-            <GlassPanel flat key={b.group} className="panel mini-card">
-              <h3 className="title-3">{b.group}</h3>
-              <p className="secondary footnote">{b.how}</p>
-              <RefList refs={b.refs} />
-            </GlassPanel>
+            <div className="list__row beneficiary" key={b.group}>
+              <div>
+                <div className="beneficiary__group">{b.group}</div>
+                <div className="footnote secondary">{b.how}</div>
+              </div>
+              <RefList refs={b.refs.slice(0, 1)} />
+            </div>
           ))}
         </div>
       </Panel>
@@ -232,7 +234,7 @@ export default function AboutScreen() {
       <header className="page__head">
         <div>
           <div className="eyebrow">About · {mission.name}</div>
-          <h1 className="title-large">Built on NASA science</h1>
+          <h1 className="title-large">Where every number comes from</h1>
           <p className="secondary footnote lede">
             Every number in AstroCare comes from the files in src/data, each with its source. All analysis runs on the device, with no network.
           </p>

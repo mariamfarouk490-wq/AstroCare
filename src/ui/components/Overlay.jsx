@@ -17,7 +17,7 @@ export function Sheet({ title, eyebrow, aside, onClose, children }) {
   return (
     <>
       <div className="scrim" onClick={onClose} />
-      <GlassPanel as="aside" strong solid scan className="sheet" role="dialog" aria-labelledby={id}>
+      <GlassPanel as="aside" strong solid className="sheet" role="dialog" aria-labelledby={id}>
         <header className="sheet__head">
           <div>
             {eyebrow && <div className="eyebrow">{eyebrow}</div>}
@@ -41,7 +41,7 @@ export function Modal({ title, onClose, children }) {
   return (
     <>
       <div className="scrim" onClick={onClose} />
-      <GlassPanel strong solid scan className="modal" role="dialog" aria-modal="true" aria-labelledby={id}>
+      <GlassPanel strong solid className="modal" role="dialog" aria-modal="true" aria-labelledby={id}>
         <h2 id={id} className="title-2 modal__title">
           {title}
         </h2>

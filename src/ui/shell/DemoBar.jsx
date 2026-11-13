@@ -61,7 +61,7 @@ export default function DemoBar({ onEmergency }) {
   };
 
   return (
-    <section className="timeline" aria-label="Mission timeline">
+    <section className="timeline liquid" aria-label="Mission timeline">
       <Button
         variant="primary"
         icon={playing ? 'pause' : 'play'}
@@ -90,7 +90,7 @@ export default function DemoBar({ onEmergency }) {
                 title={formatShortDay(d)}
               >
                 <span className="timeline__tick" />
-                <span className="timeline__label num">D{String(i + 1).padStart(2, '0')}</span>
+                <span className="timeline__label num">{i + 1}</span>
               </button>
             );
           })}
