@@ -61,3 +61,28 @@
 .refs > li {
   min-width: 0;
 }
+
+/* Spacing helpers used across screens */
+.lede {
+  margin-top: var(--s-2);
+}
+
+.actions {
+  margin-top: var(--s-5);
+}
+
+.stack-gap {
+  margin-top: var(--s-3);
+}
+
+.sheet__status {
+  margin-top: var(--s-2);
+}
+
+.modal__title {
+  margin-bottom: var(--s-4);
+}
+
+.modal__text {
+  margin-bottom: var(--s-4);
+}

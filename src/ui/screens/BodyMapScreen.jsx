@@ -183,7 +183,7 @@ function PartSheet({ entry, health, onClose, onEmergency }) {
   const c = health.checkIn;
   const d = health.derived;
   return (
-    <Sheet eyebrow="Body system" title={part.label} onClose={onClose} aside={<div style={{ marginTop: 8 }}><StatusBadge status={status} /></div>}>
+    <Sheet eyebrow="Body system" title={part.label} onClose={onClose} aside={<div className="sheet__status"><StatusBadge status={status} /></div>}>
       <section className="sheet-section">
         <h3 className="eyebrow">What it does</h3>
         <p>{part.functionText}</p>

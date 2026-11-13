@@ -77,7 +77,7 @@ export default function RemindersScreen() {
         <div>
           <div className="eyebrow">Reminders</div>
           <h1 className="title-large">Today’s rhythm</h1>
-          <p className="secondary footnote" style={{ marginTop: 8 }}>
+          <p className="secondary footnote lede">
             Same time every day keeps the personal baseline accurate. Times are local to the habitat clock.
           </p>
         </div>

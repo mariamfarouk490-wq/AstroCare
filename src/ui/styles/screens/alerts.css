@@ -90,3 +90,13 @@
   display: grid;
   gap: var(--s-3);
 }
+
+/* Rule code as a mono label line above the badges */
+.alert-card__code {
+  order: -1;
+  flex-basis: 100%;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-3);
+}

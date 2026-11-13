@@ -16,7 +16,7 @@ export default function AlertsScreen({ onEmergency }) {
         <div>
           <div className="eyebrow">Alerts · {health.crew.name}</div>
           <h1 className="title-large">{open.length ? `${open.length} need${open.length === 1 ? 's' : ''} attention` : 'All clear'}</h1>
-          <p className="secondary footnote" style={{ marginTop: 8 }}>
+          <p className="secondary footnote lede">
             {ruleCount} rules from rules.json run on-device every day. An alert stays open once it fires; acknowledging it marks it as seen.
           </p>
         </div>

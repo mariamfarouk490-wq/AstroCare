@@ -116,11 +116,11 @@ export default function TrendChart({ points, range, lines = [], unit, format = (
           </g>
         ))}
 
-        {linePath && <path d={linePath} fill="none" stroke="url(#trend-line)" strokeWidth="2.25" strokeLinejoin="round" strokeLinecap="round" />}
+        {linePath && <path className="trend-chart__line" pathLength="1" d={linePath} fill="none" stroke="url(#trend-line)" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />}
 
         {points.map((p, i) =>
           p.value === undefined ? null : (
-            <g key={p.day}>
+            <g key={p.day} className="trend-chart__point" style={{ animationDelay: `${300 + i * 60}ms` }}>
               <circle cx={x(i)} cy={y(p.value)} r="5" fill={STATUS_FILL[p.status ?? 'NoData'] === 'transparent' ? '#000' : STATUS_FILL[p.status ?? 'NoData']} stroke={STATUS_STROKE[p.status ?? 'NoData']} strokeWidth="2" />
               <title>{`${p.day}: ${format(p.value)} ${unit ?? ''}`}</title>
             </g>

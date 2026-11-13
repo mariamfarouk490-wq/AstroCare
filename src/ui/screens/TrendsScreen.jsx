@@ -46,7 +46,7 @@ function MetricTrend({ code }) {
         <GlassPanel className="panel">
           <Stat label="Latest" value={last ? fmt(last.value) : undefined} unit={metric.unit} sub={last ? formatShortDay(last.day) : 'No reading'} />
           {last && (
-            <div style={{ marginTop: 12 }}>
+            <div className="stack-gap">
               <StatusBadge status={last.status} />
             </div>
           )}
@@ -111,7 +111,7 @@ function CheckInTrend({ field }) {
             <p className="footnote secondary">
               <code>{rule.code}</code> fires after {rule.params.days} days below {rule.params.value} {info.unit}.
             </p>
-            <div style={{ marginTop: 12 }}>
+            <div className="stack-gap">
               <RefList refs={rule.refs} />
             </div>
           </Panel>

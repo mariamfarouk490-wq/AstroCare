@@ -233,7 +233,7 @@ export default function AboutScreen() {
         <div>
           <div className="eyebrow">About · {mission.name}</div>
           <h1 className="title-large">Built on NASA science</h1>
-          <p className="secondary footnote" style={{ marginTop: 8 }}>
+          <p className="secondary footnote lede">
             Every number in AstroCare comes from the files in src/data, each with its source. All analysis runs on the device, with no network.
           </p>
         </div>
@@ -253,7 +253,7 @@ export default function AboutScreen() {
       {confirmReset && (
         <Modal title="Reset demo data?" onClose={() => setConfirmReset(false)}>
           <p className="secondary">This removes every reading, check-in, acknowledgement and emergency log saved on this device. The seed data stays.</p>
-          <div className="row-gap" style={{ marginTop: 24 }}>
+          <div className="row-gap actions">
             <Button block onClick={() => setConfirmReset(false)}>
               Cancel
             </Button>

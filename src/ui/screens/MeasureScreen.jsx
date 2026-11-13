@@ -379,11 +379,11 @@ function CheckInPanel({ health, disabled, onEmergency }) {
       </Button>
       {redFlags && (
         <Modal title="Red-flag symptom" onClose={() => setRedFlags(null)}>
-          <p className="secondary" style={{ marginBottom: 16 }}>
+          <p className="secondary modal__text">
             You reported {redFlags.map((r) => r.label.toLowerCase()).join(', ')}. Start Emergency mode now and follow the protocol.
           </p>
           <RefList refs={redFlags.flatMap((r) => r.refs)} />
-          <div className="row-gap" style={{ marginTop: 24 }}>
+          <div className="row-gap actions">
             <Button block onClick={() => setRedFlags(null)}>
               Not now
             </Button>
