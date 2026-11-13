@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useApp, useHealth } from '../../state/store.js';
 import AlertCard from '../features/AlertCard.jsx';
-import { EmptyState, GlassPanel, SegmentedControl } from '../components/index.jsx';
+import { EmptyState, GlassPanel, Tabs } from '../components/index.jsx';
 
 export default function AlertsScreen({ onEmergency }) {
   const health = useHealth();
@@ -20,7 +20,7 @@ export default function AlertsScreen({ onEmergency }) {
             {ruleCount} rules from rules.json run on-device every day. An alert stays open once it fires; acknowledging it marks it as seen.
           </p>
         </div>
-        <SegmentedControl
+        <Tabs
           label="Filter"
           value={filter}
           onChange={setFilter}

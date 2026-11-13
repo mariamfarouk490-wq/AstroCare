@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useApp, useHealth } from '../../state/store.js';
 import { statusOf } from '../../domain/analysis/metricStatus.js';
-import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, SegmentedControl, Stat, StatusBadge } from '../components/index.jsx';
+import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, Tabs, Stat, StatusBadge } from '../components/index.jsx';
 import { formatValue, shortLabel } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
 
@@ -104,7 +104,7 @@ function ManualEntry({ guide, disabled }) {
           </label>
         ))}
       </div>
-      {codes.includes('GLUCOSE') && <SegmentedControl label="Glucose context" options={GLUCOSE_CONTEXTS} value={context} onChange={setContext} block />}
+      {codes.includes('GLUCOSE') && <Tabs label="Glucose context" options={GLUCOSE_CONTEXTS} value={context} onChange={setContext} block />}
       {error && <p className="field__error">{error}</p>}
       <Button type="submit" variant="primary" block disabled={!ready || disabled}>
         Save reading
@@ -160,7 +160,7 @@ function WatchPanel({ health, disabled }) {
           <Stat label="SpO2" value={spo2?.value} unit="%" />
         </div>
       </div>
-      <SegmentedControl
+      <Tabs
         label="Scenario"
         block
         value={settings.scenario}
@@ -352,11 +352,11 @@ function CheckInPanel({ health, disabled, onEmergency }) {
         <Stepper label="Exercise today" value={form.exerciseMin} onChange={(exerciseMin) => set({ exerciseMin })} step={15} min={0} max={600} unit="min" />
         <div className="field">
           <span className="field__label">Mood · 1 low, 5 great</span>
-          <SegmentedControl label="Mood" options={SCALE} value={form.mood} onChange={(mood) => set({ mood })} block />
+          <Tabs label="Mood" options={SCALE} value={form.mood} onChange={(mood) => set({ mood })} block />
         </div>
         <div className="field">
           <span className="field__label">Stress · 1 calm, 5 overwhelmed</span>
-          <SegmentedControl label="Stress" options={SCALE} value={form.stress} onChange={(stress) => set({ stress })} block />
+          <Tabs label="Stress" options={SCALE} value={form.stress} onChange={(stress) => set({ stress })} block />
         </div>
       </div>
       <div className="field">
@@ -428,7 +428,7 @@ export default function MeasureScreen({ param, onEmergency }) {
         </div>
         {replaying && <Pill tone="info">Replay mode · saving is off until you exit the demo</Pill>}
       </header>
-      <SegmentedControl label="Measurement" value={metric} onChange={setMetric} options={guides.map((g) => ({ value: g.metric, label: g.metric === 'BP_SYSTOLIC' ? 'Blood pressure' : label(g.metric) }))} />
+      <Tabs label="Measurement" value={metric} onChange={setMetric} options={guides.map((g) => ({ value: g.metric, label: g.metric === 'BP_SYSTOLIC' ? 'Blood pressure' : label(g.metric) }))} />
       <div className="measure-grid">
         <GuideCard guide={guide} />
         <div className="measure-col">
@@ -440,7 +440,7 @@ export default function MeasureScreen({ param, onEmergency }) {
                 {latest[0].value !== undefined && <StatusBadge status={latest[0].status} />}
               </div>
             </header>
-            <SegmentedControl
+            <Tabs
               label="Method"
               block
               value={method}

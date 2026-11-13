@@ -198,7 +198,7 @@ function Running({ onClose }) {
       </header>
 
       <div className="emergency__grid">
-        <GlassPanel strong xl className="panel step-card" key={`${emergency.machine.protocol}:${step.code}`}>
+        <GlassPanel strong className="panel step-card" key={`${emergency.machine.protocol}:${step.code}`}>
           <div className="eyebrow">
             Step {protocol.steps.findIndex((s) => s.code === step.code) + 1} of {protocol.steps.length} · {step.type.replace('-', ' ')}
           </div>

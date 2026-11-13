@@ -1,6 +1,6 @@
 import { useApp, useTrend } from '../../state/store.js';
 import TrendChart from '../features/TrendChart.jsx';
-import { GlassPanel, Panel, RefList, SegmentedControl, Stat, StatusBadge } from '../components/index.jsx';
+import { GlassPanel, Panel, RefList, Tabs, Stat, StatusBadge } from '../components/index.jsx';
 import { FIELD_INFO } from '../../domain/analysis/fields.js';
 import { formatNumber, formatShortDay, formatValue, shortLabel } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
@@ -135,7 +135,7 @@ export default function TrendsScreen({ param }) {
         </div>
       </header>
       <div className="scroll-x">
-        <SegmentedControl label="Series" options={options} value={selected} onChange={(v) => navigate('trends', v)} />
+        <Tabs label="Series" options={options} value={selected} onChange={(v) => navigate('trends', v)} />
       </div>
       {CHECKIN_FIELDS.includes(selected) ? <CheckInTrend key={selected} field={selected} /> : <MetricTrend key={selected} code={selected} />}
     </div>

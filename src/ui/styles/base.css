@@ -1,4 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+/* Reset, type, backdrop. Fonts are self-hosted (@fontsource) so the app works offline. */
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/600.css";
+@import "@fontsource/space-grotesk/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/600.css";
 
 *,
 *::before,
@@ -18,8 +25,7 @@ body {
   color: var(--text-1);
   font-family: var(--font);
   font-size: var(--fs-body);
-  line-height: 1.45;
-  letter-spacing: -0.005em;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -39,7 +45,7 @@ h2,
 h3 {
   font-weight: 600;
   letter-spacing: var(--tracking-tight);
-  line-height: 1.12;
+  line-height: 1.15;
 }
 
 a {
@@ -73,9 +79,17 @@ button {
   background: var(--blue-soft);
 }
 
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  color: var(--text-2);
+}
+
+/* Every number, unit, code and timestamp is mono. */
 .num {
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
 }
 
 .visually-hidden {
@@ -87,87 +101,20 @@ button {
   white-space: nowrap;
 }
 
-/* ---------- Backdrop: near-black, silver sheen, out-of-focus light ---------- */
-.backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  background:
-    radial-gradient(1200px 700px at 50% -12%, rgba(220, 224, 232, 0.13), transparent 62%),
-    radial-gradient(900px 600px at 50% 120%, rgba(255, 255, 255, 0.05), transparent 70%),
-    linear-gradient(180deg, #0a0a0c 0%, #000 55%, #050506 100%);
-}
-
-.backdrop__blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.55;
-  will-change: transform;
-  animation: drift 38s var(--ease) infinite alternate;
-}
-
-.backdrop__blob--a {
-  width: 520px;
-  height: 520px;
-  left: -140px;
-  top: 18%;
-  background: radial-gradient(circle, rgba(200, 206, 216, 0.22), transparent 70%);
-}
-
-.backdrop__blob--b {
-  width: 640px;
-  height: 640px;
-  right: -200px;
-  top: -120px;
-  background: radial-gradient(circle, rgba(170, 180, 196, 0.2), transparent 70%);
-  animation-duration: 46s;
-}
-
-.backdrop__blob--c {
-  width: 460px;
-  height: 460px;
-  left: 42%;
-  bottom: -220px;
-  background: radial-gradient(circle, rgba(235, 235, 240, 0.14), transparent 70%);
-  animation-duration: 52s;
-}
-
-.backdrop__grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
-@keyframes drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(60px, -40px, 0) scale(1.08);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .backdrop__blob {
-    animation: none;
-  }
-}
-
 /* ---------- Type helpers ---------- */
-.eyebrow {
+.eyebrow,
+.label {
+  font-family: var(--font-mono);
   font-size: var(--fs-caption);
-  font-weight: 600;
-  letter-spacing: var(--tracking-caps);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--text-3);
 }
 
 .title-large {
   font-size: var(--fs-title1);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-tight);
 }
 
@@ -197,4 +144,94 @@ button {
 
 .caption {
   font-size: var(--fs-caption);
+}
+
+.bullets {
+  margin: 0;
+  padding-left: 1.1em;
+  display: grid;
+  gap: var(--s-1);
+  color: var(--text-2);
+}
+
+.bullets li::marker {
+  color: var(--text-4);
+}
+
+/* ---------- Backdrop: near-black, faint silver sheen, out-of-focus light ---------- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 600px at 55% -15%, rgba(220, 224, 232, 0.06), transparent 62%),
+    linear-gradient(180deg, var(--bg-raised) 0%, var(--bg) 60%);
+}
+
+.backdrop__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.35;
+  will-change: transform;
+  animation: drift 40s var(--ease) infinite alternate;
+}
+
+.backdrop__blob--a {
+  width: 520px;
+  height: 520px;
+  left: -160px;
+  top: 20%;
+  background: radial-gradient(circle, rgba(200, 206, 216, 0.16), transparent 70%);
+}
+
+.backdrop__blob--b {
+  width: 640px;
+  height: 640px;
+  right: -220px;
+  top: -140px;
+  background: radial-gradient(circle, rgba(170, 180, 196, 0.14), transparent 70%);
+  animation-duration: 48s;
+}
+
+.backdrop__blob--c {
+  width: 460px;
+  height: 460px;
+  left: 42%;
+  bottom: -240px;
+  background: radial-gradient(circle, rgba(235, 235, 240, 0.08), transparent 70%);
+  animation-duration: 54s;
+}
+
+.backdrop__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(60px, -40px, 0) scale(1.08);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop__blob {
+    animation: none;
+  }
 }

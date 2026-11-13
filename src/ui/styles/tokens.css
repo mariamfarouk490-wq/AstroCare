@@ -1,63 +1,74 @@
-/* AstroCare design tokens: black and silver, liquid glass, colour only for status and interaction. */
+/* AstroCare design tokens: the single source for colour, type, spacing, radius, motion and layers.
+   Language: a dark mission console. Black and silver glass, mono telemetry, colour only for status
+   (green Normal, red Watch / Critical) and interaction (blue). */
 :root {
   color-scheme: dark;
 
-  /* Type */
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
-  --fs-caption: 12px;
+  /* ---------- Type ---------- */
+  --font: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --fs-micro: 10px;
+  --fs-caption: 11px;
   --fs-footnote: 13px;
-  --fs-body: 15px;
+  --fs-body: 14px;
   --fs-callout: 16px;
-  --fs-title3: 20px;
-  --fs-title2: 24px;
-  --fs-title1: 32px;
-  --fs-large: 44px;
-  --fs-hero: 64px;
+  --fs-title3: 19px;
+  --fs-title2: 23px;
+  --fs-title1: 30px;
+  --fs-large: 40px;
+  --fs-hero: 60px;
   --tracking-tight: -0.02em;
-  --tracking-caps: 0.06em;
+  --tracking-label: 0.1em;
 
-  /* Silver text */
-  --text-1: #f5f5f7;
-  --text-2: #a1a1a6;
-  --text-3: #6e6e73;
-  --text-4: #48484a;
+  /* ---------- Silver text ---------- */
+  --text-1: #e6e6ea;
+  --text-2: #8e8e93;
+  --text-3: #5a5a60;
+  --text-4: #3a3a3f;
 
-  /* Background */
+  /* ---------- Surfaces ---------- */
   --bg: #000;
-  --bg-raised: #0a0a0c;
+  --bg-raised: #050507;
+  --bg-inset: rgba(0, 0, 0, 0.45);
+  --glass-fill: rgba(255, 255, 255, 0.035);
+  --glass-fill-strong: rgba(255, 255, 255, 0.055);
+  --glass-fill-hover: rgba(255, 255, 255, 0.075);
+  --glass-solid: rgba(14, 14, 17, 0.86);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-soft: rgba(255, 255, 255, 0.06);
+  --glass-blur: blur(28px) saturate(150%);
+  --glass-blur-strong: blur(36px) saturate(160%);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 24px 64px rgba(0, 0, 0, 0.75);
+  --glass-shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.6);
+  --hairline: rgba(255, 255, 255, 0.07);
+  --bracket: rgba(230, 230, 234, 0.42);
+  --tick: rgba(230, 230, 234, 0.16);
 
-  /* Glass */
-  --glass-fill: rgba(255, 255, 255, 0.07);
-  --glass-fill-strong: rgba(255, 255, 255, 0.1);
-  --glass-fill-hover: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --glass-border-soft: rgba(255, 255, 255, 0.08);
-  --glass-blur: blur(32px) saturate(180%);
-  --glass-blur-strong: blur(40px) saturate(190%);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
-  --glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-  --glass-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --hairline: rgba(255, 255, 255, 0.08);
-
-  /* Status and interaction (iOS dark palette) */
+  /* ---------- Status and interaction ---------- */
   --green: #30d158;
   --blue: #0a84ff;
   --red: #ff453a;
-  --green-soft: rgba(48, 209, 88, 0.16);
-  --blue-soft: rgba(10, 132, 255, 0.18);
-  --red-soft: rgba(255, 69, 58, 0.16);
-  --red-line: rgba(255, 69, 58, 0.55);
+  --green-deep: #1f9e45;
+  --blue-deep: #0a6fd6;
+  --red-deep: #d63a31;
+  --green-soft: rgba(48, 209, 88, 0.12);
+  --blue-soft: rgba(10, 132, 255, 0.14);
+  --red-soft: rgba(255, 69, 58, 0.12);
+  --red-line: rgba(255, 69, 58, 0.5);
+  --green-glow: 0 0 12px rgba(48, 209, 88, 0.25);
+  --red-glow: 0 0 14px rgba(255, 69, 58, 0.3);
+  --blue-glow: 0 6px 20px rgba(10, 132, 255, 0.22);
 
-  /* Radius */
-  --r-xs: 8px;
-  --r-sm: 12px;
-  --r-md: 18px;
-  --r-lg: 24px;
-  --r-xl: 28px;
-  --r-pill: 999px;
+  /* ---------- Radius ---------- */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 14px;
+  --r-round: 999px;
 
-  /* 8-pt spacing */
+  /* ---------- 8-pt spacing ---------- */
   --s-1: 4px;
   --s-2: 8px;
   --s-3: 12px;
@@ -68,16 +79,27 @@
   --s-8: 48px;
   --s-10: 64px;
 
-  /* Motion */
+  /* ---------- Motion ---------- */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --t-fast: 200ms;
-  --t-med: 300ms;
-  --t-slow: 400ms;
+  --t-fast: 160ms;
+  --t-med: 260ms;
+  --t-slow: 420ms;
 
-  /* Layout */
-  --topbar-h: 64px;
-  --tabbar-h: 64px;
-  --page-max: 1360px;
+  /* ---------- Layers ---------- */
+  --z-backdrop: -1;
+  --z-chrome: 30;
+  --z-timeline: 31;
+  --z-scrim: 40;
+  --z-sheet: 41;
+  --z-emergency: 50;
+  --z-toast: 60;
+
+  /* ---------- Layout ---------- */
+  --rail-w: 72px;
+  --topbar-h: 56px;
+  --timeline-h: 104px;
+  --gutter: var(--s-4);
+  --page-max: 1440px;
 }
 
 @media (prefers-reduced-motion: reduce) {

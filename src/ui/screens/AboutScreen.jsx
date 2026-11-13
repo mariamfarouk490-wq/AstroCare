@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useApp } from '../../state/store.js';
-import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, SegmentedControl, Stat } from '../components/index.jsx';
+import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, Tabs, Stat } from '../components/index.jsx';
 import { DOMAIN_LABEL, formatDuration } from '../format.js';
 import { earthRoundTripSec } from '../../domain/emergency/protocolMachine.js';
 
@@ -105,7 +105,7 @@ function Risks() {
     <Panel
       title={`${risks.length} NASA Human System Risks`}
       aside={
-        <SegmentedControl
+        <Tabs
           label="Coverage"
           value={filter}
           onChange={setFilter}
@@ -242,7 +242,7 @@ export default function AboutScreen() {
         </Button>
       </header>
       <div className="scroll-x">
-        <SegmentedControl label="Section" options={SECTIONS} value={section} onChange={setSection} />
+        <Tabs label="Section" options={SECTIONS} value={section} onChange={setSection} />
       </div>
       {section === 'challenge' && <Challenge />}
       {section === 'hazards' && <Hazards />}
