@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useApp, useHealth, useMetricTrends } from '../../state/store.js';
 import BodyScene from '../three/BodyScene.jsx';
 import AlertCard from '../features/AlertCard.jsx';
+import MindSupport from '../features/MindSupport.jsx';
 import { Button, EmptyState, Est, GlassPanel, Icon, Panel, Pill, RefList, Sheet, Sparkline, Stat, StatusBadge } from '../components/index.jsx';
 import { activeProfile } from '../../domain/analysis/engine.js';
 import { formatNumber, formatRange, formatValue, isEstimate, ROLE_LABEL, SOURCE_LABEL, formatTime } from '../format.js';
@@ -313,6 +314,8 @@ function PartSheet({ entry, health, onClose, onEmergency }) {
           </div>
         </section>
       )}
+
+      {part.id === 'brain' && <MindSupport health={health} force />}
 
       <section className="sheet-section">
         <h3 className="eyebrow">Sources</h3>

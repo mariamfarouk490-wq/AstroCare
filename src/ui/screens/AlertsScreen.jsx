@@ -2,11 +2,16 @@ import { useState } from 'react';
 import { useApp, useHealth } from '../../state/store.js';
 import AlertCard from '../features/AlertCard.jsx';
 import EarthReportButton from '../features/EarthReport.jsx';
+import MindSupport from '../features/MindSupport.jsx';
+import { getMindSupport } from '../../application/usecases/getMindSupport.js';
 import { EmptyState, GlassPanel, Tabs } from '../components/index.jsx';
 
 export default function AlertsScreen({ onEmergency }) {
   const health = useHealth();
   const ruleCount = useApp((s) => s.seed.rules.length);
+  const mindData = useApp((s) => s.seed.mindSupport);
+  // Mind support leads the page when mood is critical; otherwise it follows the alerts.
+  const urgent = getMindSupport(mindData, health.alerts, null).level === 'urgent';
   const [filter, setFilter] = useState('open');
   const open = health.alerts.filter((a) => !a.acknowledgedAt);
   const acknowledged = health.alerts.filter((a) => a.acknowledgedAt);
@@ -34,6 +39,7 @@ export default function AlertsScreen({ onEmergency }) {
           />
         </div>
       </header>
+      {urgent && <MindSupport health={health} />}
       {list.length ? (
         <div className="alerts-list">
           {list.map((a) => (
@@ -46,6 +52,11 @@ export default function AlertsScreen({ onEmergency }) {
             {filter === 'open' ? 'Readings and check-ins are inside the generic bands and this crew member’s baseline.' : 'Acknowledged alerts appear here.'}
           </EmptyState>
         </GlassPanel>
+      )}
+      {!urgent && (
+        <div className="alerts-mind">
+          <MindSupport health={health} />
+        </div>
       )}
     </div>
   );

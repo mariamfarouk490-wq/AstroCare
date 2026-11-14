@@ -12,6 +12,7 @@ import '../ui/styles/screens/trends.css';
 import '../ui/styles/screens/reminders.css';
 import '../ui/styles/screens/about.css';
 import '../ui/styles/screens/emergency.css';
+import '../ui/styles/screens/mind.css';
 import '../ui/styles/screens/responsive.css';
 import App from './App.jsx';
 

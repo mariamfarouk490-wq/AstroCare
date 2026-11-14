@@ -5,7 +5,7 @@ import { FIELD_INFO } from '../../domain/analysis/fields.js';
 import { formatNumber, formatShortDay, formatValue, shortLabel } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
 
-const CHECKIN_FIELDS = ['sleepHours', 'exerciseMin', 'waterL'];
+const CHECKIN_FIELDS = ['sleepHours', 'mood', 'stress', 'exerciseMin', 'waterL'];
 const DECIMALS = { sleepHours: 1, waterL: 2 };
 
 function MetricTrend({ code }) {
@@ -87,7 +87,8 @@ function CheckInTrend({ field }) {
   const info = FIELD_INFO[field];
   const rule = seed.rules.find((r) => r.kind === 'streak' && r.params.field === field);
   const lines = [];
-  if (rule) lines.push({ value: rule.params.value, label: `${rule.code} below ${rule.params.value} ${info.unit}` });
+  const word = (r) => (r.params.op === 'gte' ? 'at or above' : r.params.op === 'lte' ? 'at or below' : 'below');
+  if (rule) lines.push({ value: rule.params.value, label: `${rule.code} ${word(rule)} ${rule.params.value}${info.unit.startsWith('/') ? info.unit : ` ${info.unit}`}` });
   // NASA daily targets from environment-limits.json
   const daily = seed.environmentLimits.dailyNeeds;
   const target =
@@ -118,7 +119,8 @@ function CheckInTrend({ field }) {
         {rule && (
           <Panel title="Rule">
             <p className="footnote secondary">
-              <code>{rule.code}</code> fires after {rule.params.days} days below {rule.params.value} {info.unit}.
+              <code>{rule.code}</code> fires after {rule.params.days} day{rule.params.days === 1 ? '' : 's'} {word(rule)} {rule.params.value}
+              {info.unit}.
             </p>
             <div className="stack-gap">
               <RefList refs={rule.refs} />

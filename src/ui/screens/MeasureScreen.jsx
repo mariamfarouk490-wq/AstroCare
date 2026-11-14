@@ -4,6 +4,8 @@ import { statusOf } from '../../domain/analysis/metricStatus.js';
 import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, Tabs, Stat, StatusBadge } from '../components/index.jsx';
 import { formatValue, shortLabel } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
+import MindSupport from '../features/MindSupport.jsx';
+import { getMindSupport } from '../../application/usecases/getMindSupport.js';
 
 const GLUCOSE_CONTEXTS = [
   { value: 'Fasting', label: 'Fasting' },
@@ -331,6 +333,28 @@ function Stepper({ label, value, onChange, step, min, max, unit }) {
 const SCALE = [1, 2, 3, 4, 5].map((n) => ({ value: n, label: String(n) }));
 const MEALS = [0, 1, 2, 3].map((n) => ({ value: n, label: String(n) }));
 
+/** After a low-mood or high-stress check-in: a small entry that opens the Mind support card. */
+function MindEntry({ health }) {
+  const data = useApp((s) => s.seed.mindSupport);
+  const [open, setOpen] = useState(false);
+  if (!getMindSupport(data, [], health.checkIn).fromCheckIn) return null;
+  return (
+    <>
+      <div className="mind-entry footnote secondary" role="note">
+        <span>Low mood or high stress today. One minute of slow breathing can help.</span>
+        <Button size="sm" icon="wind" onClick={() => setOpen(true)}>
+          Mind support
+        </Button>
+      </div>
+      {open && (
+        <Modal title="Mind support" onClose={() => setOpen(false)}>
+          <MindSupport health={health} force />
+        </Modal>
+      )}
+    </>
+  );
+}
+
 function CheckInPanel({ health, disabled, onEmergency }) {
   const symptoms = useApp((s) => s.seed.symptoms);
   const submitCheckIn = useApp((s) => s.submitCheckIn);
@@ -394,6 +418,7 @@ function CheckInPanel({ health, disabled, onEmergency }) {
       <Button variant="primary" block onClick={submit} disabled={disabled}>
         Save check-in
       </Button>
+      <MindEntry health={health} />
       {redFlags && (
         <Modal title="Red-flag symptom" onClose={() => setRedFlags(null)}>
           <p className="secondary modal__text">

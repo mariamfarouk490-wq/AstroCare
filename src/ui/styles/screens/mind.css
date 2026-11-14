@@ -1,0 +1,150 @@
+/* ---------- Mind support (behavioural health card) ---------- */
+.mind {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-5);
+}
+
+.mind--urgent {
+  border-color: var(--red-action);
+}
+
+.mind__urgent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--red-action);
+  color: var(--on-action);
+  font-weight: 600;
+}
+
+.mind__urgent svg {
+  flex: none;
+  margin-top: 3px;
+}
+
+.breathing {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: var(--s-5);
+  align-items: center;
+}
+
+.breathing__stage {
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+}
+
+.breathing__circle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.04) 70%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-highlight), 0 0 32px rgba(120, 170, 255, 0.18);
+  transition-property: transform;
+  transition-timing-function: ease-in-out;
+}
+
+.breathing__info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-2);
+  justify-items: start;
+  min-width: 0;
+}
+
+.breathing__label {
+  font-size: var(--fs-title-3, 20px);
+  font-weight: 600;
+}
+
+.mind__section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+}
+
+.mind__actions {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mind__actions li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--well);
+}
+
+.mind__request {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+  justify-items: start;
+}
+
+.mind__request svg {
+  vertical-align: -2px;
+}
+
+/* Small entry after a low-mood / high-stress check-in */
+.mind-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .breathing {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breathing__circle {
+    transition: none;
+  }
+}
+
+/* Long button labels wrap instead of widening the card (sheet, phone) */
+.mind .btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: left;
+  height: auto;
+  min-height: 36px;
+}
+
+.mind .refs,
+.mind .ref {
+  max-width: 100%;
+}
+
+/* In the narrow side sheet the circle sits above the text */
+.sheet .breathing {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+}
+
+.sheet .breathing__info {
+  justify-items: center;
+  text-align: center;
+}
+
+/* centred layouts must still fill the column (justify-items: center would size the text block to its content) */
+.breathing__info {
+  justify-self: stretch;
+}
