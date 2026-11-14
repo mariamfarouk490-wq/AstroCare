@@ -305,19 +305,22 @@ function PhotoPanel({ health, disabled }) {
   );
 }
 
+/** Rounds to the nearest step so 0.25 L steps stay valid (2.25 + 0.25 = 2.5, not 2.5000001). */
+const snap = (v, step) => +(Math.round(v / step) * step).toFixed(2);
+
 function Stepper({ label, value, onChange, step, min, max, unit }) {
   return (
     <div className="stepper">
       <span className="field__label">{label}</span>
       <div className="stepper__control">
-        <button type="button" className="stepper__btn" aria-label={`Less ${label}`} onClick={() => onChange(Math.max(min, +(value - step).toFixed(1)))}>
+        <button type="button" className="stepper__btn" aria-label={`Less ${label}`} onClick={() => onChange(Math.max(min, snap(value - step, step)))}>
           −
         </button>
         <span className="stepper__value num">
           {value}
           <span className="stat__unit"> {unit}</span>
         </span>
-        <button type="button" className="stepper__btn" aria-label={`More ${label}`} onClick={() => onChange(Math.min(max, +(value + step).toFixed(1)))}>
+        <button type="button" className="stepper__btn" aria-label={`More ${label}`} onClick={() => onChange(Math.min(max, snap(value + step, step)))}>
           +
         </button>
       </div>
