@@ -77,7 +77,7 @@
   list-style: none;
 }
 
-.mind__actions li {
+.mind__actions > li {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--s-2);
