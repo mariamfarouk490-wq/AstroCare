@@ -8,6 +8,7 @@
     "validMax": 250,
     "step": 1,
     "sdFloor": 2,
+    "spaceNote": "Fluids shift toward the head and the heart works less, so resting heart rate and fitness drift slowly over a long mission. Earth limits can stay \"Normal\" while your own trend moves, so compare each reading with your personal baseline.",
     "bands": [
       {
         "status": "Critical",
@@ -62,6 +63,7 @@
     "validMax": 260,
     "step": 1,
     "sdFloor": 3,
+    "spaceNote": "The headward fluid shift changes blood pressure in flight, and many crew feel dizzy or faint when standing after landing (orthostatic intolerance). A low reading together with dizziness needs attention.",
     "bands": [
       {
         "status": "Watch",
@@ -106,6 +108,7 @@
     "validMax": 160,
     "step": 1,
     "sdFloor": 2,
+    "spaceNote": "Read it together with systolic pressure: the fluid shift and the lighter heart workload change both values over a long mission, so watch the trend against your own baseline.",
     "bands": [
       {
         "status": "Normal",
@@ -140,6 +143,7 @@
     "validMax": 100,
     "step": 1,
     "sdFloor": 1,
+    "spaceNote": "The cabin is kept at sea-level oxygen (ppO2 145–155 mmHg, NASA-STD-3001 V2 6003), so spaceflight alone should not lower oxygen saturation. A drop points to the cabin air or the lungs and needs action now.",
     "bands": [
       {
         "status": "Critical",
@@ -179,6 +183,7 @@
     "validMax": 600,
     "step": 1,
     "sdFloor": 5,
+    "spaceNote": "Long periods of low physical activity can reduce insulin sensitivity, and the food supply on a long mission is fixed. Measure in the same context each time (ideally fasting) so changes are comparable.",
     "bands": [
       {
         "status": "Critical",

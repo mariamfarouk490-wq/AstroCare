@@ -151,6 +151,25 @@
     height: 40px;
   }
 
+  .profile-switch .telemetry__label,
+  .telemetry__word {
+    display: none;
+  }
+  .topbar__telemetry {
+    gap: var(--s-2);
+    min-width: 0;
+  }
+  .profile-switch__button {
+    padding: 4px var(--s-3);
+  }
+  .profile-switch__menu {
+    position: fixed;
+    top: calc(var(--topbar-h) + env(safe-area-inset-top));
+    left: var(--gutter);
+    right: var(--gutter);
+    min-width: 0;
+  }
+
   /* Nav: floating bottom pill bar */
   .rail {
     top: auto;

@@ -451,3 +451,77 @@
 .shell--demo .toast {
   bottom: calc(var(--timeline-h) + var(--s-3));
 }
+
+/* ---------- Mission environment switch (top bar) ---------- */
+.profile-switch {
+  position: relative;
+}
+
+.profile-switch__button {
+  display: grid;
+  justify-items: start;
+  gap: 0;
+  padding: 2px var(--s-3);
+  border: 1px solid var(--glass-border-soft);
+  border-radius: var(--r-round);
+  background: var(--fill-1);
+  color: var(--text-1);
+  transition:
+    background var(--t-fast) var(--ease),
+    transform var(--t-med) var(--spring);
+}
+
+.profile-switch__button:hover {
+  background: var(--fill-2);
+}
+
+.profile-switch__button:active {
+  transform: scale(0.96);
+}
+
+.profile-switch__value {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-footnote);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.profile-switch__menu {
+  position: absolute;
+  z-index: var(--z-sheet);
+  top: calc(100% + var(--s-2));
+  left: 0;
+  min-width: 260px;
+  margin: 0;
+  padding: var(--s-2);
+  list-style: none;
+  border-radius: var(--r-md);
+  animation: rise-in var(--t-med) var(--spring);
+}
+
+.profile-switch__option {
+  width: 100%;
+  display: grid;
+  justify-items: start;
+  gap: 2px;
+  padding: var(--s-2) var(--s-3);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--text-1);
+  text-align: left;
+}
+
+.profile-switch__option:hover {
+  background: var(--fill-2);
+}
+
+.profile-switch__option[aria-selected="true"] {
+  background: var(--blue-action);
+}
+
+.profile-switch__option[aria-selected="true"] .tertiary {
+  color: var(--on-action);
+}

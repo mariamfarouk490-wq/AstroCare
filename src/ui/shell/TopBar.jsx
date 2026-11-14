@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useApp, useCrewStatuses, useHealth } from '../../state/store.js';
 import { daysBetween } from '../../domain/utils/dates.js';
 import { activeProfile } from '../../domain/analysis/engine.js';
@@ -38,6 +38,8 @@ function MissionClock() {
   );
 }
 
+const SHORT_PROFILE = { ISS: 'ISS', MOON: 'Moon', MARS_TRANSIT: 'Mars transit', MARS_SURFACE: 'Mars surface' };
+
 function EarthLink() {
   const seed = useApp((s) => s.seed);
   const settings = useApp((s) => s.user.settings);
@@ -46,9 +48,67 @@ function EarthLink() {
   return (
     <div className="telemetry" title={`${profile.name}: one-way ${formatDuration(profile.oneWayDelaySec)} × 2`}>
       <span className="telemetry__label">
-        <Icon name="signal" size={12} strokeWidth={2} /> Earth link
+        <Icon name="signal" size={12} strokeWidth={2} /> <span className="telemetry__word">Earth link</span>
       </span>
       <span className="telemetry__value num">{roundTrip ? formatDuration(roundTrip) : 'live'}</span>
+    </div>
+  );
+}
+
+/** Mission environment (ISS, Moon, Mars transit, Mars surface): changes Earth delay, dose and bone loss everywhere. */
+function ProfileSwitch() {
+  const seed = useApp((s) => s.seed);
+  const settings = useApp((s) => s.user.settings);
+  const setSettings = useApp((s) => s.setSettings);
+  const notify = useApp((s) => s.notify);
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const active = settings.profileCode ?? seed.mission.profileCode;
+  useEffect(() => {
+    if (!open) return undefined;
+    const close = (e) => {
+      if (e.type === 'keydown' ? e.key === 'Escape' : !ref.current?.contains(e.target)) setOpen(false);
+    };
+    window.addEventListener('pointerdown', close);
+    window.addEventListener('keydown', close);
+    return () => {
+      window.removeEventListener('pointerdown', close);
+      window.removeEventListener('keydown', close);
+    };
+  }, [open]);
+  return (
+    <div className="profile-switch" ref={ref}>
+      <button type="button" className="profile-switch__button" aria-haspopup="listbox" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <span className="telemetry__label">Environment</span>
+        <span className="profile-switch__value">
+          {SHORT_PROFILE[active] ?? active}
+          <Icon name="chevronDown" size={12} strokeWidth={2.2} />
+        </span>
+      </button>
+      {open && (
+        <ul className="profile-switch__menu glass glass--solid" role="listbox" aria-label="Mission environment">
+          {seed.missionProfiles.map((p) => (
+            <li key={p.code}>
+              <button
+                type="button"
+                role="option"
+                aria-selected={p.code === active}
+                className="profile-switch__option"
+                onClick={() => {
+                  setSettings({ profileCode: p.code });
+                  setOpen(false);
+                  notify(`Environment: ${p.name}`, 'ok');
+                }}
+              >
+                <span>{p.name}</span>
+                <span className="footnote tertiary num">
+                  {p.oneWayDelaySec ? `reply ${formatDuration(earthRoundTripSec(p))}` : 'live link'} · {p.dailyDoseMSv} mSv/day · {p.gravityG} g
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -103,6 +163,7 @@ export default function TopBar({ onEmergency }) {
       <div className="topbar__telemetry">
         <MissionClock />
         <EarthLink />
+        <ProfileSwitch />
       </div>
       <div className="topbar__actions">
         <CrewPicker />
