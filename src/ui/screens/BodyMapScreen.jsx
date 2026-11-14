@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useApp, useHealth, useMetricTrends } from '../../state/store.js';
 import BodyScene from '../three/BodyScene.jsx';
 import AlertCard from '../features/AlertCard.jsx';
@@ -318,11 +318,32 @@ function PartChips({ parts, selectedId }) {
   );
 }
 
+/** Label of the hovered body part. Holds its own state so hovering never re-renders the screen or the 3D scene. */
+function StageHover({ parts, connect }) {
+  const [hovered, setHovered] = useState(null);
+  useEffect(() => connect(setHovered), [connect]);
+  const entry = parts.find((p) => p.part.id === hovered);
+  if (!entry) return null;
+  return (
+    <div className="stage__hover">
+      <StatusBadge status={entry.status}>{entry.part.label}</StatusBadge>
+    </div>
+  );
+}
+
 export default function BodyMapScreen({ param, onEmergency }) {
   const health = useHealth();
   const selected = useMemo(() => health.parts.find((p) => p.part.id === param), [health, param]);
-  const [hovered, setHovered] = useState(null);
-  const hoveredPart = health.parts.find((p) => p.part.id === hovered);
+  const hoverSink = useRef(() => {});
+  const connectHover = useCallback((setter) => {
+    hoverSink.current = setter;
+    return () => {
+      hoverSink.current = () => {};
+    };
+  }, []);
+  const onHover = useCallback((id) => hoverSink.current(id), []);
+  const onSelect = useCallback((id) => navigate('body', id ?? undefined), []);
+  const heartRate = health.metrics.find((m) => m.metric.code === 'HEART_RATE')?.value;
   const lastReading = health.metrics.filter((m) => m.takenAt).map((m) => m.takenAt).sort().at(-1);
   return (
     <div className="body-screen">
@@ -334,17 +355,13 @@ export default function BodyMapScreen({ param, onEmergency }) {
         <BodyScene
           parts={health.parts}
           selectedId={param}
-          onSelect={(id) => navigate('body', id ?? undefined)}
-          onHover={setHovered}
-          heartRate={health.metrics.find((m) => m.metric.code === 'HEART_RATE')?.value}
+          onSelect={onSelect}
+          onHover={onHover}
+          heartRate={heartRate}
           dosePct={health.derived.careerLimitPct}
           fallback={<EmptyState icon="body" title="3D view unavailable">Use the body-system buttons below.</EmptyState>}
         />
-        {hoveredPart && (
-          <div className="stage__hover">
-            <StatusBadge status={hoveredPart.status}>{hoveredPart.part.label}</StatusBadge>
-          </div>
-        )}
+        <StageHover parts={health.parts} connect={connectHover} />
         <div className="stage__hint footnote tertiary">
           <Icon name="rotate" size={14} /> Drag to rotate · tap a point to open it
           {lastReading && <span className="num"> · last reading {formatTime(lastReading)}</span>}

@@ -22,14 +22,19 @@ const FILES = ['skin', 'skeleton', 'heart', 'vessels', 'lungs', 'brain', 'eyes',
 FILES.forEach((f) => useGLTF.preload(`${BASE}${f}.glb`));
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 const GREY = new THREE.Color('#5a5d63');
+// The anatomy meshes are heavy (skeleton 171k, brain 128k triangles), so they never take part in raycasting.
+// Hover and click go to small invisible ellipsoids fitted to each organ's bounds instead.
+const NO_RAYCAST = () => null;
+const HIT_MATERIAL = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, colorWrite: false });
+const HIT_GEOMETRY = new THREE.SphereGeometry(1, 16, 12);
 
 const ORGANS = [
-  { file: 'heart', part: 'heart', color: '#8e1b1d', roughness: 0.38, beat: true },
-  { file: 'vessels', part: 'heart', color: '#9c2422', roughness: 0.45 },
+  { file: 'heart', part: 'heart', color: '#8e1b1d', roughness: 0.38, beat: true, hitScale: 1.2 },
+  { file: 'vessels', part: 'heart', color: '#9c2422', roughness: 0.45, hit: false },
   { file: 'brain', part: 'brain', color: '#a88a8c', roughness: 0.6 },
   { file: 'eyes', part: 'brain', color: '#b9b3ab', roughness: 0.35 },
-  { file: 'kidneys', part: 'abdomen', color: '#7a2020', roughness: 0.45 },
-  { file: 'metabolic', part: 'abdomen', color: '#6b2a22', roughness: 0.55, opacity: 0.45 },
+  { file: 'kidneys', part: 'abdomen', color: '#7a2020', roughness: 0.45, hitScale: 0.75 },
+  { file: 'metabolic', part: 'abdomen', color: '#6b2a22', roughness: 0.55, opacity: 0.45, hitScale: 0.6 },
 ];
 
 /** The single mesh geometry of a GLB in float positions with smooth normals. */
@@ -65,6 +70,7 @@ function Organ({ spec, status, register, onSelect, onHover, heartRate }) {
   const geometry = useGeometry(spec.file);
   const pulse = useRef();
   const center = useMemo(() => geometry.boundingBox.getCenter(new THREE.Vector3()), [geometry]);
+  const half = useMemo(() => geometry.boundingBox.getSize(new THREE.Vector3()).multiplyScalar(0.5 * (spec.hitScale ?? 1)), [geometry, spec.hitScale]);
   const surface = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
@@ -116,9 +122,10 @@ function Organ({ spec, status, register, onSelect, onHover, heartRate }) {
   return (
     <group position={center} ref={pulse}>
       <group position={center.clone().negate()}>
-        <mesh geometry={geometry} material={surface} renderOrder={10} {...handlers} />
-        <mesh geometry={geometry} material={rim} renderOrder={11} />
+        <mesh geometry={geometry} material={surface} renderOrder={10} raycast={NO_RAYCAST} />
+        <mesh geometry={geometry} material={rim} renderOrder={11} raycast={NO_RAYCAST} />
       </group>
+      {spec.hit !== false && <mesh geometry={HIT_GEOMETRY} material={HIT_MATERIAL} scale={half} {...handlers} />}
     </group>
   );
 }
@@ -169,7 +176,8 @@ export default function RealAnatomy({ statusOf, heartRate, dosePct, selectedId, 
       o.surface.color.copy(o.color).lerp(GREY, 1 - f);
       o.surface.depthWrite = f > 0.9;
       const pulse = o.status === 'Normal' ? 1 : 0.7 + 0.3 * Math.sin(t * (o.status === 'Critical' ? 5 : 2.6));
-      const hover = hoveredId === o.part ? 1.6 : 1;
+      o.hover = THREE.MathUtils.lerp(o.hover ?? 1, hoveredId === o.part ? 1.6 : 1, k);
+      const hover = o.hover;
       o.rim.uniforms.uRim.value = o.rimBase * pulse * hover * (o.part === selectedId ? 1.4 : 1);
       o.rim.uniforms.uFade.value = f * f;
     }
@@ -180,36 +188,18 @@ export default function RealAnatomy({ statusOf, heartRate, dosePct, selectedId, 
     mm.shell.uniforms.uFade.value = fade.current;
     mm.aura.uniforms.uFade.value = selectedId === 'aura' ? 4 : fade.current;
     mm.bone.opacity = 0.3 * (boneFocus ? 2 : fade.current);
-    mm.boneRim.uniforms.uFade.value = boneFocus ? 2.5 : fade.current * (hoveredId === 'skeleton' ? 1.8 : 1);
+    mm.boneRim.uniforms.uFade.value = boneFocus ? 2.5 : fade.current;
     mm.lungs.uniforms.uFade.value = selectedId === 'heart' ? 1 : fade.current;
   });
 
-  const select = (id) => (e) => {
-    e.stopPropagation();
-    onSelect(id);
-  };
 
   return (
     <group>
-      <mesh geometry={skin} material={m.shell} renderOrder={20} />
-      <mesh geometry={skin} material={m.aura} scale={[1.03, 1.008, 1.04]} renderOrder={21} />
-      <mesh
-        geometry={skeleton}
-        material={m.bone}
-        renderOrder={1}
-        onClick={select('skeleton')}
-        onPointerOver={(e) => {
-          e.stopPropagation();
-          onHover('skeleton');
-          document.body.style.cursor = 'pointer';
-        }}
-        onPointerOut={() => {
-          onHover(null);
-          document.body.style.cursor = '';
-        }}
-      />
-      <mesh geometry={skeleton} material={m.boneRim} renderOrder={2} />
-      <mesh geometry={lungs} material={m.lungs} renderOrder={3} />
+      <mesh geometry={skin} material={m.shell} renderOrder={20} raycast={NO_RAYCAST} />
+      <mesh geometry={skin} material={m.aura} scale={[1.03, 1.008, 1.04]} renderOrder={21} raycast={NO_RAYCAST} />
+      <mesh geometry={skeleton} material={m.bone} renderOrder={1} raycast={NO_RAYCAST} />
+      <mesh geometry={skeleton} material={m.boneRim} renderOrder={2} raycast={NO_RAYCAST} />
+      <mesh geometry={lungs} material={m.lungs} renderOrder={3} raycast={NO_RAYCAST} />
       {ORGANS.map((spec) => (
         <Organ key={spec.file} spec={spec} status={statusOf(spec.part)} register={register} onSelect={onSelect} onHover={onHover} heartRate={heartRate} />
       ))}

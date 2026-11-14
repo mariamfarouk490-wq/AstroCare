@@ -44,15 +44,28 @@ function LiquidFilter() {
 /** Pointer-follow highlight: sets --mx / --my on the glass control under the pointer. */
 function usePointerHighlight() {
   useEffect(() => {
-    const onMove = (e) => {
+    // At most once per frame, and never over the 3D canvas (it repaints on its own every frame).
+    let frame = 0;
+    let last = null;
+    const update = () => {
+      frame = 0;
+      const e = last;
       const el = e.target.closest?.('.btn, .liquid, .glass--interactive');
       if (!el) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty('--mx', `${e.clientX - r.left}px`);
       el.style.setProperty('--my', `${e.clientY - r.top}px`);
     };
+    const onMove = (e) => {
+      if (e.target.tagName === 'CANVAS') return;
+      last = e;
+      if (!frame) frame = requestAnimationFrame(update);
+    };
     window.addEventListener('pointermove', onMove, { passive: true });
-    return () => window.removeEventListener('pointermove', onMove);
+    return () => {
+      window.removeEventListener('pointermove', onMove);
+      cancelAnimationFrame(frame);
+    };
   }, []);
 }
 

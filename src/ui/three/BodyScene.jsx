@@ -1,7 +1,7 @@
 // 3D body map: an X-ray hologram (glass shell, skeleton, heart, vessels, dust, floor rings),
 // status-tinted organs and hotspots from body-parts.json, slow float and orbit,
 // and a camera that flies to a part's cameraTarget when it is selected.
-import { Component, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { Component, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { Bloom, EffectComposer, Vignette } from '@react-three/postprocessing';
@@ -129,10 +129,25 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
   const body = useRef();
   const [hovered, setHoveredState] = useState(null);
   const [interacting, setInteracting] = useState(false);
-  const setHovered = (id) => {
-    setHoveredState(id);
-    onHover?.(id);
-  };
+  // Stable hover: switch to a new part at once, but wait a moment before clearing it, so moving
+  // between neighbouring hit areas never flickers the highlight or the label.
+  const hoverRef = useRef(null);
+  const clearTimer = useRef();
+  const setHovered = useCallback(
+    (id) => {
+      clearTimeout(clearTimer.current);
+      const apply = (next) => {
+        if (hoverRef.current === next) return;
+        hoverRef.current = next;
+        setHoveredState(next);
+        onHover?.(next);
+      };
+      if (id) apply(id);
+      else clearTimer.current = setTimeout(() => apply(null), 120);
+    },
+    [onHover],
+  );
+  useEffect(() => () => clearTimeout(clearTimer.current), []);
   const selected = parts.find((p) => p.part.id === selectedId);
   const statusOf = (id) => parts.find((p) => p.part.id === id)?.status ?? 'Normal';
   // Procedural X-ray body: shown while the anatomy models load, and if they fail.
