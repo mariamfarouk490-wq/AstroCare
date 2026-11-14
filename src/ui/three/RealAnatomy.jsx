@@ -112,12 +112,8 @@ function Organ({ spec, status, register, onSelect, onHover, heartRate }) {
     onPointerOver: (e) => {
       e.stopPropagation();
       onHover(spec.part);
-      document.body.style.cursor = 'pointer';
     },
-    onPointerOut: () => {
-      onHover(null);
-      document.body.style.cursor = '';
-    },
+    onPointerOut: () => onHover(null),
   };
   // The hit volume sits OUTSIDE the beating group: a target that pulses under a still cursor
   // would toggle hover on every heartbeat.

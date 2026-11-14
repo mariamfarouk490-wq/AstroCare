@@ -15,6 +15,10 @@ import { STATUS_COLOR, fresnelMaterial } from './materials.js';
 const HOME = { position: [0, 0.78, 3.7], lookAt: [0, 0.93, 0] };
 const NO_RAYCAST = () => null;
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+/** ?still=1 turns the idle sway and float off (for comparing, or for a steady demo). */
+const STILL = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('still') === '1';
+/** Fixed pixel ratio, read once: a changing DPR resizes the drawing buffer mid-animation. */
+const DPR = typeof window !== 'undefined' ? Math.min(1.5, Math.max(1, window.devicePixelRatio || 1)) : 1;
 
 /** Click target + status marker. Normal: soft green dot. Watch: pulsing red ring. Critical: strong red. */
 function Hotspot({ entry, selected, hoverRef, onSelect, onHover }) {
@@ -51,12 +55,8 @@ function Hotspot({ entry, selected, hoverRef, onSelect, onHover }) {
         onPointerOver={(e) => {
           e.stopPropagation();
           onHover(part.id);
-          document.body.style.cursor = 'pointer';
         }}
-        onPointerOut={() => {
-          onHover(null);
-          document.body.style.cursor = '';
-        }}
+        onPointerOut={() => onHover(null)}
       >
         <sphereGeometry args={[part.radius * 0.9, 12, 12]} />
       </mesh>
@@ -133,6 +133,11 @@ function CameraRig({ target, controls }) {
 }
 
 function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
+  const gl = useThree((s) => s.gl);
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    canvasRef.current = gl.domElement;
+  }, [gl]);
   const shell = useMemo(() => fresnelMaterial({ color: '#d6dde6', power: 2.8, rim: 0.42, base: 0.006 }), []);
   const controls = useRef();
   const body = useRef();
@@ -147,6 +152,8 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
       const apply = (next) => {
         if (hoverRef.current === next) return;
         hoverRef.current = next;
+        // cursor on the canvas only: writing document.body.style restyles the whole page (a dropped frame per hover)
+        if (canvasRef.current) canvasRef.current.style.cursor = next ? 'pointer' : '';
         onHover?.(next);
       };
       if (id) apply(id);
@@ -166,12 +173,22 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
     </>
   );
 
-  useFrame(({ clock }) => {
-    if (!body.current || reducedMotion()) return;
-    body.current.position.y = 0.012 + Math.sin(clock.elapsedTime * 0.6) * 0.008;
-    // slow sway that stays mostly front-facing; stops once the user takes the camera or opens a part
-    const sway = selectedId || interacting ? 0 : Math.sin(clock.elapsedTime * 0.22) * 0.45;
-    body.current.rotation.y += (sway - body.current.rotation.y) * 0.03;
+  // Idle sway and float are pure functions of time: no per-frame easing (that ran faster or slower
+  // with the frame rate and stuttered whenever a frame was late) and no coupling to the pointer.
+  // Opening a part or dragging fades the sway amplitude out over ~1 s, also by time.
+  const amp = useRef(1);
+  useFrame(({ clock }, dt) => {
+    if (!body.current) return;
+    if (STILL || reducedMotion()) {
+      body.current.position.y = 0.012;
+      body.current.rotation.y = 0;
+      return;
+    }
+    const t = clock.elapsedTime;
+    const goal = selectedId || interacting ? 0 : 1;
+    amp.current += (goal - amp.current) * (1 - Math.exp(-Math.min(dt, 0.1) * 3));
+    body.current.position.y = 0.012 + Math.sin(t * 0.6) * 0.008 * amp.current;
+    body.current.rotation.y = Math.sin(t * 0.22) * 0.45 * amp.current;
   });
   // Orbit target is set once here. Passing it as a prop re-applied it on every render and snapped the camera.
   useEffect(() => {
@@ -246,7 +263,7 @@ export default function BodyScene({ parts, selectedId, onSelect, onHover, heartR
           className="body-canvas"
           role="img"
           aria-label={label}
-          dpr={[1, 1.5]}
+          dpr={DPR}
           camera={{ position: HOME.position, fov: 34, near: 0.05, far: 50 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}
         >

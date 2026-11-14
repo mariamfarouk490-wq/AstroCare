@@ -49,12 +49,11 @@
   opacity: 1;
 }
 
-/* Real refraction on the backdrop where supported (Chromium). Others keep the plain blur above. */
+/* Plain blur only: the SVG refraction filter re-rasterised every frame on integrated GPUs and shimmered over the 3D view. */
 .liquid,
 .glass--liquid {
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: blur(14px) saturate(180%);
-  backdrop-filter: url(#liquid) blur(14px) saturate(180%);
 }
 
 .glass--strong {
@@ -126,7 +125,6 @@
   white-space: nowrap;
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: blur(12px) saturate(180%);
-  backdrop-filter: url(#liquid) blur(12px) saturate(180%);
   box-shadow: var(--glass-highlight), var(--shadow-control);
   transition:
     transform var(--t-med) var(--spring),
@@ -300,7 +298,6 @@
   box-shadow: var(--glass-highlight), var(--shadow-thumb);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(6px) saturate(200%);
-  backdrop-filter: url(#liquid) blur(6px) saturate(200%);
   transition:
     transform 420ms var(--spring),
     width 420ms var(--spring);
