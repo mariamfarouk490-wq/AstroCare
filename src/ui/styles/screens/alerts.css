@@ -11,7 +11,7 @@
 }
 
 .alert-card--Critical {
-  border-color: var(--red);
+  border-color: var(--status-critical-edge);
   background: linear-gradient(180deg, var(--red-soft), var(--fill-1));
 }
 
@@ -26,10 +26,23 @@
   gap: var(--s-2);
 }
 
+/* Rule code: neutral chip. Only the severity badge carries colour. */
 .alert-card__code {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 10px;
+  border-radius: var(--r-round);
+  background: var(--code-bg);
+  border: 1px solid var(--glass-border-soft);
+  font-family: var(--font-mono);
   font-size: var(--fs-caption);
-  color: var(--text-3);
-  letter-spacing: 0.02em;
+  color: var(--code-text);
+}
+
+.alert-card__combo {
+  font-size: var(--fs-caption);
+  color: var(--text-2);
 }
 
 .alert-card__when {
@@ -91,11 +104,3 @@
   gap: var(--s-3);
 }
 
-/* Rule code as a mono label line above the badges */
-.alert-card__code {
-  order: -1;
-  flex-basis: 100%;
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  color: var(--text-3);
-}

@@ -141,7 +141,7 @@ function EnvironmentPanel({ health }) {
           <Stat label="Cabin ppCO2" value={cabin ? formatNumber(cabin.ppCO2mmHg, 1) : undefined} unit="mmHg" size="sm" />
           <StatusBadge status={!cabin ? 'NoData' : co2High ? 'Watch' : 'Normal'}>{!cabin ? 'No data' : co2High ? 'Above limit' : 'Within limit'}</StatusBadge>
         </div>
-        {cabin && <Meter value={cabin.ppCO2mmHg} max={co2Limit.value * 1.6} limit={co2Limit.value} tone={co2High ? 'var(--red)' : 'var(--green)'} />}
+        {cabin && <Meter value={cabin.ppCO2mmHg} max={co2Limit.value * 1.6} limit={co2Limit.value} tone={co2High ? 'var(--red-action)' : 'var(--green-action)'} />}
         <span className="footnote tertiary">
           NASA limit {co2Limit.value} mmHg · {co2Limit.source}
         </span>

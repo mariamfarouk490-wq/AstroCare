@@ -171,7 +171,7 @@ code {
   z-index: var(--z-backdrop);
   overflow: hidden;
   background:
-    radial-gradient(1100px 600px at 55% -15%, rgba(220, 224, 232, 0.06), transparent 62%),
+    radial-gradient(1100px 600px at 55% -15%, var(--sheen), transparent 62%),
     linear-gradient(180deg, var(--bg-raised) 0%, var(--bg) 60%);
 }
 
@@ -189,7 +189,7 @@ code {
   height: 520px;
   left: -160px;
   top: 20%;
-  background: radial-gradient(circle, rgba(200, 206, 216, 0.16), transparent 70%);
+  background: radial-gradient(circle, var(--blob-a), transparent 70%);
 }
 
 .backdrop__blob--b {
@@ -197,7 +197,7 @@ code {
   height: 640px;
   right: -220px;
   top: -140px;
-  background: radial-gradient(circle, rgba(170, 180, 196, 0.14), transparent 70%);
+  background: radial-gradient(circle, var(--blob-b), transparent 70%);
   animation-duration: 48s;
 }
 
@@ -206,7 +206,7 @@ code {
   height: 460px;
   left: 42%;
   bottom: -240px;
-  background: radial-gradient(circle, rgba(235, 235, 240, 0.08), transparent 70%);
+  background: radial-gradient(circle, var(--blob-c), transparent 70%);
   animation-duration: 54s;
 }
 

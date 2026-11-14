@@ -13,10 +13,10 @@ export default function Sparkline({ values, width = 120, height = 36, tone = 'va
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
       {band && Number.isFinite(band.min) && Number.isFinite(band.max) && (
-        <rect x="0" width={width} y={y(band.max)} height={Math.max(0, y(band.min) - y(band.max))} fill="rgba(255,255,255,0.05)" rx="3" />
+        <rect x="0" width={width} y={y(band.max)} height={Math.max(0, y(band.min) - y(band.max))} style={{ fill: 'var(--fill-1)' }} rx="3" />
       )}
-      <path d={d} fill="none" stroke={tone} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
-      <circle cx={x(last.i)} cy={y(last.v)} r="3" fill={tone} />
+      <path d={d} fill="none" style={{ stroke: tone }} strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" opacity="0.9" />
+      <circle cx={x(last.i)} cy={y(last.v)} r="3" style={{ fill: tone }} />
     </svg>
   );
 }

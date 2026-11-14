@@ -3,7 +3,7 @@
   inset: 0;
   z-index: 50;
   overflow-y: auto;
-  background: rgba(0, 0, 0, 0.82);
+  background: var(--emergency-scrim);
   -webkit-backdrop-filter: blur(30px) saturate(140%);
   backdrop-filter: blur(30px) saturate(140%);
   animation: fade-in var(--t-med) var(--ease);
@@ -14,8 +14,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(900px 500px at 50% -10%, rgba(255, 69, 58, 0.22), transparent 65%),
-    radial-gradient(700px 500px at 100% 100%, rgba(255, 69, 58, 0.08), transparent 70%);
+    radial-gradient(900px 500px at 50% -10%, var(--red-ambient), transparent 65%),
+    radial-gradient(700px 500px at 100% 100%, var(--red-ambient-soft), transparent 70%);
 }
 
 .emergency__eyebrow {
@@ -57,7 +57,7 @@
 
 .patient[aria-checked="true"] {
   border: 1.5px solid var(--red-action-edge);
-  background: rgba(217, 36, 27, 0.32);
+  background: var(--selected-red-bg);
 }
 
 .patient:active {
@@ -104,14 +104,14 @@
 
 .protocol-card.is-suggested {
   border-color: var(--red);
-  box-shadow: var(--glass-highlight), 0 20px 60px rgba(255, 69, 58, 0.2);
+  box-shadow: var(--glass-highlight), var(--red-shadow);
 }
 
 .protocol-card__go {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: #ff6a60;
+  color: var(--status-watch-text);
   font-weight: 600;
 }
 
@@ -154,16 +154,16 @@
   height: 12px;
   border-radius: 50%;
   background: var(--red);
-  box-shadow: 0 0 0 0 rgba(255, 69, 58, 0.6);
+  box-shadow: 0 0 0 0 var(--red-pulse);
   animation: live 1.6s var(--ease) infinite;
 }
 
 @keyframes live {
   70% {
-    box-shadow: 0 0 0 12px rgba(255, 69, 58, 0);
+    box-shadow: 0 0 0 12px var(--red-pulse-out);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 69, 58, 0);
+    box-shadow: 0 0 0 0 var(--red-pulse-out);
   }
 }
 
@@ -225,7 +225,7 @@
   position: absolute;
   inset: 10px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--red-line), rgba(255, 69, 58, 0.05) 70%);
+  background: radial-gradient(circle, var(--red-line), var(--red-pulse-out) 70%);
   animation: compress var(--beat) linear infinite;
 }
 

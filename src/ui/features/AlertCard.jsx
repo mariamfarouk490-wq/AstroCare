@@ -11,7 +11,7 @@ export default function AlertCard({ alert, compact, onEmergency }) {
     <GlassPanel as="article" flat className={`alert-card alert-card--${alert.severity}${compact ? ' alert-card--compact' : ''}${alert.acknowledgedAt ? ' is-ack' : ''}`}>
       <header className="alert-card__head">
         <StatusBadge status={alert.severity} />
-        {isCombo && <Pill tone="info">Connected insight</Pill>}
+        {isCombo && <Pill tone="neutral">Combined</Pill>}
         <code className="alert-card__code">{alert.code}</code>
         <span className="alert-card__when footnote tertiary num">
           Mission day {alert.missionDay} · {formatShortDay(alert.firedOn)}
