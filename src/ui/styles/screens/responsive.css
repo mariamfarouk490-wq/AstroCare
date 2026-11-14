@@ -333,3 +333,16 @@
     grid-template-rows: calc(100dvh - var(--topbar-h) - var(--s-5)) auto;
   }
 }
+
+/* First-visit hint: full width on phones so it stays one or two lines */
+@media (max-width: 600px) {
+  .first-hint {
+    width: calc(100% - var(--s-4));
+    font-size: 12px;
+  }
+
+  /* no room for the est. marker in the phone top bar; it stays on every other screen */
+  .topbar .est {
+    display: none;
+  }
+}

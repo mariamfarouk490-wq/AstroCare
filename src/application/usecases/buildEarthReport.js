@@ -3,6 +3,7 @@ import { activeProfile } from '../../domain/analysis/engine.js';
 import { earthRoundTripSec } from '../../domain/emergency/protocolMachine.js';
 import { FIELD_INFO } from '../../domain/analysis/fields.js';
 import { buildRecord } from './record.js';
+import { DISCLAIMER } from '../../domain/disclaimer.js';
 
 const r1 = (v) => (Number.isInteger(v) ? String(v) : v.toFixed(1));
 const minutes = (sec) => (sec >= 60 ? `${Math.round(sec / 60)} min` : `${sec} s`);
@@ -19,13 +20,14 @@ export function buildEarthReport(ctx, state, { crewId, day, now }) {
   const oneWaySec = profile.oneWayDelaySec;
   const roundTripSec = earthRoundTripSec(profile);
   const expectedReplyAt = new Date(now.getTime() + roundTripSec * 1000);
+  const est = (field) => (profile.estimates?.includes(field) ? ' (est.)' : '');
   const crew = health.crew;
   const L = [];
 
   L.push(`ASTROCARE FLIGHT-SURGEON REPORT`);
   L.push(`Crew member: ${crew.name} (${crew.id}, ${crew.role.replace(/([a-z])([A-Z])/g, '$1 $2').toLowerCase()})`);
   L.push(`Mission: ${seed.mission.name} · mission day ${health.derived.missionDay} · ${day}`);
-  L.push(`Profile: ${profile.name} · one-way delay ${minutes(oneWaySec)} · expected reply in ~${minutes(roundTripSec)} (round trip)`);
+  L.push(`Profile: ${profile.name} · one-way delay ${minutes(oneWaySec)}${est('oneWayDelaySec')} · expected reply in ~${minutes(roundTripSec)} (round trip)`);
   L.push(`Generated: ${now.toISOString()} · overall status: ${health.status}`);
   L.push('');
 
@@ -38,7 +40,7 @@ export function buildEarthReport(ctx, state, { crewId, day, now }) {
     L.push(`  Threshold: ${a.threshold}${a.thresholdSource ? ` (${a.thresholdSource === 'app' ? 'team threshold' : a.thresholdSource})` : ''}`);
     L.push(`  Action taken / advised: ${a.action}`);
     if (a.acknowledgedAt) L.push(`  Acknowledged by crew: ${a.acknowledgedAt}`);
-    if (a.refs?.length) L.push(`  Sources: ${a.refs.map((r) => r.url).join(' ; ')}`);
+    if (a.refs?.length) L.push(`  Sources: ${a.refs.map((r) => r.url ?? r.label).join(' ; ')}`);
   }
   L.push('');
 
@@ -70,7 +72,7 @@ export function buildEarthReport(ctx, state, { crewId, day, now }) {
   L.push('ENVIRONMENT AND EXPOSURE');
   const co2Limit = seed.environmentLimits.cabinAir.ppCO2MaxMmHg1h;
   if (health.cabin) L.push(`  Cabin ppCO2 ${health.cabin.ppCO2mmHg} mmHg (limit ${co2Limit.value}, ${co2Limit.source}) · O2 ${health.cabin.ppO2mmHg} mmHg · ${health.cabin.temperatureC} °C`);
-  L.push(`  Cumulative dose ${r1(health.derived.cumulativeDoseMSv)} mSv (${r1(health.derived.careerLimitPct)}% of career limit) · estimated bone loss ${r1(health.derived.estimatedBoneLossPct)}%`);
+  L.push(`  Cumulative dose ${r1(health.derived.cumulativeDoseMSv)} mSv${est('dailyDoseMSv')} (${r1(health.derived.careerLimitPct)}% of career limit) · estimated bone loss ${r1(health.derived.estimatedBoneLossPct)}%${est('boneLossPctPerMonth')}`);
   L.push('');
 
   const sessions = state.emergencySessions.filter((s) => s.patientId === crewId);
@@ -83,6 +85,7 @@ export function buildEarthReport(ctx, state, { crewId, day, now }) {
   }
   L.push('');
   L.push('Generated on board by AstroCare (offline). Values come from the crew log; thresholds and sources from NASA / CSA / medical guidelines.');
+  L.push(DISCLAIMER);
 
   const stamp = now.toISOString().slice(0, 16).replace(/[:T]/g, '-');
   return {

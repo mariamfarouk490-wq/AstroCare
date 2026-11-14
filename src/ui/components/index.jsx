@@ -7,6 +7,7 @@ export { default as Button } from './Button.jsx';
 export { default as Tabs } from './Tabs.jsx';
 export { StatusBadge, Pill } from './StatusBadge.jsx';
 export { default as Stat } from './Stat.jsx';
+export { default as Est } from './Est.jsx';
 export { Sheet, Modal } from './Overlay.jsx';
 export { default as RefList } from './RefList.jsx';
 export { default as EmptyState } from './EmptyState.jsx';

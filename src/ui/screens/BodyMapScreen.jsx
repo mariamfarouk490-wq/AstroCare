@@ -2,13 +2,19 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useApp, useHealth, useMetricTrends } from '../../state/store.js';
 import BodyScene from '../three/BodyScene.jsx';
 import AlertCard from '../features/AlertCard.jsx';
-import { Button, EmptyState, GlassPanel, Icon, Panel, Pill, RefList, Sheet, Sparkline, Stat, StatusBadge } from '../components/index.jsx';
-import { formatNumber, formatRange, formatValue, ROLE_LABEL, SOURCE_LABEL, formatTime } from '../format.js';
+import { Button, EmptyState, Est, GlassPanel, Icon, Panel, Pill, RefList, Sheet, Sparkline, Stat, StatusBadge } from '../components/index.jsx';
+import { activeProfile } from '../../domain/analysis/engine.js';
+import { formatNumber, formatRange, formatValue, isEstimate, ROLE_LABEL, SOURCE_LABEL, formatTime } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
 import { worstStatus } from '../../domain/analysis/metricStatus.js';
 import { FIELD_INFO } from '../../domain/analysis/fields.js';
 
 const PART_SHORT = { heart: 'Heart', brain: 'Mind & sleep', skeleton: 'Bones', abdomen: 'Metabolism', aura: 'Radiation' };
+const STATUS_WORD = { Normal: 'Normal', Watch: 'Watch', Critical: 'Critical', NoData: 'no data' };
+
+/** Text alternative for the 3D body, built from the same statuses as the chips. */
+const bodyLabel = (parts) =>
+  `3D body: ${parts.map(({ part, status }) => `${PART_SHORT[part.id] ?? part.label} ${STATUS_WORD[status] ?? status}`).join(', ')}. Use the body-system buttons to open each one.`;
 const PART_ICON = { heart: 'heart', brain: 'moon', skeleton: 'bone', abdomen: 'flask', aura: 'atom' };
 const STATUS_TONE = { Normal: 'var(--green)', Watch: 'var(--red)', Critical: 'var(--red)', NoData: 'var(--text-3)' };
 
@@ -127,8 +133,18 @@ function Meter({ value, max, limit, tone }) {
   );
 }
 
+/** Which mission-profile field each derived value is computed from (for the "est." marker). */
+const DERIVED_FROM = { cumulativeDoseMSv: 'dailyDoseMSv', careerLimitPct: 'dailyDoseMSv', estimatedBoneLossPct: 'boneLossPctPerMonth' };
+
+function useActiveProfile() {
+  const seed = useApp((s) => s.seed);
+  const settings = useApp((s) => s.user.settings);
+  return useMemo(() => activeProfile({ ...seed, settings }), [seed, settings]);
+}
+
 function EnvironmentPanel({ health }) {
   const limits = useApp((s) => s.seed.environmentLimits);
+  const profile = useActiveProfile();
   const cabin = health.cabin;
   const co2Limit = limits.cabinAir.ppCO2MaxMmHg1h;
   const career = limits.radiation.careerLimitMSv;
@@ -156,7 +172,7 @@ function EnvironmentPanel({ health }) {
       <hr className="divider" />
       <div className="env-block">
         <div className="env-block__row">
-          <Stat label="Cumulative dose" value={formatNumber(d.cumulativeDoseMSv, 1)} unit="mSv" size="sm" />
+          <Stat label="Cumulative dose" value={formatNumber(d.cumulativeDoseMSv, 1)} unit="mSv" size="sm" est={isEstimate(profile, DERIVED_FROM.cumulativeDoseMSv)} />
           <span className="footnote secondary num">{formatNumber(d.careerLimitPct, 1)}% of career</span>
         </div>
         <Meter value={d.cumulativeDoseMSv} max={career.value} tone="var(--text-1)" />
@@ -166,7 +182,7 @@ function EnvironmentPanel({ health }) {
       </div>
       <div className="env-block">
         <div className="env-block__row">
-          <Stat label={FIELD_INFO.estimatedBoneLossPct.label} value={formatNumber(d.estimatedBoneLossPct, 1)} unit="%" size="sm" />
+          <Stat label={FIELD_INFO.estimatedBoneLossPct.label} value={formatNumber(d.estimatedBoneLossPct, 1)} unit="%" size="sm" est={isEstimate(profile, DERIVED_FROM.estimatedBoneLossPct)} />
           <span className="footnote secondary">estimate</span>
         </div>
       </div>
@@ -182,6 +198,7 @@ function PartSheet({ entry, health, onClose, onEmergency }) {
   const hazards = seed.hazards.filter((h) => part.hazards?.includes(h.code));
   const c = health.checkIn;
   const d = health.derived;
+  const profile = useActiveProfile();
   return (
     <Sheet eyebrow="Body system" title={part.label} onClose={onClose} aside={<div className="sheet__status"><StatusBadge status={status} /></div>}>
       <section className="sheet-section">
@@ -247,6 +264,7 @@ function PartSheet({ entry, health, onClose, onEmergency }) {
                 <span>{FIELD_INFO[f].label}</span>
                 <span className="num list__value">
                   {formatNumber(d[f], 1)} <span className="tertiary footnote">{FIELD_INFO[f].unit}</span>
+                  <Est show={isEstimate(profile, DERIVED_FROM[f])} />
                 </span>
               </div>
             ))}
@@ -311,9 +329,52 @@ function PartChips({ parts, selectedId }) {
         <button key={part.id} type="button" className="part-chip" aria-pressed={selectedId === part.id} onClick={() => navigate('body', selectedId === part.id ? undefined : part.id)}>
           <Icon name={PART_ICON[part.id] ?? 'body'} size={16} />
           <span>{PART_SHORT[part.id] ?? part.label}</span>
-          <span className={`part-chip__dot part-chip__dot--${status}`} />
+          <span className={`part-chip__dot part-chip__dot--${status}`} aria-hidden="true" />
+          <span className="visually-hidden">: {STATUS_WORD[status] ?? status}</span>
         </button>
       ))}
+    </div>
+  );
+}
+
+const HINT_KEY = 'astrocare:hint-dismissed';
+const readDismissed = () => {
+  try {
+    return localStorage.getItem(HINT_KEY) === '1';
+  } catch {
+    return false;
+  }
+};
+
+const remember = () => {
+  try {
+    localStorage.setItem(HINT_KEY, '1');
+  } catch {
+    /* private mode: the hint just comes back next visit */
+  }
+};
+
+/** First-visit hint: how to start. Hidden once dismissed, once the demo runs, or once an organ is opened. */
+function FirstHint({ selectedId }) {
+  const demoOpen = useApp((s) => s.demo.open);
+  const openDemo = useApp((s) => s.openDemo);
+  const [dismissed, setDismissed] = useState(readDismissed);
+  const dismiss = () => {
+    setDismissed(true);
+    remember();
+  };
+  // Starting the demo or opening an organ counts as "got it" (stored only; rendering already hides the hint).
+  useEffect(() => {
+    if (demoOpen || selectedId) remember();
+  }, [demoOpen, selectedId]);
+  if (dismissed || demoOpen || selectedId || readDismissed()) return null;
+  return (
+    <div className="first-hint" role="note">
+      <span>Press Play to watch 10 mission days, or click an organ.</span>
+      <Button size="sm" variant="primary" icon="play" onClick={() => openDemo(true)}>
+        Play
+      </Button>
+      <Button size="sm" icon="close" aria-label="Dismiss hint" onClick={dismiss} />
     </div>
   );
 }
@@ -359,6 +420,7 @@ export default function BodyMapScreen({ param, onEmergency }) {
           onHover={onHover}
           heartRate={heartRate}
           dosePct={health.derived.careerLimitPct}
+          label={bodyLabel(health.parts)}
           fallback={<EmptyState icon="body" title="3D view unavailable">Use the body-system buttons below.</EmptyState>}
         />
         <StageHover parts={health.parts} connect={connectHover} />
@@ -366,6 +428,7 @@ export default function BodyMapScreen({ param, onEmergency }) {
           <Icon name="rotate" size={14} /> Drag to rotate · tap a point to open it
           {lastReading && <span className="num"> · last reading {formatTime(lastReading)}</span>}
         </div>
+        <FirstHint selectedId={param} />
         <PartChips parts={health.parts} selectedId={param} />
       </div>
       <div className="body-screen__right">

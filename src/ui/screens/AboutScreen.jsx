@@ -3,6 +3,7 @@ import { useApp } from '../../state/store.js';
 import { Button, GlassPanel, Icon, Modal, Panel, Pill, RefList, Tabs, Stat } from '../components/index.jsx';
 import { DOMAIN_LABEL, formatDuration } from '../format.js';
 import { earthRoundTripSec } from '../../domain/emergency/protocolMachine.js';
+import { DISCLAIMER } from '../../domain/disclaimer.js';
 
 const SECTIONS = [
   { value: 'challenge', label: 'Challenge' },
@@ -181,10 +182,10 @@ function Missions() {
             {p.code === active ? <Pill tone="info">Active</Pill> : <Button size="sm" onClick={() => setSettings({ profileCode: p.code })}>Use</Button>}
           </header>
           <div className="mission__stats">
-            <Stat label="Earth reply" value={p.oneWayDelaySec ? formatDuration(earthRoundTripSec(p)) : 'Live'} size="sm" />
-            <Stat label="Daily dose" value={p.dailyDoseMSv} unit="mSv" size="sm" />
-            <Stat label="Gravity" value={p.gravityG} unit="g" size="sm" />
-            <Stat label="Bone loss" value={p.boneLossPctPerMonth ? `${p.boneLossPctPerMonth.min}–${p.boneLossPctPerMonth.max}` : '–'} unit={p.boneLossPctPerMonth ? '%/mo' : undefined} size="sm" />
+            <Stat label="Earth reply" value={p.oneWayDelaySec ? formatDuration(earthRoundTripSec(p)) : 'Live'} size="sm" est={p.oneWayDelaySec > 0 && p.estimates?.includes('oneWayDelaySec')} />
+            <Stat label="Daily dose" value={p.dailyDoseMSv} unit="mSv" size="sm" est={p.estimates?.includes('dailyDoseMSv')} />
+            <Stat label="Gravity" value={p.gravityG} unit="g" size="sm" est={p.estimates?.includes('gravityG')} />
+            <Stat label="Bone loss" value={p.boneLossPctPerMonth ? `${p.boneLossPctPerMonth.min}–${p.boneLossPctPerMonth.max}` : '–'} unit={p.boneLossPctPerMonth ? '%/mo' : undefined} size="sm" est={Boolean(p.boneLossPctPerMonth) && p.estimates?.includes('boneLossPctPerMonth')} />
           </div>
           <ul className="bullets footnote secondary">
             {p.notes?.map((n) => (
@@ -210,10 +211,14 @@ function Sources() {
               .filter((s) => s.publisher === p)
               .map((s) => (
                 <li key={s.key}>
-                  <a href={s.url} target="_blank" rel="noreferrer">
-                    {s.label}
-                    <Icon name="link" size={12} strokeWidth={2} />
-                  </a>
+                  {s.url ? (
+                    <a href={s.url} target="_blank" rel="noreferrer">
+                      {s.label}
+                      <Icon name="link" size={12} strokeWidth={2} />
+                    </a>
+                  ) : (
+                    <span className="secondary">{s.label}</span>
+                  )}
                 </li>
               ))}
           </ul>
@@ -238,6 +243,7 @@ export default function AboutScreen() {
           <p className="secondary footnote lede">
             Every number in AstroCare comes from the files in src/data, each with its source. All analysis runs on the device, with no network.
           </p>
+          <p className="secondary footnote lede disclaimer">{DISCLAIMER}</p>
         </div>
         <Button size="sm" icon="refresh" onClick={() => setConfirmReset(true)}>
           Reset demo data

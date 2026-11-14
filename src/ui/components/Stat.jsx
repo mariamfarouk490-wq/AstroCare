@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { cx } from './cx.js';
+import Est from './Est.jsx';
 
 const NUMERIC = /^-?\d+(\.\d+)?$/;
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -33,7 +34,7 @@ function useCountUp(value) {
 }
 
 /** Telemetry value: mono label, large mono number, unit, optional sub line. */
-export default function Stat({ label, value, unit, sub, size, className }) {
+export default function Stat({ label, value, unit, sub, size, className, est }) {
   const shown = useCountUp(value);
   const empty = value === undefined || value === null;
   return (
@@ -42,6 +43,7 @@ export default function Stat({ label, value, unit, sub, size, className }) {
       <span className={cx('stat__value', size && `stat__value--${size}`)}>
         {empty ? '–' : shown}
         {unit && !empty && <span className="stat__unit">{unit}</span>}
+        {est && !empty && <Est />}
       </span>
       {sub && <span className="stat__sub">{sub}</span>}
     </div>

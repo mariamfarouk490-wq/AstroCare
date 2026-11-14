@@ -14,8 +14,7 @@
     "notifyEarth": false,
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       },
       {
         "label": "NASA – Risk of Cardiovascular Adaptations",
@@ -64,8 +63,7 @@
     "notifyEarth": false,
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       },
       {
         "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules",
@@ -89,8 +87,7 @@
     "suggestEmergency": "CHEST_PAIN",
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -110,8 +107,7 @@
     "suggestEmergency": "UNRESPONSIVE",
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -176,8 +172,7 @@
         "url": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
       },
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -225,8 +220,7 @@
         "url": "https://my.clevelandclinic.org/health/diagnostics/22447-blood-oxygen-level"
       },
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -329,8 +323,7 @@
     "notifyEarth": true,
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -354,8 +347,7 @@
         "url": "https://www.nasa.gov/hrp/risks"
       },
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -375,8 +367,7 @@
     "notifyEarth": true,
     "refs": [
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },
@@ -400,8 +391,7 @@
         "url": "https://www.nasa.gov/hrp/risks"
       },
       {
-        "label": "AstroCare SRS (team doc, section 7–9)",
-        "url": "https://claude.ai/artifact/Vxa6j3C3QEpiJm4se5tWjr"
+        "label": "Team threshold (no published source)"
       }
     ]
   },

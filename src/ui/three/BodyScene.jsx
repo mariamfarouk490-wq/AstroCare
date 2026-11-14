@@ -238,12 +238,14 @@ class SceneBoundary extends Component {
   }
 }
 
-export default function BodyScene({ parts, selectedId, onSelect, onHover, heartRate, dosePct, fallback }) {
+export default function BodyScene({ parts, selectedId, onSelect, onHover, heartRate, dosePct, fallback, label }) {
   return (
     <SceneBoundary fallback={fallback}>
       <Suspense fallback={null}>
         <Canvas
           className="body-canvas"
+          role="img"
+          aria-label={label}
           dpr={[1, 1.5]}
           camera={{ position: HOME.position, fov: 34, near: 0.05, far: 50 }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}

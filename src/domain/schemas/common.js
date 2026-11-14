@@ -16,7 +16,8 @@ export const zHazardCode = z.enum(values(HazardCode));
 export const zBodyPartId = z.enum(values(BodyPartId));
 
 /** A cited source: every content entry carries `refs`. */
-export const zRef = z.object({ label: z.string().min(1), url: z.url() });
+// url is optional: a team threshold has no published source and is shown as plain text.
+export const zRef = z.object({ label: z.string().min(1), url: z.url().optional() });
 export const zRefs = z.array(zRef);
 
 export const zIsoDate = z.iso.date(); // YYYY-MM-DD

@@ -6,7 +6,8 @@ import { currentStep, earthRoundTripSec } from '../../domain/emergency/protocolM
 import { activeProfile } from '../../domain/analysis/engine.js';
 import { Button, GlassPanel, Icon, Panel, RefList, Stat, StatusBadge } from '../components/index.jsx';
 import EarthReportButton from '../features/EarthReport.jsx';
-import { formatClock, formatDuration, formatTime, formatValue, initials, ROLE_LABEL } from '../format.js';
+import { DISCLAIMER } from '../../domain/disclaimer.js';
+import { formatClock, formatDuration, formatTime, formatValue, initials, isEstimate, ROLE_LABEL } from '../format.js';
 
 const STEP_LABEL = { question: 'Question', instruction: 'Instruction', 'cpr-timer': 'CPR timer', measure: 'Measure', end: 'Outcome' };
 
@@ -125,6 +126,7 @@ function Launcher({ initialProtocol, onClose }) {
       <div className="emergency__intro">
         <div className="eyebrow emergency__eyebrow">Emergency mode</div>
         <h1 className="title-large">Who needs help?</h1>
+        <p className="footnote secondary disclaimer">{DISCLAIMER}</p>
       </div>
       <div className="emergency__patients" role="radiogroup" aria-label="Patient">
         {seed.crew.map((c) => (
@@ -243,7 +245,7 @@ function Running({ onClose }) {
         <div className="emergency__side">
           <Panel title="Earth link" className="earth">
             <div className="earth__row">
-              <Stat label="Round trip" value={roundTrip ? formatDuration(roundTrip) : 'Live'} size="md" sub={`${profile.name} · one-way ${formatDuration(profile.oneWayDelaySec)} × 2`} />
+              <Stat label="Round trip" value={roundTrip ? formatDuration(roundTrip) : 'Live'} size="md" est={roundTrip > 0 && isEstimate(profile, 'oneWayDelaySec')} sub={`${profile.name} · one-way ${formatDuration(profile.oneWayDelaySec)} × 2`} />
             </div>
             {roundTrip > 0 && (
               <>
@@ -257,6 +259,7 @@ function Running({ onClose }) {
               </>
             )}
             <p className="footnote tertiary">Act now. Do not wait for Earth.</p>
+            <p className="footnote secondary disclaimer">{DISCLAIMER}</p>
             <EarthReportButton crewId={session.patientId} label="Send report to Earth" />
           </Panel>
 

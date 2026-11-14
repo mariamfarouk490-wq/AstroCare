@@ -62,3 +62,6 @@ export function shortLabel(label) {
   const t = label.replace(/^(Resting|Blood|Body)\s+/i, '').replace(/\s*\(.*\)$/, '');
   return t.charAt(0).toUpperCase() + t.slice(1);
 }
+
+/** True when the field is listed in the mission profile's estimates[] (shown with an "est." marker). */
+export const isEstimate = (profile, field) => Boolean(profile?.estimates?.includes(field));

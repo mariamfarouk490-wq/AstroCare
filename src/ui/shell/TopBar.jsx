@@ -3,8 +3,8 @@ import { useApp, useCrewStatuses, useHealth } from '../../state/store.js';
 import { daysBetween } from '../../domain/utils/dates.js';
 import { activeProfile } from '../../domain/analysis/engine.js';
 import { earthRoundTripSec } from '../../domain/emergency/protocolMachine.js';
-import { Button, Icon } from '../components/index.jsx';
-import { formatDay, formatDuration, initials, ROLE_LABEL } from '../format.js';
+import { Button, Est, Icon } from '../components/index.jsx';
+import { formatDay, formatDuration, initials, isEstimate, ROLE_LABEL } from '../format.js';
 import MissionPatch from './MissionPatch.jsx';
 import { navigate } from './useRoute.js';
 
@@ -50,7 +50,10 @@ function EarthLink() {
       <span className="telemetry__label">
         <Icon name="signal" size={12} strokeWidth={2} /> <span className="telemetry__word">Earth link</span>
       </span>
-      <span className="telemetry__value num">{roundTrip ? formatDuration(roundTrip) : 'live'}</span>
+      <span className="telemetry__value num">
+        {roundTrip ? formatDuration(roundTrip) : 'live'}
+        {roundTrip > 0 && <Est show={isEstimate(profile, 'oneWayDelaySec')} />}
+      </span>
     </div>
   );
 }
@@ -102,7 +105,9 @@ function ProfileSwitch() {
               >
                 <span>{p.name}</span>
                 <span className="footnote tertiary num">
-                  {p.oneWayDelaySec ? `reply ${formatDuration(earthRoundTripSec(p))}` : 'live link'} · {p.dailyDoseMSv} mSv/day · {p.gravityG} g
+                  {p.oneWayDelaySec ? `reply ${formatDuration(earthRoundTripSec(p))}` : 'live link'}
+                  {p.oneWayDelaySec > 0 && <Est show={isEstimate(p, 'oneWayDelaySec')} />} · {p.dailyDoseMSv} mSv/day
+                  <Est show={isEstimate(p, 'dailyDoseMSv')} /> · {p.gravityG} g <Est show={isEstimate(p, 'gravityG')} />
                 </span>
               </button>
             </li>

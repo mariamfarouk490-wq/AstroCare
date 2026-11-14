@@ -64,7 +64,7 @@ export const CabinEnvironmentSeedSchema = z.array(
 );
 
 export const SourcesSchema = z
-  .array(z.object({ key: z.string().min(1), label: z.string().min(1), url: z.url(), publisher: z.enum(['NASA', 'CSA', 'Peer-reviewed', 'Medical guideline', 'Team']) }))
+  .array(z.object({ key: z.string().min(1), label: z.string().min(1), url: z.url().optional(), publisher: z.enum(['NASA', 'CSA', 'Peer-reviewed', 'Medical guideline', 'Team']) }))
   .refine((a) => new Set(a.map((s) => s.key)).size === a.length, 'source keys must be unique');
 
 const zLocalTime = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/);

@@ -278,3 +278,43 @@
 .part-chips {
   z-index: 2;
 }
+
+/* First-visit hint above the organ chips. Solid glass (no backdrop-filter over the live canvas). */
+.first-hint {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: calc(var(--s-3) + 60px);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  /* own width, not half the stage (absolute + left: 50% would shrink-wrap it); wraps only when the stage is narrow */
+  width: max-content;
+  max-width: calc(100% - var(--s-4));
+  padding: 6px 6px 6px 16px;
+  border-radius: var(--r-round);
+  background: var(--glass-solid);
+  border: 1px solid var(--glass-border-soft);
+  box-shadow: var(--shadow-1, 0 6px 20px rgb(0 0 0 / 0.12));
+  font-size: 13px;
+  color: var(--text-1);
+  animation: first-hint-in 400ms ease-out both;
+}
+
+.first-hint > span {
+  min-width: 0;
+}
+
+@keyframes first-hint-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .first-hint {
+    animation: none;
+  }
+}
