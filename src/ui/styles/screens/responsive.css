@@ -1,6 +1,8 @@
-/* Breakpoints: 1360 (laptop), 1100 (tablet), 760 (phone). */
+/* Responsive layout. Breakpoints (documented in tokens.css; media queries cannot read CSS variables):
+   ≤ 1400 laptop/projector · ≤ 1100 tablet · ≤ 600 phone · height ≤ 560 landscape phone. */
 
-@media (max-width: 1360px) {
+/* ---------- Laptop / projector (1366, 1280) ---------- */
+@media (max-width: 1400px) {
   .body-screen {
     grid-template-columns: 300px minmax(0, 1fr) 320px;
   }
@@ -13,14 +15,15 @@
   }
 }
 
+/* ---------- Tablet (1024 landscape, 820 / 768 portrait) ---------- */
 @media (max-width: 1100px) {
   .topbar__meta,
   .topbar__name {
     display: none;
   }
   .body-screen {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 560px auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: min(560px, 62dvh) auto;
     height: auto;
   }
   .body-screen__stage {
@@ -34,55 +37,172 @@
   .measure-grid,
   .trend-layout,
   .emergency__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .guide {
     position: static;
   }
   .timeline {
     grid-template-columns: auto minmax(0, 1fr) auto;
-    height: auto;
-    padding: var(--s-3) var(--s-4);
+    border-radius: var(--r-xl);
     row-gap: var(--s-2);
   }
   .timeline__caption {
     grid-column: 1 / -1;
     grid-row: 2;
+    padding: 0 var(--s-3) var(--s-2);
   }
   .card-grid--wide {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-@media (max-width: 760px) {
+/* ---------- Phone (430, 390, 360) ---------- */
+@media (max-width: 600px) {
   :root {
     --rail-w: 0px;
+    --gutter: var(--s-3);
+    --topbar-h: 118px;
+    --nav-h: 64px;
   }
+
   .shell__main {
-    padding: calc(var(--topbar-h) + var(--s-4)) var(--s-4) calc(64px + var(--s-5));
+    padding: calc(var(--topbar-h) + var(--s-2) + env(safe-area-inset-top)) var(--gutter)
+      calc(var(--nav-h) + var(--s-6) + env(safe-area-inset-bottom));
   }
-  .topbar__telemetry .telemetry:last-child,
-  .crew-picker,
-  .topbar__actions .btn:not(.btn--danger) {
-    display: none;
+
+  /* Top bar: two rows. Row 1: patch, crew, alerts, emergency. Row 2: MET and Earth link. */
+  .topbar {
+    top: calc(var(--s-2) + env(safe-area-inset-top));
+    left: var(--gutter);
+    right: var(--gutter);
+    height: auto;
+    flex-wrap: wrap;
+    gap: 2px var(--s-2);
+    padding: var(--s-2) var(--s-2) var(--s-2) var(--s-2);
+    border-radius: var(--r-lg);
   }
+  .topbar__actions {
+    order: 1;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .topbar__brand {
+    order: 2;
+    padding-top: var(--s-1);
+  }
+  .topbar__brand svg {
+    width: 28px;
+    height: 28px;
+  }
+  .topbar__telemetry {
+    order: 3;
+    flex: 1;
+    justify-content: space-between;
+    padding: var(--s-1) var(--s-1) 0 var(--s-2);
+    border-left: 0;
+  }
+  .topbar__brand,
+  .topbar__telemetry {
+    border-top: 1px solid var(--hairline);
+  }
+  .telemetry {
+    white-space: nowrap;
+    grid-auto-flow: column;
+    align-items: baseline;
+    gap: var(--s-2);
+  }
+  .topbar__brand {
+    flex: none;
+  }
+  .topbar__actions {
+    gap: var(--s-1);
+    flex-wrap: nowrap;
+    margin-left: 0;
+  }
+  .crew-picker {
+    gap: 0;
+    padding: 2px;
+  }
+  .crew-picker {
+    margin-right: 0;
+  }
+  .crew-chip {
+    height: 36px;
+    padding: 0 2px;
+  }
+  .crew-chip__avatar {
+    width: 30px;
+    height: 30px;
+  }
+  /* compact icon-only buttons (still 36-44 px targets) */
+  .topbar__actions .btn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 0;
+    gap: 0;
+  }
+  .topbar__actions .btn .icon {
+    width: 18px;
+    height: 18px;
+  }
+  .alert-count {
+    height: 40px;
+  }
+
+  /* Nav: floating bottom pill bar */
   .rail {
     top: auto;
-    bottom: var(--s-3);
+    bottom: calc(var(--s-3) + env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     width: auto;
+    max-width: calc(100vw - 2 * var(--gutter));
     flex-direction: row;
-    padding: 0 var(--s-2);
+    padding: var(--s-1);
   }
+  .rail__item {
+    width: 52px;
+    height: 52px;
+  }
+  .rail__label {
+    font-size: 9px;
+  }
+
+  /* Body map: stage first, panels stacked */
   .body-screen {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: min(520px, 68dvh) auto;
   }
+  .stage__hint .num {
+    display: none;
+  }
+
+  /* Side sheet becomes a bottom sheet */
+  .sheet {
+    top: auto;
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: calc(var(--nav-h) + var(--s-4) + env(safe-area-inset-bottom));
+    width: auto;
+    height: min(72dvh, 640px);
+    animation-name: sheet-up;
+  }
+  .modal {
+    padding: var(--s-5);
+  }
+
+  /* Forms and grids stack */
   .checkin__grid,
   .entry__fields--2,
   .hazard__cols,
-  .emergency__protocols {
-    grid-template-columns: 1fr;
+  .emergency__protocols,
+  .photo__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .photo__row .btn {
+    justify-self: end;
   }
   .emergency__patients {
     grid-template-columns: 1fr 1fr;
@@ -90,7 +210,107 @@
   .cpr {
     flex-direction: column;
   }
+  .step-card {
+    padding: var(--s-5);
+  }
+  .emergency__bar {
+    border-radius: var(--r-lg);
+    flex-wrap: wrap;
+  }
+  .panel {
+    padding: var(--s-4);
+  }
+  .panel__head,
+  .page__head {
+    flex-wrap: wrap;
+  }
+  .trend-main .panel__head {
+    align-items: flex-start;
+  }
+  .legend {
+    gap: var(--s-2);
+  }
+  .list__row {
+    flex-wrap: wrap;
+  }
+  .objective code,
+  .research-link,
+  .risk-coverage,
+  .beneficiary .refs {
+    max-width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .reminder-next {
+    padding: var(--s-5);
+  }
+  .reminder-next__time {
+    font-size: var(--fs-large);
+  }
+  .agenda__row {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+  .agenda__row .btn {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .alert-card__when {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+
+  /* Demo timeline sits above the bottom nav */
   .timeline {
-    bottom: 64px;
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: calc(var(--nav-h) + var(--s-4) + env(safe-area-inset-bottom));
+    gap: var(--s-2);
+    padding: var(--s-2);
+  }
+  .timeline__play.btn {
+    width: 44px;
+    height: 44px;
+  }
+  .shell--demo .shell__main {
+    padding-bottom: calc(var(--nav-h) + 150px + env(safe-area-inset-bottom));
+  }
+  .shell--demo .sheet {
+    bottom: calc(var(--nav-h) + 140px + env(safe-area-inset-bottom));
+    height: min(56dvh, 520px);
+  }
+  .toast {
+    bottom: calc(var(--nav-h) + var(--s-5) + env(safe-area-inset-bottom));
+    max-width: calc(100vw - 2 * var(--gutter));
+  }
+}
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* ---------- Landscape phone (844x390): compact left rail below the top bar ---------- */
+@media (max-height: 560px) and (min-width: 601px) {
+  :root {
+    --rail-w: 64px;
+  }
+  .rail {
+    top: calc(var(--topbar-h) - var(--s-2));
+    transform: none;
+    width: 52px;
+    gap: 0;
+    padding: var(--s-1) 0;
+  }
+  .rail__item {
+    width: 44px;
+    height: 44px;
+  }
+  .rail__label {
+    display: none;
+  }
+  .body-screen {
+    grid-template-rows: calc(100dvh - var(--topbar-h) - var(--s-5)) auto;
   }
 }

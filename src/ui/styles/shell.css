@@ -1,7 +1,7 @@
 /* App chrome as floating liquid-glass capsules: top bar, left rail, mission timeline. */
 
 .shell {
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .shell__main {

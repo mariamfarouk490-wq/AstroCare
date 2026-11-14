@@ -24,8 +24,8 @@
 .scroll-x {
   overflow-x: auto;
   scrollbar-width: none;
-  margin: 0 calc(-1 * var(--s-5));
-  padding: 2px var(--s-5);
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 2px var(--gutter);
 }
 
 .scroll-x::-webkit-scrollbar {

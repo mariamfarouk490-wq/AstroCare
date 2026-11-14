@@ -279,7 +279,7 @@ function PhotoPanel({ health, disabled }) {
                   ))}
                 </select>
                 <div className="input-unit">
-                  <input className="input" type="number" value={r.value} onChange={(e) => setRows(rows.map((x, k) => (k === i ? { ...x, value: e.target.value } : x)))} />
+                  <input className="input" type="number" inputMode="decimal" value={r.value} onChange={(e) => setRows(rows.map((x, k) => (k === i ? { ...x, value: e.target.value } : x)))} />
                   <span className="input-unit__unit">{m?.unit}</span>
                 </div>
                 <Button icon="close" aria-label="Remove" onClick={() => setRows(rows.filter((_, k) => k !== i))} />
@@ -428,7 +428,9 @@ export default function MeasureScreen({ param, onEmergency }) {
         </div>
         {replaying && <Pill tone="info">Replay mode · saving is off until you exit the demo</Pill>}
       </header>
-      <Tabs label="Measurement" value={metric} onChange={setMetric} options={guides.map((g) => ({ value: g.metric, label: g.metric === 'BP_SYSTOLIC' ? 'Blood pressure' : label(g.metric) }))} />
+      <div className="scroll-x">
+        <Tabs label="Measurement" value={metric} onChange={setMetric} options={guides.map((g) => ({ value: g.metric, label: g.metric === 'BP_SYSTOLIC' ? 'Blood pressure' : label(g.metric) }))} />
+      </div>
       <div className="measure-grid">
         <GuideCard guide={guide} />
         <div className="measure-col">

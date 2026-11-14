@@ -13,10 +13,10 @@
   --fs-body: 14px;
   --fs-callout: 16px;
   --fs-title3: 19px;
-  --fs-title2: 23px;
-  --fs-title1: 30px;
-  --fs-large: 40px;
-  --fs-hero: 60px;
+  --fs-title2: clamp(20px, 0.6vw + 16px, 23px);
+  --fs-title1: clamp(24px, 1.2vw + 16px, 30px);
+  --fs-large: clamp(32px, 1.6vw + 20px, 40px);
+  --fs-hero: clamp(44px, 3vw + 24px, 60px);
   --tracking-tight: -0.02em;
   --tracking-label: 0.08em;
 
@@ -177,6 +177,12 @@
   --z-sheet: 41;
   --z-emergency: 50;
   --z-toast: 60;
+
+  /* ---------- Breakpoints ----------
+     Media queries cannot read CSS variables, so these values are written in
+     styles/screens/responsive.css and nowhere else:
+     laptop ≤ 1400px · tablet ≤ 1100px · phone ≤ 600px · landscape phone: height ≤ 560px. */
+  --nav-h: 0px;
 
   /* ---------- Layout ---------- */
   --rail-w: 96px;
