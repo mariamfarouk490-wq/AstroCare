@@ -19,7 +19,7 @@ Open `http://localhost:5173/?play` to autoplay the 10-day demo.
 1. Day 1: first readings set his personal baseline. Everything is green.
 2. Day 6: resting HR is still "Normal" by Earth limits, but three days above his own baseline fire `HR_ABOVE_BASELINE`. The heart turns red (Watch).
 3. Day 9: sleep under 6 h for 3 nights (`SLEEP_DEBT`, `HR_SLEEP_COMBINED`) and a headache while cabin CO2 is 3.2 mmHg against the NASA limit of 3 (`CABIN_CO2_HIGH` + `HEADACHE_REPORTED` → `CO2_HEADACHE`).
-4. Day 10: Emergency mode. Protocol state machine, CPR metronome, Earth reply delay (one-way × 2).
+4. Day 10: two days under 2.5 L of water fire `WATER_LOW` (inadequate nutrition), then Emergency mode. Protocol state machine, CPR metronome, Earth reply delay (one-way × 2).
 
 ## Design
 

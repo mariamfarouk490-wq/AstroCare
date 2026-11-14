@@ -10,6 +10,8 @@ export const CheckInSchema = z.object({
   stress: z.number().int().min(1).max(5),
   symptoms: z.array(z.string()).refine((s) => new Set(s).size === s.length, 'symptoms must not repeat'),
   exerciseMin: z.number().int().min(0).max(600).optional(), // NASA target ~90 min/day (bone & muscle countermeasure)
+  waterL: z.number().min(0).max(6).multipleOf(0.25).optional(), // NASA-STD-3001: at least 2.5 L/day
+  mealsCompleted: z.number().int().min(0).max(3).optional(), // planned meals eaten today (of 3)
   source: z.enum(['seed', 'manual', 'watch-sim']),
 });
 

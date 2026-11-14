@@ -31,8 +31,8 @@ Every content entry has `refs: [{label, url}]` (sources). Any value not taken fr
 | mission-profiles.json | code | ISS, MOON, MARS_TRANSIT, MARS_SURFACE: delay, daily dose, gravity, bone-loss rate |
 | metrics.json | code | 6 metrics with bands (no gaps over the valid range; glucose per context) |
 | measurements.seed.json | id (uuid) | 10 days × 4 crew, one morning reading of all 6 metrics |
-| checkins.seed.json | id, (crewId,date) | 10 days × 4 crew: sleep, mood, stress, symptoms, `exerciseMin` |
-| rules.json | code | 26 rules: threshold, baseline, streak, combo, derived |
+| checkins.seed.json | id, (crewId,date) | 10 days × 4 crew: sleep, mood, stress, symptoms, `exerciseMin`, `waterL`, `mealsCompleted` |
+| rules.json | code | 28 rules: threshold, baseline, streak, combo, derived (incl. WATER_LOW, MEALS_LOW) |
 | guides.json | metric | 5 guided-measurement cards (BP on BP_SYSTOLIC) |
 | protocols.json | code | UNRESPONSIVE, CHEST_PAIN |
 | body-parts.json | id | 5 hotspots (heart, brain, skeleton, abdomen, aura) |
@@ -59,6 +59,7 @@ Every content entry has `refs: [{label, url}]` (sources). Any value not taken fr
 - Sleep drops 7.5 → 5 h. `SLEEP_DEBT` fires on day 9, and so does `HR_SLEEP_COMBINED`.
 - Symptoms: fatigue from day 7, then headache on days 9–10. Cabin ppCO2 is 3.2–3.3 mmHg on those same days (NASA limit 3 mmHg), so `CABIN_CO2_HIGH` + `HEADACHE_REPORTED` → `CO2_HEADACHE` fire on day 9. The other crew get only the cabin alert.
 - Exercise drops to 60 min on days 9–10, below the NASA ~90 min/day.
+- Water drops to 2.0 and 2.25 L on days 9–10, under the NASA-STD-3001 minimum of 2.5 L/day, so `WATER_LOW` fires on day 10. Meals stay at 2 of 3 (no alert).
 - The other 3 crew stay Normal and fire no alerts.
 
 The files hold 2026-11-04 → 2026-11-13. At runtime `loadSeed` moves the 10 days so the last one is the presentation day.

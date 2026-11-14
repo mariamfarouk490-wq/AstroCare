@@ -84,7 +84,7 @@ export function thresholdText(rule, metrics) {
         : `${metric.label} ≥ ${p.deltaMin} ${metric.unit} above your 7-day mean, ${plural(p.consecutiveDays, 'day')} in a row`;
     case 'streak': {
       const f = FIELD_INFO[p.field];
-      return `${f.label} ${OP_SYMBOL[p.op]} ${p.value}${f.unit === '/5' ? '/5' : ` ${f.unit}`} for ${plural(p.days, 'day')}`;
+      return `${f.label} ${OP_SYMBOL[p.op]} ${p.value}${f.unit.startsWith('/') ? f.unit : ` ${f.unit}`} for ${plural(p.days, 'day')}`;
     }
     case 'derived': {
       const f = FIELD_INFO[p.field];

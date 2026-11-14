@@ -285,7 +285,7 @@
     "domain": "MetabolicImmune",
     "bodyPart": "abdomen",
     "hazard": "D",
-    "appCoverage": "partial (glucose)",
+    "appCoverage": "covered (water + meals check-in, glucose)",
     "refs": [
       {
         "label": "NASA HRP – Human System Risks",

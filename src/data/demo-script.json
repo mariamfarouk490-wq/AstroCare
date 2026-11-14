@@ -29,7 +29,10 @@
     },
     {
       "day": 10,
-      "say": "Crewmate collapses with chest pain → Emergency mode: protocol, CPR timer, Earth reply in 24 min (Mars delay × 2)."
+      "say": "Crewmate collapses with chest pain → Emergency mode: protocol, CPR timer, Earth reply in 24 min (Mars delay × 2).",
+      "expectFirstAlerts": [
+        "WATER_LOW"
+      ]
     }
   ],
   "otherCrewExpectedAlerts": [

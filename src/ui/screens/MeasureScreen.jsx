@@ -320,6 +320,7 @@ function Stepper({ label, value, onChange, step, min, max, unit }) {
 }
 
 const SCALE = [1, 2, 3, 4, 5].map((n) => ({ value: n, label: String(n) }));
+const MEALS = [0, 1, 2, 3].map((n) => ({ value: n, label: String(n) }));
 
 function CheckInPanel({ health, disabled, onEmergency }) {
   const symptoms = useApp((s) => s.seed.symptoms);
@@ -331,6 +332,8 @@ function CheckInPanel({ health, disabled, onEmergency }) {
     mood: prior?.mood ?? 3,
     stress: prior?.stress ?? 2,
     exerciseMin: prior?.exerciseMin ?? 0,
+    waterL: prior?.waterL ?? 0,
+    mealsCompleted: prior?.mealsCompleted ?? 3,
     symptoms: prior?.symptoms ?? [],
   }));
   const [redFlags, setRedFlags] = useState(null);
@@ -357,6 +360,11 @@ function CheckInPanel({ health, disabled, onEmergency }) {
         <div className="field">
           <span className="field__label">Stress · 1 calm, 5 overwhelmed</span>
           <Tabs label="Stress" options={SCALE} value={form.stress} onChange={(stress) => set({ stress })} block />
+        </div>
+        <Stepper label="Water today" value={form.waterL} onChange={(waterL) => set({ waterL })} step={0.25} min={0} max={6} unit="L" />
+        <div className="field">
+          <span className="field__label">Meals completed · of 3</span>
+          <Tabs label="Meals completed" options={MEALS} value={form.mealsCompleted} onChange={(mealsCompleted) => set({ mealsCompleted })} block />
         </div>
       </div>
       <div className="field">

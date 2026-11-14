@@ -222,6 +222,10 @@
         "label": "NASA HRP – Human System Risks",
         "url": "https://www.nasa.gov/hrp/risks"
       }
+    ],
+    "checkinFields": [
+      "waterL",
+      "mealsCompleted"
     ]
   },
   {
@@ -235,11 +239,11 @@
       0.9,
       0
     ],
-    "radius": 1.0,
+    "radius": 1,
     "cameraTarget": {
       "position": [
         0,
-        1.0,
+        1,
         3.4
       ],
       "lookAt": [

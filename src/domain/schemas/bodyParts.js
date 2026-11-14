@@ -16,7 +16,7 @@ export const BodyPartSchema = z.object({
   radius: z.number().positive(),
   cameraTarget: z.object({ position: zVec3, lookAt: zVec3 }),
   metrics: z.array(zMetricCode), // may be empty: bone & radiation are derived
-  checkinFields: z.array(z.enum(['sleepHours', 'mood', 'stress', 'exerciseMin'])).optional(),
+  checkinFields: z.array(z.enum(['sleepHours', 'mood', 'stress', 'exerciseMin', 'waterL', 'mealsCompleted'])).optional(),
   derived: z.array(z.enum(['cumulativeDoseMSv', 'careerLimitPct', 'estimatedBoneLossPct'])).optional(),
   hazards: z.array(zHazardCode).default([]),
   nasaRisks: z.array(z.string()).default([]),

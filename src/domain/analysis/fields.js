@@ -16,6 +16,8 @@ export const FIELD_INFO = {
   mood: { label: 'Mood', unit: '/5' },
   stress: { label: 'Stress', unit: '/5' },
   exerciseMin: { label: 'Exercise', unit: 'min' },
+  waterL: { label: 'Water', unit: 'L' },
+  mealsCompleted: { label: 'Meals completed', unit: '/3' },
   cumulativeDoseMSv: { label: 'Cumulative dose', unit: 'mSv' },
   careerLimitPct: { label: 'Career dose limit used', unit: '%' },
   estimatedBoneLossPct: { label: 'Estimated bone loss', unit: '%' },

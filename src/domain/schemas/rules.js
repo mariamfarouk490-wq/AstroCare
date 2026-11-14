@@ -25,7 +25,7 @@ export const BaselineRuleSchema = z.object({
 export const StreakRuleSchema = z.object({
   ...base,
   kind: z.literal('streak'),
-  params: z.object({ field: z.enum(['sleepHours', 'mood', 'stress', 'exerciseMin']), op: zOp, value: z.number(), days: z.number().int().min(1) }),
+  params: z.object({ field: z.enum(['sleepHours', 'mood', 'stress', 'exerciseMin', 'waterL', 'mealsCompleted']), op: zOp, value: z.number(), days: z.number().int().min(1) }),
 });
 export const ComboRuleSchema = z.object({ ...base, kind: z.literal('combo'), params: z.object({ allOf: z.array(z.string()).min(2) }) });
 export const DerivedRuleSchema = z.object({

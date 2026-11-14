@@ -5,7 +5,8 @@ import { FIELD_INFO } from '../../domain/analysis/fields.js';
 import { formatNumber, formatShortDay, formatValue, shortLabel } from '../format.js';
 import { navigate } from '../shell/useRoute.js';
 
-const CHECKIN_FIELDS = ['sleepHours', 'exerciseMin'];
+const CHECKIN_FIELDS = ['sleepHours', 'exerciseMin', 'waterL'];
+const DECIMALS = { sleepHours: 1, waterL: 2 };
 
 function MetricTrend({ code }) {
   const trend = useTrend({ metric: code });
@@ -87,8 +88,16 @@ function CheckInTrend({ field }) {
   const rule = seed.rules.find((r) => r.kind === 'streak' && r.params.field === field);
   const lines = [];
   if (rule) lines.push({ value: rule.params.value, label: `${rule.code} below ${rule.params.value} ${info.unit}` });
-  const needs = seed.environmentLimits.dailyNeeds.exerciseHoursPerDay;
-  const range = field === 'exerciseMin' ? { min: needs.value * 60, max: Infinity } : undefined;
+  // NASA daily targets from environment-limits.json
+  const daily = seed.environmentLimits.dailyNeeds;
+  const target =
+    field === 'exerciseMin'
+      ? { min: daily.exerciseHoursPerDay.value * 60, unit: 'min/day', source: daily.exerciseHoursPerDay.source }
+      : field === 'waterL'
+        ? { min: daily.waterMinLPerDay.value, unit: 'L/day', source: daily.waterMinLPerDay.source }
+        : null;
+  const range = target ? { min: target.min, max: Infinity } : undefined;
+  const digits = DECIMALS[field] ?? 0;
   const last = [...points].reverse().find((p) => p.value !== undefined);
   return (
     <div className="trend-layout">
@@ -98,13 +107,13 @@ function CheckInTrend({ field }) {
             <div className="eyebrow">Check-in</div>
             <h2 className="title-2">{info.label}</h2>
           </div>
-          {range && <span className="footnote secondary">Green: NASA target ≥ {range.min} min/day · {needs.source}</span>}
+          {target && <span className="footnote secondary">Green: NASA target ≥ {target.min} {target.unit} · {target.source}</span>}
         </header>
-        <TrendChart points={points} range={range} lines={lines} unit={info.unit} format={(v) => formatNumber(v, field === 'sleepHours' ? 1 : 0)} labels={{ band: 'NASA daily target' }} />
+        <TrendChart points={points} range={range} lines={lines} unit={info.unit} format={(v) => formatNumber(v, digits)} labels={{ band: 'NASA daily target' }} />
       </GlassPanel>
       <div className="trend-side">
         <GlassPanel className="panel">
-          <Stat label="Latest" value={last ? formatNumber(last.value, field === 'sleepHours' ? 1 : 0) : undefined} unit={info.unit} sub={last ? formatShortDay(last.day) : 'No check-in'} />
+          <Stat label="Latest" value={last ? formatNumber(last.value, digits) : undefined} unit={info.unit} sub={last ? formatShortDay(last.day) : 'No check-in'} />
         </GlassPanel>
         {rule && (
           <Panel title="Rule">

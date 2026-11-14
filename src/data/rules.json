@@ -277,7 +277,7 @@
     "severity": "Watch",
     "params": {
       "metric": "TEMPERATURE",
-      "deltaMin": 1.0,
+      "deltaMin": 1,
       "consecutiveDays": 1
     },
     "reasonTemplate": "Temperature {value} °C, {delta} °C above your {mean} baseline",
@@ -590,6 +590,54 @@
       {
         "label": "NASA OCHMO CO2 Technical Brief (NASA-STD-3001)",
         "url": "https://nasa.gov/wp-content/uploads/2023/03/co2-technical-brief-ochmo.pdf"
+      }
+    ]
+  },
+  {
+    "code": "WATER_LOW",
+    "domain": "MetabolicImmune",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "waterL",
+      "op": "lt",
+      "value": 2.5,
+      "days": 2
+    },
+    "reasonTemplate": "Water {value} L, under 2.5 L for {days} days",
+    "action": "Drink to at least 2.5 L today and keep a bottle in sight; low water raises kidney-stone and fainting risk. Re-check tomorrow.",
+    "notifyEarth": false,
+    "thresholdSource": "NASA-STD-3001 V2 6109",
+    "refs": [
+      {
+        "label": "NASA OCHMO ECLSS Technical Brief (NASA-STD-3001)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-002-eclss.pdf"
+      },
+      {
+        "label": "NASA – Human System Risk Board list",
+        "url": "https://www.nasa.gov/human-system-risks"
+      }
+    ]
+  },
+  {
+    "code": "MEALS_LOW",
+    "domain": "MetabolicImmune",
+    "kind": "streak",
+    "severity": "Watch",
+    "params": {
+      "field": "mealsCompleted",
+      "op": "lt",
+      "value": 2,
+      "days": 2
+    },
+    "reasonTemplate": "Completed {value} of 3 meals, {days} days in a row",
+    "action": "Eat the planned meals; ask the crew medical officer if appetite stays low (space motion sickness, stress or illness).",
+    "notifyEarth": true,
+    "thresholdSource": "app",
+    "refs": [
+      {
+        "label": "NASA HRP – Human System Risks",
+        "url": "https://www.nasa.gov/hrp/risks"
       }
     ]
   }
