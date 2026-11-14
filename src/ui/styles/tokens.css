@@ -55,6 +55,19 @@
   --green-deep: #1f9e45;
   --blue-deep: #0a6fd6;
   --red-deep: #d63a31;
+  /* Action fills: deep and saturated, white text ≥ 4.5:1 */
+  --blue-action: #0060df;
+  --blue-action-hover: #0068f0;
+  --blue-action-press: #004fba;
+  --blue-action-edge: #3d8bff;
+  --green-action: #157a35;
+  --green-action-hover: #17843a;
+  --green-action-press: #116a2d;
+  --green-action-edge: #34c35c;
+  --red-action: #d9241b;
+  --red-action-hover: #e2271d;
+  --red-action-press: #b51d15;
+  --red-action-edge: #ff5a4f;
   --green-soft: rgba(48, 209, 88, 0.12);
   --blue-soft: rgba(10, 132, 255, 0.14);
   --red-soft: rgba(255, 69, 58, 0.12);

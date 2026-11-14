@@ -232,9 +232,11 @@
 }
 
 .alert-count.is-active {
-  color: var(--red);
-  border-color: var(--red-line);
-  background: var(--red-soft);
+  color: #fff;
+  font-weight: 600;
+  border-color: var(--red-action-edge);
+  background: var(--red-action);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* ---------- Left rail: floating vertical capsule ---------- */
@@ -297,13 +299,14 @@
 
 .rail__count {
   position: absolute;
+  font-weight: 600;
   top: -6px;
   right: -11px;
   min-width: 17px;
   height: 17px;
   padding: 0 4px;
   border-radius: var(--r-round);
-  background: var(--red);
+  background: var(--red-action);
   color: #fff;
   font-size: var(--fs-micro);
   line-height: 17px;
@@ -365,7 +368,7 @@
   top: 15px;
   height: 6px;
   border-radius: var(--r-round);
-  background: var(--blue);
+  background: var(--blue-action-hover);
   transition: width var(--t-slow) var(--spring);
 }
 

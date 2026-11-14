@@ -56,8 +56,8 @@
 }
 
 .patient[aria-checked="true"] {
-  border-color: var(--red);
-  background: var(--red-soft);
+  border: 1.5px solid var(--red-action-edge);
+  background: rgba(217, 36, 27, 0.32);
 }
 
 .patient:active {
@@ -111,7 +111,7 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  color: var(--red);
+  color: #ff6a60;
   font-weight: 600;
 }
 
