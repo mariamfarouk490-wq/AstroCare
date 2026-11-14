@@ -66,6 +66,8 @@ export function createAppStore(ctx) {
         }),
       acknowledgeAlert: (code) => update(uc.acknowledgeAlert(ctx, get().user, { crewId: get().user.selectedCrewId, code })),
       readFromImage: (image) => uc.readFromImage(ctx, image),
+      buildEarthReport: (crewId = get().user.selectedCrewId) =>
+        uc.buildEarthReport(ctx, get().user, { crewId, day: get().viewDay ?? get().liveDay, now: ctx.clock.now() }),
       sampleDisplayImage: (lines) => ctx.ocr.sampleImage(lines),
       streamWatch: (options, onSample) => ctx.watch.stream(options, onSample),
 

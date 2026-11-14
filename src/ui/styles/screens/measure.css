@@ -314,3 +314,12 @@ select.input {
   vertical-align: middle;
   margin-right: 4px;
 }
+
+.guide__space {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--fill-1);
+  border: 1px solid var(--glass-border-soft);
+  color: var(--text-2);
+  font-size: var(--fs-footnote);
+}

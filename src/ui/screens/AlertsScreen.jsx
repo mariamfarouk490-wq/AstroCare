@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useApp, useHealth } from '../../state/store.js';
 import AlertCard from '../features/AlertCard.jsx';
+import EarthReportButton from '../features/EarthReport.jsx';
 import { EmptyState, GlassPanel, Tabs } from '../components/index.jsx';
 
 export default function AlertsScreen({ onEmergency }) {
@@ -20,15 +21,18 @@ export default function AlertsScreen({ onEmergency }) {
             {ruleCount} rules from rules.json run on-device every day. An alert stays open once it fires; acknowledging it marks it as seen.
           </p>
         </div>
-        <Tabs
-          label="Filter"
-          value={filter}
-          onChange={setFilter}
-          options={[
-            { value: 'open', label: `Open ${open.length}` },
-            { value: 'ack', label: `Acknowledged ${acknowledged.length}` },
-          ]}
-        />
+        <div className="row-gap alerts-head-actions">
+          <EarthReportButton crewId={health.crewId} />
+          <Tabs
+            label="Filter"
+            value={filter}
+            onChange={setFilter}
+            options={[
+              { value: 'open', label: `Open ${open.length}` },
+              { value: 'ack', label: `Acknowledged ${acknowledged.length}` },
+            ]}
+          />
+        </div>
       </header>
       {list.length ? (
         <div className="alerts-list">

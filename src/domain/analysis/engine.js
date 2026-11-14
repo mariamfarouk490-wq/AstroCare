@@ -142,7 +142,7 @@ export function evaluateCrew(record, crewId, { until } = {}) {
         const ok = v !== undefined && OPS[p.op](v, p.value);
         streaks[rule.code] = ok ? (streaks[rule.code] ?? 0) + 1 : 0;
         hit = streaks[rule.code] >= p.days;
-        values = { value: fmt(v, 1), days: streaks[rule.code] };
+        values = { value: fmt(v, p.field === 'waterL' ? 2 : 1), days: streaks[rule.code] };
       } else if (rule.kind === 'derived') {
         const v = derived[p.field];
         hit = v !== undefined && OPS[p.op](v, p.value);

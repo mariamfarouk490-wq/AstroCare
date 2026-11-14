@@ -5,6 +5,7 @@ import { useApp, useHealth } from '../../state/store.js';
 import { currentStep, earthRoundTripSec } from '../../domain/emergency/protocolMachine.js';
 import { activeProfile } from '../../domain/analysis/engine.js';
 import { Button, GlassPanel, Icon, Panel, RefList, Stat, StatusBadge } from '../components/index.jsx';
+import EarthReportButton from '../features/EarthReport.jsx';
 import { formatClock, formatDuration, formatTime, formatValue, initials, ROLE_LABEL } from '../format.js';
 
 const STEP_LABEL = { question: 'Question', instruction: 'Instruction', 'cpr-timer': 'CPR timer', measure: 'Measure', end: 'Outcome' };
@@ -256,6 +257,7 @@ function Running({ onClose }) {
               </>
             )}
             <p className="footnote tertiary">Act now. Do not wait for Earth.</p>
+            <EarthReportButton crewId={session.patientId} label="Send report to Earth" />
           </Panel>
 
           <Panel title="Patient">

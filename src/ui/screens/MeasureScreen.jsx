@@ -27,11 +27,17 @@ function useSaveResult() {
 }
 
 function GuideCard({ guide }) {
+  const spaceNote = useApp((s) => s.seed.metrics.find((m) => m.code === guide.metric)?.spaceNote);
   return (
     <Panel className="guide" title={null}>
       <div className="eyebrow">Guided measurement</div>
       <h2 className="title-2 guide__title">{guide.title}</h2>
       <p className="secondary guide__why">{guide.why}</p>
+      {spaceNote && (
+        <p className="guide__space">
+          <span className="eyebrow">In space</span> {spaceNote}
+        </p>
+      )}
       <ol className="steps">
         {guide.steps.map((s, i) => (
           <li key={s} className="steps__item">

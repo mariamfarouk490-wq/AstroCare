@@ -104,3 +104,25 @@
   gap: var(--s-3);
 }
 
+
+.alerts-head-actions {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Earth report preview */
+.earth-report {
+  max-height: 46dvh;
+  overflow: auto;
+  margin: 0;
+  padding: var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--well);
+  border: 1px solid var(--glass-border-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-caption);
+  line-height: 1.55;
+  color: var(--text-2);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
