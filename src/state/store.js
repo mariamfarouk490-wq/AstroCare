@@ -65,6 +65,7 @@ export function createAppStore(ctx) {
           return r;
         }),
       acknowledgeAlert: (code) => update(uc.acknowledgeAlert(ctx, get().user, { crewId: get().user.selectedCrewId, code })),
+      requestGroundSupport: (alerts = []) => update(uc.requestGroundSupport(ctx, get().user, { crewId: get().user.selectedCrewId, alerts })),
       readFromImage: (image) => uc.readFromImage(ctx, image),
       buildEarthReport: (crewId = get().user.selectedCrewId) =>
         uc.buildEarthReport(ctx, get().user, { crewId, day: get().viewDay ?? get().liveDay, now: ctx.clock.now() }),

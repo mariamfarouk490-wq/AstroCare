@@ -84,6 +84,7 @@ export function buildSeed(rawFiles, { now, shiftDates = true }) {
     challengeObjectives: f['challenge-objectives.json'],
     impact: f['impact.json'],
     demoScript: f['demo-script.json'],
+    mindSupport: f['mind-support.json'],
   };
   const problems = checkIntegrity(seed);
   if (problems.length) throw new SeedError(problems);

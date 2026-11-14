@@ -1,0 +1,60 @@
+{
+  "title": "Mind support",
+  "triggers": ["MOOD_LOW", "MOOD_CRITICAL", "STRESS_HIGH", "SLEEP_DEBT", "HR_SLEEP_COMBINED"],
+  "checkInTrigger": { "moodAtMost": 2, "stressAtLeast": 4 },
+  "escalation": {
+    "rule": "MOOD_CRITICAL",
+    "message": "Tell a crewmate now and request a private conference with your flight surgeon.",
+    "refs": [
+      { "label": "NASA OCHMO – Behavioral Health and Performance Technical Brief (OCHMO-TB-016)", "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-016-behavioral-health.pdf" }
+    ]
+  },
+  "breathing": {
+    "name": "Paced slow breathing",
+    "inhaleSec": 4,
+    "exhaleSec": 6,
+    "durationSec": 60,
+    "note": "About 6 breaths per minute. Slow breathing (under 10 breaths per minute) is linked to more relaxation and less anxiety in healthy adults.",
+    "refs": [
+      { "label": "Zaccaro et al. 2018, Front. Hum. Neurosci. – Slow breathing systematic review", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6137615" }
+    ]
+  },
+  "actions": [
+    {
+      "code": "SCHEDULE",
+      "text": "Keep a regular sleep and work schedule; protect your sleep period from noise and light.",
+      "refs": [
+        { "label": "NASA – Risk from Inadequate Sleep and Irregular Schedules", "url": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/" }
+      ]
+    },
+    {
+      "code": "EXERCISE",
+      "text": "Do your planned exercise session; it supports mood as well as bone and muscle.",
+      "refs": [
+        { "label": "NASA – Risk of Reduced Cardiorespiratory and Musculoskeletal Fitness", "url": "https://www.nasa.gov/reference/risk-of-reduced-cardiorespiratory-and-musculoskeletal-fitness/" }
+      ]
+    },
+    {
+      "code": "CREW",
+      "text": "Talk to a crewmate you trust; share a meal or a break together.",
+      "refs": [
+        { "label": "NASA OCHMO – Behavioral Health and Performance Technical Brief (OCHMO-TB-016)", "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-016-behavioral-health.pdf" }
+      ]
+    },
+    {
+      "code": "FAMILY",
+      "text": "Record a message for your family for the next comms window (live calls are not possible with the delay).",
+      "refs": [
+        { "label": "NASA OCHMO – Behavioral Health and Performance Technical Brief (OCHMO-TB-016)", "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-016-behavioral-health.pdf" }
+      ]
+    },
+    {
+      "code": "CONFERENCE",
+      "text": "Ask ground support for a private psychological conference (PPC) with your flight surgeon or psychologist.",
+      "refs": [
+        { "label": "NASA OCHMO – Behavioral Health and Performance Technical Brief (OCHMO-TB-016)", "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-016-behavioral-health.pdf" },
+        { "label": "NASA – Risk of Behavioral Changes and Psychiatric Disorders", "url": "https://www.nasa.gov/reference/risk-of-behavioral-changes-and-psychiatric-disorders/" }
+      ]
+    }
+  ]
+}

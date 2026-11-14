@@ -183,5 +183,23 @@
     "label": "BodyParts3D, © The Database Center for Life Science (DBCLS), CC BY-SA 2.1 Japan – 3D anatomy models",
     "url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/desc.html",
     "publisher": "Peer-reviewed"
+  },
+  {
+    "key": "OCHMO_BHP",
+    "label": "NASA OCHMO – Behavioral Health and Performance Technical Brief (OCHMO-TB-016)",
+    "url": "https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-016-behavioral-health.pdf",
+    "publisher": "NASA"
+  },
+  {
+    "key": "BMED",
+    "label": "NASA – Risk of Behavioral Changes and Psychiatric Disorders",
+    "url": "https://www.nasa.gov/reference/risk-of-behavioral-changes-and-psychiatric-disorders/",
+    "publisher": "NASA"
+  },
+  {
+    "key": "ZACCARO",
+    "label": "Zaccaro et al. 2018, Front. Hum. Neurosci. – Slow breathing systematic review",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6137615",
+    "publisher": "Peer-reviewed"
   }
 ]

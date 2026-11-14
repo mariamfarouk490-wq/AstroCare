@@ -127,6 +127,19 @@ export function buildEarthReport(ctx, state, { crewId, day, now }) {
     ],
   });
 
+  const requests = (state.supportRequests ?? []).filter((r) => r.crewId === crewId);
+  if (requests.length)
+    sections.push({
+      title: `Psychological support requested (${requests.length})`,
+      blocks: requests.map((r) => ({
+        heading: `Private psychological conference requested ${r.at}`,
+        rows: [
+          ['Open alerts at the time', r.alerts.length ? r.alerts.join(', ') : 'none'],
+          ['Earliest reply', roundTripSec ? `~${minutes(roundTripSec)} after the request (round trip)` : 'live link'],
+        ],
+      })),
+    });
+
   const sessions = state.emergencySessions.filter((s) => s.patientId === crewId);
   sections.push({
     title: `Emergency log (${sessions.length} session${sessions.length === 1 ? '' : 's'})`,

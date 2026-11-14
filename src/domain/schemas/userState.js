@@ -21,6 +21,10 @@ export const UserStateSchema = z.object({
   checkIns: CheckInsSchema.default([]),
   alertStates: z.record(z.string(), z.object({ status: z.literal('acknowledged'), at: zIsoDateTime })).default({}),
   emergencySessions: z.array(EmergencySessionSchema).default([]),
+  /** "Request private conference with ground" (Mind support): shown in the Earth report. */
+  supportRequests: z
+    .array(z.object({ id: z.string().min(1), crewId: z.string().regex(/^cm-\d{2}$/), at: zIsoDateTime, alerts: z.array(z.string()).default([]) }))
+    .default([]),
   settings: z
     .object({
       watchIntervalSec: z.number().int().min(1).default(5),

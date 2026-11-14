@@ -11,3 +11,5 @@ export { ingestWatchSample } from './ingestWatchSample.js';
 export { readFromImage } from './readFromImage.js';
 export { resetDemo } from './resetDemo.js';
 export { buildEarthReport } from './buildEarthReport.js';
+export { getMindSupport } from './getMindSupport.js';
+export { requestGroundSupport } from './requestGroundSupport.js';

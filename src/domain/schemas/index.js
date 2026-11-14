@@ -10,6 +10,7 @@ import { GuidesSchema } from './guides.js';
 import { ProtocolsSchema } from './protocols.js';
 import { BodyPartsSchema } from './bodyParts.js';
 import { SymptomsSchema } from './symptoms.js';
+import { MindSupportSchema } from './mindSupport.js';
 import { HazardsSchema, NasaRisksSchema, HrpResearchSchema, EnvironmentLimitsSchema, CabinEnvironmentSeedSchema, SourcesSchema, RemindersSchema, ChallengeObjectivesSchema, ImpactSchema, DemoScriptSchema } from './resources.js';
 
 export { CrewSchema } from './crew.js';
@@ -23,6 +24,7 @@ export { GuidesSchema } from './guides.js';
 export { ProtocolsSchema } from './protocols.js';
 export { BodyPartsSchema } from './bodyParts.js';
 export { SymptomsSchema } from './symptoms.js';
+export { MindSupportSchema } from './mindSupport.js';
 export { UserStateSchema, EmergencySessionSchema } from './userState.js';
 export { HazardsSchema, NasaRisksSchema, HrpResearchSchema, EnvironmentLimitsSchema, CabinEnvironmentSeedSchema, SourcesSchema, RemindersSchema, ChallengeObjectivesSchema, ImpactSchema, DemoScriptSchema } from './resources.js';
 
@@ -50,4 +52,5 @@ export const SEED_FILE_SCHEMAS = {
   'challenge-objectives.json': ChallengeObjectivesSchema,
   'impact.json': ImpactSchema,
   'demo-script.json': DemoScriptSchema,
+  'mind-support.json': MindSupportSchema,
 };

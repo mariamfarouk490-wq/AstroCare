@@ -115,6 +115,13 @@ export function checkIntegrity(seed) {
     for (const [, name] of r.reasonTemplate.matchAll(/\{(\w+)\}/g)) if (!PLACEHOLDERS.has(name)) fail(`rule ${r.code}: unknown placeholder {${name}}`);
   }
 
+  // mind support: triggers and the escalation rule are real rule codes
+  if (seed.mindSupport) {
+    for (const code of seed.mindSupport.triggers) if (!ruleByCode[code]) fail(`mind-support: trigger ${code} is not a rule`);
+    if (!ruleByCode[seed.mindSupport.escalation.rule]) fail(`mind-support: escalation rule ${seed.mindSupport.escalation.rule} is not a rule`);
+    if (!seed.mindSupport.triggers.includes(seed.mindSupport.escalation.rule)) fail('mind-support: escalation rule must also be a trigger');
+  }
+
   // mission profiles: every name in `estimates` is a real field
   for (const p of seed.missionProfiles) for (const e of p.estimates ?? []) if (!(e in p)) fail(`profile ${p.code}: estimates names unknown field ${e}`);
 

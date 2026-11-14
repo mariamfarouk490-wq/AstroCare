@@ -22,6 +22,7 @@ import reminders from '../../data/reminders.json';
 import challengeObjectives from '../../data/challenge-objectives.json';
 import impact from '../../data/impact.json';
 import demoScript from '../../data/demo-script.json';
+import mindSupport from '../../data/mind-support.json';
 import { buildSeed } from './buildSeed.js';
 
 export const RAW_SEED_FILES = {
@@ -46,6 +47,7 @@ export const RAW_SEED_FILES = {
   'challenge-objectives.json': challengeObjectives,
   'impact.json': impact,
   'demo-script.json': demoScript,
+  'mind-support.json': mindSupport,
 };
 
 /**
