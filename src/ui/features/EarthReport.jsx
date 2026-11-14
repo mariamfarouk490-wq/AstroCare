@@ -4,7 +4,7 @@ import { useApp } from '../../state/store.js';
 import { Button, Modal, RefList } from '../components/index.jsx';
 import { formatDuration, formatTime } from '../format.js';
 
-const ISO = /^d{4}-d{2}-d{2}Td{2}:d{2}/;
+const ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/;
 /** Preview shows clock times for log stamps; the .txt keeps the full ISO time. */
 const shortStamp = (k) => (ISO.test(k) ? formatTime(k) : k);
 
