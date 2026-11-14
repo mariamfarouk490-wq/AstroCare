@@ -116,7 +116,7 @@
   {
     "key": "CC_SPO2",
     "label": "Cleveland Clinic – Pulse oximetry",
-    "url": "https://my.clevelandclinic.org/health/diagnostics/22447-pulse-oximetry",
+    "url": "https://my.clevelandclinic.org/health/diagnostics/22447-blood-oxygen-level",
     "publisher": "Medical guideline"
   },
   {
@@ -182,7 +182,7 @@
   {
     "key": "BODYPARTS3D",
     "label": "BodyParts3D, © The Database Center for Life Science (DBCLS), CC BY-SA 2.1 Japan – 3D anatomy models",
-    "url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/desc.html",
     "publisher": "Peer-reviewed"
   }
 ]

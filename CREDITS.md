@@ -5,7 +5,7 @@
 BodyParts3D, © The Database Center for Life Science, licensed under
 [CC BY-SA 2.1 Japan](https://creativecommons.org/licenses/by-sa/2.1/jp/deed.en).
 
-- Source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/ (version 3.0, 20110915),
+- Source: https://dbarchive.biosciencedbc.jp/en/bodyparts3d/desc.html (version 3.0, 20110915),
   STL mirror https://github.com/Kevin-Mattheus-Moerman/BodyParts3D
 - Paper: Mitsuhashi N, et al. BodyParts3D: 3D structure database for anatomical concepts.
   Nucleic Acids Res. 2009;37:D782–5. https://doi.org/10.1093/nar/gkn613
