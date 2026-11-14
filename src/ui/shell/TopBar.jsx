@@ -36,7 +36,8 @@ function MissionClock() {
     <div className="telemetry" title={`Mission elapsed time ${days} d ${clock} · mission day ${days + 1}`}>
       <span className="telemetry__label">MET</span>
       <span className="telemetry__value num">
-        Day {days + 1} · {clock}
+        Day {days + 1}
+        <span className="telemetry__clock"> · {clock}</span>
       </span>
     </div>
   );

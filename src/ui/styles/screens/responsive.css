@@ -342,7 +342,8 @@
   }
 
   /* no room for the est. marker in the phone top bar; it stays on every other screen */
-  .topbar .est {
+  .topbar .est,
+  .telemetry__clock {
     display: none;
   }
 }
