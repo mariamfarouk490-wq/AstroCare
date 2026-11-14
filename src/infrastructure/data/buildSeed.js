@@ -25,23 +25,34 @@ export function validateFiles(rawFiles) {
 }
 
 /** Days to add so the last seed day becomes today (or yesterday if today's readings would be in the future). */
+/** Days to add so the last seed day becomes today (any time of day). */
 export function computeDateShift(measurements, now) {
   const last = measurements.map((m) => m.takenAt).sort().at(-1);
   if (!last) return 0;
-  let shift = daysBetween(last.slice(0, 10), toIsoDay(now));
-  const latestToday = Date.parse(shiftDateTime(last, shift));
-  if (latestToday > now.getTime() + 5 * 60_000) shift -= 1;
-  return shift;
+  return daysBetween(last.slice(0, 10), toIsoDay(now));
 }
 
-function applyShift(seed, n) {
+/**
+ * A shifted reading must never be in the future: before 07:10 UTC the last day's morning
+ * readings are moved to just before now (same day), so "today" always has data.
+ */
+function clampToNow(iso, now) {
+  const t = Date.parse(iso);
+  if (t <= now.getTime()) return iso;
+  const startOfDay = Date.parse(`${toIsoDay(now)}T00:00:00Z`);
+  const clamped = Math.max(startOfDay + 30_000, now.getTime() - 5 * 60_000);
+  return new Date(clamped).toISOString().replace('.000Z', 'Z');
+}
+
+function applyShift(seed, n, now) {
   if (n === 0) return seed;
+  const move = (iso) => clampToNow(shiftDateTime(iso, n), now);
   return {
     ...seed,
     mission: { ...seed.mission, startDate: addDays(seed.mission.startDate, n) },
-    measurements: seed.measurements.map((m) => ({ ...m, takenAt: shiftDateTime(m.takenAt, n) })),
+    measurements: seed.measurements.map((m) => ({ ...m, takenAt: move(m.takenAt) })),
     checkIns: seed.checkIns.map((c) => ({ ...c, date: addDays(c.date, n) })),
-    cabinEnvironment: seed.cabinEnvironment.map((c) => ({ ...c, takenAt: shiftDateTime(c.takenAt, n) })),
+    cabinEnvironment: seed.cabinEnvironment.map((c) => ({ ...c, takenAt: move(c.takenAt) })),
   };
 }
 
@@ -77,6 +88,6 @@ export function buildSeed(rawFiles, { now, shiftDates = true }) {
   const problems = checkIntegrity(seed);
   if (problems.length) throw new SeedError(problems);
   const dateShiftDays = shiftDates ? computeDateShift(seed.measurements, now) : 0;
-  seed = applyShift(seed, dateShiftDays);
+  seed = applyShift(seed, dateShiftDays, now);
   return { ...seed, dateShiftDays };
 }

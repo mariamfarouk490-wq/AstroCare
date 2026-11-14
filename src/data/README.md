@@ -18,7 +18,7 @@ const seed = loadSeed({ clock: new SystemClock() });
 // seed.crew, seed.metrics, seed.measurements, seed.checkIns, seed.rules, seed.bodyParts, seed.hazards, ...
 ```
 
-`loadSeed` validates, checks relations, and **shifts every seed date so the last seed day is today** (or yesterday, if this morning's readings would still be in the future). The demo works on any day with no FakeClock. `seed.dateShiftDays` says how far it moved. To keep the original dates, pass `shiftDates: false`. For a rehearsal at a fixed time, use `new FakeClock('2026-11-14T09:00:00Z')`.
+`loadSeed` validates, checks relations, and **shifts every seed date so the last seed day is today**; readings whose time of day is still in the future are moved to just before now, so today always has data. The demo works on any day with no FakeClock. `seed.dateShiftDays` says how far it moved. To keep the original dates, pass `shiftDates: false`. For a rehearsal at a fixed time, use `new FakeClock('2026-11-14T09:00:00Z')`.
 
 Every content entry has `refs: [{label, url}]` (sources). Any value not taken from a source is listed in `estimates` or has `"source": "app"` / `"thresholdSource": "app"`. The full source list is in `sources.json`. The Arabic mapping doc is at https://claude.ai/artifact/8UfS6F5tNtWG4WrPNURH6Q
 
