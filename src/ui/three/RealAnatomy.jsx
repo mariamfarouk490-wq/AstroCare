@@ -100,7 +100,7 @@ function Organ({ spec, status, register, onSelect, onHover, heartRate }) {
     let s = 1;
     if (spec.beat && !reduced()) {
       const phase = (clock.elapsedTime * ((heartRate || 60) / 60)) % 1;
-      s += Math.max(0, Math.sin(phase * Math.PI * 2)) ** 6 * 0.07;
+      s += Math.max(0, Math.sin(phase * Math.PI * 2)) ** 6 * 0.045;
     }
     pulse.current.scale.setScalar(s);
   });
@@ -119,18 +119,22 @@ function Organ({ spec, status, register, onSelect, onHover, heartRate }) {
       document.body.style.cursor = '';
     },
   };
+  // The hit volume sits OUTSIDE the beating group: a target that pulses under a still cursor
+  // would toggle hover on every heartbeat.
   return (
-    <group position={center} ref={pulse}>
-      <group position={center.clone().negate()}>
-        <mesh geometry={geometry} material={surface} renderOrder={10} raycast={NO_RAYCAST} />
-        <mesh geometry={geometry} material={rim} renderOrder={11} raycast={NO_RAYCAST} />
+    <group position={center}>
+      <group ref={pulse}>
+        <group position={center.clone().negate()}>
+          <mesh geometry={geometry} material={surface} renderOrder={10} raycast={NO_RAYCAST} />
+          <mesh geometry={geometry} material={rim} renderOrder={11} raycast={NO_RAYCAST} />
+        </group>
       </group>
       {spec.hit !== false && <mesh geometry={HIT_GEOMETRY} material={HIT_MATERIAL} scale={half} {...handlers} />}
     </group>
   );
 }
 
-export default function RealAnatomy({ statusOf, heartRate, dosePct, selectedId, hoveredId, onSelect, onHover }) {
+export default function RealAnatomy({ statusOf, heartRate, dosePct, selectedId, hoverRef, onSelect, onHover }) {
   const skin = useGeometry('skin');
   const skeleton = useGeometry('skeleton');
   const lungs = useGeometry('lungs');
@@ -175,10 +179,11 @@ export default function RealAnatomy({ statusOf, heartRate, dosePct, selectedId, 
       o.surface.opacity = o.base * f;
       o.surface.color.copy(o.color).lerp(GREY, 1 - f);
       o.surface.depthWrite = f > 0.9;
-      const pulse = o.status === 'Normal' ? 1 : 0.7 + 0.3 * Math.sin(t * (o.status === 'Critical' ? 5 : 2.6));
-      o.hover = THREE.MathUtils.lerp(o.hover ?? 1, hoveredId === o.part ? 1.6 : 1, k);
-      const hover = o.hover;
-      o.rim.uniforms.uRim.value = o.rimBase * pulse * hover * (o.part === selectedId ? 1.4 : 1);
+      // Gentle status breathing (Watch slow, Critical faster). Hover adds a steady glow on top
+      // instead of multiplying the pulse, so a hovered organ never throbs harder.
+      const breathe = o.status === 'Normal' ? 1 : 0.88 + 0.12 * Math.sin(t * (o.status === 'Critical' ? 3.2 : 1.6));
+      o.hover = THREE.MathUtils.lerp(o.hover ?? 0, hoverRef.current === o.part ? 1 : 0, k);
+      o.rim.uniforms.uRim.value = o.rimBase * breathe * (o.part === selectedId ? 1.3 : 1) + 0.22 * o.hover;
       o.rim.uniforms.uFade.value = f * f;
     }
     // skin, bones and lungs dim while another part is in focus

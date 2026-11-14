@@ -13,26 +13,33 @@ import { STATUS_COLOR, fresnelMaterial } from './materials.js';
 
 /** Front-facing full body, slightly from below (like the reference render). */
 const HOME = { position: [0, 0.78, 3.7], lookAt: [0, 0.93, 0] };
+const NO_RAYCAST = () => null;
 const reducedMotion = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** Click target + status marker. Normal: soft green dot. Watch: pulsing red ring. Critical: strong red. */
-function Hotspot({ entry, selected, hovered, onSelect, onHover }) {
+function Hotspot({ entry, selected, hoverRef, onSelect, onHover }) {
   const { part, status } = entry;
   const color = STATUS_COLOR[status];
+  const marker = useRef();
   const ring = useRef();
   const halo = useRef();
-  useFrame(({ clock, camera }) => {
-    const t = clock.elapsedTime;
-    const speed = status === 'Normal' ? 1.2 : status === 'Watch' ? 2.4 : 4.2;
-    const pulse = reducedMotion() ? 0.5 : (Math.sin(t * speed) + 1) / 2;
+  const show = useRef(selected ? 1 : 0);
+  // Hover is read from a ref every frame: hovering never re-renders React or rebuilds geometry.
+  useFrame(({ camera }, dt) => {
+    const on = selected || hoverRef.current === part.id;
+    show.current = THREE.MathUtils.lerp(show.current, on ? 1 : 0, 1 - Math.exp(-dt * 10));
+    if (marker.current) {
+      marker.current.visible = show.current > 0.02;
+      marker.current.scale.setScalar(0.8 + 0.2 * show.current);
+    }
+    // Steady marker: no size or opacity pulsing (a throbbing ring under the cursor reads as shaking).
     if (ring.current) {
       ring.current.quaternion.copy(camera.quaternion);
-      ring.current.scale.setScalar(1 + pulse * (status === 'Normal' ? 0.08 : 0.35));
-      ring.current.material.opacity = status === 'Normal' ? 0.5 : 0.95 - pulse * 0.5;
+      ring.current.material.opacity = (status === 'Normal' ? 0.55 : 0.9) * show.current;
     }
-    if (halo.current) halo.current.material.opacity = (status === 'Normal' ? 0.1 : status === 'Watch' ? 0.18 : 0.35) * (1 - pulse * 0.5);
+    if (halo.current) halo.current.material.opacity = (status === 'Normal' ? 0.08 : status === 'Watch' ? 0.14 : 0.24) * show.current;
   });
-  const r = part.radius * (selected || hovered ? 0.42 : 0.34);
+  const r = part.radius * 0.42;
   return (
     <group position={part.position}>
       <mesh
@@ -53,20 +60,22 @@ function Hotspot({ entry, selected, hovered, onSelect, onHover }) {
       >
         <sphereGeometry args={[part.radius * 0.9, 12, 12]} />
       </mesh>
-      <mesh ref={ring} visible={selected || hovered}>
-        <ringGeometry args={[r * 0.82, r, 48]} />
-        <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} side={THREE.DoubleSide} />
-      </mesh>
-      {(selected || hovered) && status !== 'Watch' && (
-        <mesh>
-          <sphereGeometry args={[r * 0.32, 16, 16]} />
-          <meshBasicMaterial color={color} toneMapped={false} />
+      <group ref={marker} visible={selected}>
+        <mesh ref={ring} raycast={NO_RAYCAST}>
+          <ringGeometry args={[r * 0.82, r, 48]} />
+          <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} side={THREE.DoubleSide} />
         </mesh>
-      )}
-      <mesh ref={halo} visible={selected || hovered}>
-        <sphereGeometry args={[r * 1.6, 24, 24]} />
-        <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} blending={THREE.AdditiveBlending} />
-      </mesh>
+        {status !== 'Watch' && (
+          <mesh raycast={NO_RAYCAST}>
+            <sphereGeometry args={[r * 0.32, 16, 16]} />
+            <meshBasicMaterial color={color} toneMapped={false} />
+          </mesh>
+        )}
+        <mesh ref={halo} raycast={NO_RAYCAST}>
+          <sphereGeometry args={[r * 1.6, 24, 24]} />
+          <meshBasicMaterial color={color} transparent depthWrite={false} toneMapped={false} blending={THREE.AdditiveBlending} />
+        </mesh>
+      </group>
     </group>
   );
 }
@@ -127,7 +136,6 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
   const shell = useMemo(() => fresnelMaterial({ color: '#d6dde6', power: 2.8, rim: 0.42, base: 0.006 }), []);
   const controls = useRef();
   const body = useRef();
-  const [hovered, setHoveredState] = useState(null);
   const [interacting, setInteracting] = useState(false);
   // Stable hover: switch to a new part at once, but wait a moment before clearing it, so moving
   // between neighbouring hit areas never flickers the highlight or the label.
@@ -139,7 +147,6 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
       const apply = (next) => {
         if (hoverRef.current === next) return;
         hoverRef.current = next;
-        setHoveredState(next);
         onHover?.(next);
       };
       if (id) apply(id);
@@ -166,6 +173,13 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
     const sway = selectedId || interacting ? 0 : Math.sin(clock.elapsedTime * 0.22) * 0.45;
     body.current.rotation.y += (sway - body.current.rotation.y) * 0.03;
   });
+  // Orbit target is set once here. Passing it as a prop re-applied it on every render and snapped the camera.
+  useEffect(() => {
+    const c = controls.current;
+    if (!c) return;
+    c.target.set(...HOME.lookAt);
+    c.update();
+  }, []);
   useEffect(() => {
     const c = controls.current;
     if (!c) return undefined;
@@ -185,13 +199,13 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
         <group ref={body}>
           <SceneBoundary fallback={procedural}>
             <Suspense fallback={procedural}>
-              <RealAnatomy statusOf={statusOf} heartRate={heartRate} dosePct={dosePct} selectedId={selectedId} hoveredId={hovered} onSelect={onSelect} onHover={setHovered} />
+              <RealAnatomy statusOf={statusOf} heartRate={heartRate} dosePct={dosePct} selectedId={selectedId} hoverRef={hoverRef} onSelect={onSelect} onHover={setHovered} />
             </Suspense>
           </SceneBoundary>
           {parts
             .filter((p) => p.part.id !== 'aura')
             .map((p) => (
-              <Hotspot key={p.part.id} entry={p} selected={p.part.id === selectedId} hovered={hovered === p.part.id} onSelect={onSelect} onHover={setHovered} />
+              <Hotspot key={p.part.id} entry={p} selected={p.part.id === selectedId} hoverRef={hoverRef} onSelect={onSelect} onHover={setHovered} />
             ))}
         </group>
         <Platform auraStatus={statusOf('aura')} selected={selectedId === 'aura'} onSelect={onSelect} />
@@ -204,7 +218,6 @@ function Scene({ parts, selectedId, onSelect, onHover, heartRate, dosePct }) {
         maxDistance={4.6}
         minPolarAngle={0.35}
         maxPolarAngle={1.75}
-        target={HOME.lookAt}
       />
       <CameraRig target={selected?.part.cameraTarget} controls={controls} />
       <EffectComposer multisampling={0}>

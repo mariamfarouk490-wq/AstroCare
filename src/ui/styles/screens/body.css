@@ -56,10 +56,9 @@
   gap: 4px;
   padding: 4px;
   border-radius: var(--r-sm);
-  background: var(--fill-2);
+  /* solid fill, no backdrop-filter: blurring over a live WebGL canvas forces re-compositing every frame */
+  background: var(--glass-solid);
   border: 1px solid var(--glass-border-soft);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
   max-width: calc(100% - var(--s-4));
   overflow-x: auto;
   scrollbar-width: none;
@@ -272,10 +271,7 @@
   height: 28px;
   padding: 0 12px;
   font-size: var(--fs-footnote);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
 }
-
 
 .stage__hint,
 .stage__hover,
