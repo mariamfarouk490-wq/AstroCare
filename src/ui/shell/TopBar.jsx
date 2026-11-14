@@ -29,11 +29,15 @@ function MissionClock() {
     );
   }
   const sec = Math.max(0, Math.floor((now - Date.parse(`${mission.startDate}T00:00:00Z`)) / 1000));
-  const met = `${pad(Math.floor(sec / 86400))}:${pad(Math.floor(sec / 3600) % 24)}:${pad(Math.floor(sec / 60) % 60)}:${pad(sec % 60)}`;
+  const days = Math.floor(sec / 86400);
+  const clock = `${pad(Math.floor(sec / 3600) % 24)}:${pad(Math.floor(sec / 60) % 60)}:${pad(sec % 60)}`;
+  // Same day number as the report and the alerts: mission day = full days elapsed + 1
   return (
-    <div className="telemetry" title="Mission elapsed time (days:hours:minutes:seconds)">
+    <div className="telemetry" title={`Mission elapsed time ${days} d ${clock} · mission day ${days + 1}`}>
       <span className="telemetry__label">MET</span>
-      <span className="telemetry__value num">{met}</span>
+      <span className="telemetry__value num">
+        Day {days + 1} · {clock}
+      </span>
     </div>
   );
 }

@@ -1,8 +1,42 @@
-// "Prepare report for Earth": preview of the flight-surgeon report with Copy and Download.
+// "Prepare report for Earth": readable preview of the flight-surgeon report, with Copy and Download (.txt).
 import { useState } from 'react';
 import { useApp } from '../../state/store.js';
-import { Button, Modal } from '../components/index.jsx';
+import { Button, Modal, RefList } from '../components/index.jsx';
 import { formatDuration, formatTime } from '../format.js';
+
+function ReportView({ report }) {
+  return (
+    <div className="earth-report">
+      {report.sections.map((s) => (
+        <section key={s.title} className="earth-report__section">
+          <h3 className="eyebrow">{s.title}</h3>
+          {s.empty && <p className="footnote tertiary">{s.empty}</p>}
+          {s.blocks.map((b, i) => (
+            <div key={b.heading ?? i} className="earth-report__block">
+              {b.heading && <p className="earth-report__heading">{b.heading}</p>}
+              {b.rows.length > 0 && (
+                <dl className="earth-report__rows">
+                  {b.rows.map(([k, v], j) => (
+                    <div key={`${k}-${j}`} className="earth-report__row">
+                      <dt>{k}</dt>
+                      <dd>{v}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+              <RefList refs={b.links} />
+            </div>
+          ))}
+        </section>
+      ))}
+      {report.notes.map((n) => (
+        <p key={n} className="footnote secondary earth-report__note">
+          {n}
+        </p>
+      ))}
+    </div>
+  );
+}
 
 export default function EarthReportButton({ crewId, size = 'sm', variant, label = 'Prepare report for Earth' }) {
   const buildEarthReport = useApp((s) => s.buildEarthReport);
@@ -33,21 +67,26 @@ export default function EarthReportButton({ crewId, size = 'sm', variant, label 
         {label}
       </Button>
       {report && (
-        <Modal title={report.title} onClose={() => setReport(null)}>
+        <Modal
+          title={report.title}
+          onClose={() => setReport(null)}
+          footer={
+            <>
+              <Button block icon="link" onClick={copy}>
+                Copy
+              </Button>
+              <Button block variant="primary" icon="chevronDown" onClick={download}>
+                Download .txt
+              </Button>
+            </>
+          }
+        >
           <p className="secondary modal__text">
             {report.roundTripSec
               ? `Expected reply in ~${formatDuration(report.roundTripSec)} (round trip), around ${formatTime(report.expectedReplyAt.toISOString())}. Do not wait for Earth to act.`
               : 'Live link: a reply can arrive in seconds.'}
           </p>
-          <pre className="earth-report">{report.text}</pre>
-          <div className="row-gap actions">
-            <Button block icon="link" onClick={copy}>
-              Copy
-            </Button>
-            <Button block variant="primary" icon="chevronDown" onClick={download}>
-              Download .txt
-            </Button>
-          </div>
+          <ReportView report={report} />
         </Modal>
       )}
     </>

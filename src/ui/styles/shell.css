@@ -4,6 +4,19 @@
   min-height: 100dvh;
 }
 
+/* Fade under the fixed top bar: scrolled content dissolves before it reaches the bar instead of reading through it */
+.shell::before {
+  content: "";
+  position: fixed;
+  z-index: calc(var(--z-chrome) - 1);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--s-3) + 56px + var(--s-4));
+  pointer-events: none;
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 70%, transparent 100%);
+}
+
 .shell__main {
   max-width: calc(var(--page-max) + var(--rail-w));
   margin: 0 auto;
@@ -68,6 +81,11 @@
   gap: var(--s-5);
   padding: 0 var(--s-2) 0 var(--s-3);
   border-radius: var(--r-round);
+}
+
+/* dense enough that nothing scrolling below can be read through it */
+.topbar.liquid {
+  background: rgba(16, 16, 20, 0.92);
 }
 
 .topbar__brand {

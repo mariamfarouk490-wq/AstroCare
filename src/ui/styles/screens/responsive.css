@@ -346,3 +346,10 @@
     display: none;
   }
 }
+
+/* Phone: the top bar has two rows, so the fade under it is taller */
+@media (max-width: 600px) {
+  .shell::before {
+    height: calc(var(--topbar-h) + env(safe-area-inset-top));
+  }
+}
