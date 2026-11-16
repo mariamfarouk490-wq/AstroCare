@@ -157,9 +157,11 @@ AI coding assistants were used in this project: Claude (Anthropic) and, earlier,
 **Lunaries**, Faculty of Computers and Informatics, Zagazig University, NASA Space Apps Cairo 2026.
 
 <!-- TODO(team): add each member's name and role -->
-- _Member name – role (to be added)_
-- _Member name – role (to be added)_
-- _Member name – role (to be added)_
+- _Muhammed Mahmoud_
+- _Maryam Mohamed_
+- _Nour Magdy_
+- _Kamal Mohamed_
+- _Youssef Mohamed_
 
 ---
 
@@ -308,8 +310,10 @@ npm run lint
 فريق **Lunaries**، كلية الحاسبات والمعلومات، جامعة الزقازيق، NASA Space Apps Cairo 2026.
 
 <!-- TODO(team): اكتبوا اسم كل عضو ودوره -->
-- _اسم العضو – الدور (هيتضاف)_
-- _اسم العضو – الدور (هيتضاف)_
-- _اسم العضو – الدور (هيتضاف)_
+- _محمد محمود_
+- _مريم محمد_
+- _نور مجدي_
+- _كمال محمد_
+- _يوسف محمد_
 
 </div>
